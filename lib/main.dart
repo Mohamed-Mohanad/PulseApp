@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'Layout/Main/main_screen.dart';
 import 'Shared/Cubit/bloc_observer.dart';
 import 'Shared/Cubit/cubit.dart';
@@ -30,21 +31,31 @@ class MyApp extends StatelessWidget {
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},
         builder: (context, state) {
-          return const MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Pulse',
-            localizationsDelegates: [
-              AppLocalizations.delegate, // Add this line
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: [
-              Locale('en', ''),
-              Locale('ar', ''),
-            ],
-            locale: Locale.fromSubtags(languageCode: 'en'),
-            home: MainScreen(),
+          return ScreenUtilInit(
+            designSize: const Size(390, 844),
+            splitScreenMode: true,
+            builder: () => MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Pulse',
+              localizationsDelegates: const [
+                AppLocalizations.delegate, // Add this line
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: const [
+                Locale('en', ''),
+                Locale('ar', ''),
+              ],
+              locale: const Locale.fromSubtags(languageCode: 'en'),
+              builder: (context, widget) {
+                return MediaQuery(
+                  data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                  child: widget!,
+                );
+              },
+              home: const MainScreen(),
+            ),
           );
         },
       ),
