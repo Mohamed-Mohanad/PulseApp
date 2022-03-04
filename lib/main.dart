@@ -10,10 +10,11 @@ import 'Shared/Cubit/cubit.dart';
 import 'Shared/Cubit/states.dart';
 import 'Shared/Network/Local/cache_helper.dart';
 import 'Shared/Network/Remote/dio_helper.dart';
+import 'Shared/Style/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  //await Firebase.initializeApp();
   await CacheHelper.init();
   DioHelper.init();
   BlocOverrides.runZoned(
@@ -47,13 +48,15 @@ class MyApp extends StatelessWidget {
                 Locale('en', ''),
                 Locale('ar', ''),
               ],
-              locale: const Locale.fromSubtags(languageCode: 'en'),
+              locale: const Locale.fromSubtags(languageCode: 'ar'),
               builder: (context, widget) {
                 return MediaQuery(
                   data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
                   child: widget!,
                 );
               },
+              theme: lightMode,
+              themeMode: ThemeMode.light,
               home: const MainScreen(),
             ),
           );

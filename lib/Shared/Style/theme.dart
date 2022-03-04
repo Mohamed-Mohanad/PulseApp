@@ -24,7 +24,7 @@ ThemeData lightMode = ThemeData(
   appBarTheme: AppBarTheme(
     titleSpacing: 20.0.w,
     iconTheme: IconThemeData(
-      color: primaryColor,
+      color: blackColor,
     ),
     backgroundColor: Colors.white,
     elevation: 0.0,
@@ -36,10 +36,11 @@ ThemeData lightMode = ThemeData(
       color: primaryColor,
       fontSize: 20.0.sp,
       fontWeight: FontWeight.bold,
+      fontFamily: "Tajawal",
     ),
   ),
   iconTheme: IconThemeData(
-    color: primaryColor,
+    color: blackColor,
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     type: BottomNavigationBarType.fixed,
@@ -70,4 +71,5 @@ ThemeData lightMode = ThemeData(
       color: Colors.grey,
     ),
   ),
+  fontFamily: "Tajawal",
 );
