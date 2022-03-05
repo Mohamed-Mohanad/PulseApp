@@ -49,6 +49,16 @@ dependencies:
   introduction_screen: ^3.0.0
   fluttertoast: ^8.0.8
   flutter_screenutil: ^5.3.1
+  cached_network_image: ^3.2.0
+  syncfusion_flutter_charts: ^19.4.54
+  line_awesome_flutter: ^2.0.0
+  animated_theme_switcher: ^2.0.5
+  settings_ui: ^2.0.2
+  custom_switch: ^0.0.1
+  flutter_switch: ^0.3.2
+  flutter_cupertino_settings: ^0.5.0
+  rflutter_alert: ^2.0.4
+  dropdown_button2: ^1.2.0
 
 dev_dependencies:
   flutter_test:
@@ -91,10 +101,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: Tajawal
+      fonts:
+        - asset: assets/fonts/Tajawal-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
