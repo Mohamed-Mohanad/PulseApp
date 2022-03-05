@@ -1,35 +1,53 @@
 
+import 'package:day_night_time_picker/lib/constants.dart';
+import 'package:day_night_time_picker/lib/daynight_timepicker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pulse_app/Shared/Cubit/states.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 import '../Shared/Cubit/cubit.dart';
-class medicineScreen extends StatefulWidget {
-  const medicineScreen({Key? key}) : super(key: key);
+class MedicineScreen extends StatefulWidget {
+  const MedicineScreen({Key? key}) : super(key: key);
 
   @override
-  State<medicineScreen> createState() => _medicineScreenState();
+  State<MedicineScreen> createState() => _MedicineScreenState();
 }
 
-class _medicineScreenState extends State<medicineScreen> {
-  TimeOfDay selectedTime = TimeOfDay.now();
+class _MedicineScreenState extends State<MedicineScreen> {
+  TimeOfDay _time = TimeOfDay.now().replacing(hour: 11, minute: 30);
+  void onTimeChanged(TimeOfDay newTime) {
+    setState(() {
+      _time = newTime;
+    });
+  }
   String dropdownValue = 'One';
+  List<DropdownMenuItem<String>> get dropdownItems{
+    List<DropdownMenuItem<String>>  menuItems = [
+     const DropdownMenuItem(child: Text("كل يوم"),value: "كل يوم"),
+     const  DropdownMenuItem(child: Text("مرة في الاسبوع"),value: "مرة في الاسبوع"),
+     const  DropdownMenuItem(child: Text("مرتين في الاسبوع"),value: "مرتين في الاسبوع"),
+     const  DropdownMenuItem(child: Text("كل شهر"),value: "كل شهر"),
+    ];
+    return menuItems;
+  }
   @override
+
+
   Widget build(BuildContext context) {
+    String? selectedValue ='كل يوم';
+    final _dropdownFormKey = GlobalKey<FormState>();
     return BlocConsumer<AppCubit, AppStates>(
         listener:(context, state ){},
         builder: (context,state){
           var cubit = AppCubit.get(context);
           return Scaffold(
             appBar: AppBar(
-              title:  Text('المساعدة',
+              title:  const Text('المساعدة',
                 textAlign: TextAlign.start,
                 style: TextStyle(
                     color: Colors.black
                 ),),
-
-
             ),
             body: SingleChildScrollView(
               child: Padding(
@@ -38,21 +56,21 @@ class _medicineScreenState extends State<medicineScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Image.asset('assets/images/Stuck at Home Health.png'),
-                    Divider(
+                    const Divider(
                       height: 0.6,
                       color: Colors.black87,
                     ),
-                    SizedBox(
+                   const SizedBox(
                       height: 30,
                     ),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Container(
-                        color: Color(0xffCCCCCC),
+                        color: const Color(0xffCCCCCC),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children:<Widget> [
-                            Text('اضافة دواء جديد',
+                            const Text('اضافة دواء جديد',
                               textAlign: TextAlign.start,
                               style: TextStyle(fontSize: 15),),
 
@@ -60,56 +78,87 @@ class _medicineScreenState extends State<medicineScreen> {
                               Alert(
                                   context: context,
                                   title: "اضافة دواء جديد",
-                                  content: Column(
-                                    children: <Widget>[
-                                      ElevatedButton(
-                                        onPressed: () {
-                                          _selectTime(context);
-                                        },
-                                        child: Text("Choose Time"),
-                                      ),
-                                      Text("${selectedTime.hour}:${selectedTime.minute}"),
-                                      TextField(
-                                        decoration: InputDecoration(
-                                          icon: Icon(Icons.medical_services_outlined),
-                                          labelText: 'اسم الدواء',
+                                  content: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      children: <Widget>[
+                                        Text(
+                                          "معاد الدواء",
+                                          style: Theme.of(context).textTheme.headline6,
                                         ),
-                                      ),
-                                      DropdownButton<String>(
-                                        value: dropdownValue,
-                                        icon: const Icon(Icons.arrow_downward),
-                                        elevation: 16,
-                                        style: const TextStyle(color: Colors.deepPurple),
-                                        underline: Container(
-                                          height: 2,
-                                          color: Colors.deepPurpleAccent,
+                                        Text(
+                                          _time.format(context),
+                                          textAlign: TextAlign.center,
+                                          style: Theme.of(context).textTheme.headline1,
                                         ),
-                                        onChanged: (String? newValue) {
-                                          setState(() {
-                                            dropdownValue = newValue!;
-                                          });
-                                        },
-                                        items: <String>['One', 'Two', 'Free', 'Four']
-                                            .map<DropdownMenuItem<String>>((String value) {
-                                          return DropdownMenuItem<String>(
-                                            value: value,
-                                            child: Text(value),
-                                          );
-                                        }).toList(),
-                                      )
-                                    ],
+                                        SizedBox(height: 10),
+                                        TextButton(
+                                          style: TextButton.styleFrom(
+                                            backgroundColor: Theme.of(context).colorScheme.secondary,
+                                          ),
+                                          onPressed: () {
+                                            Navigator.of(context).push(
+                                              showPicker(
+                                                context: context,
+                                                onChange: onTimeChanged,
+                                                value: _time,
+                                                minuteInterval: MinuteInterval.FIVE,
+                                                onChangeDateTime: (DateTime dateTime) {
+                                                  print(dateTime);
+                                                },
+                                              ),
+                                            );
+                                          },
+                                          child: Text(
+                                            "تحديد المعاد",
+                                            style: TextStyle(color: Colors.white),
+                                          ),
+
+                                        ),
+                                        // Render inline widget
+                                        const TextField(
+                                          decoration: InputDecoration(
+                                            icon: Icon(Icons.medical_services_outlined),
+                                            labelText: 'اسم الدواء',
+                                          ),
+                                        ),
+                                        const SizedBox(height: 10,),
+                                        Form(
+                                          key: _dropdownFormKey,
+                                          child:
+                                          DropdownButtonFormField(
+                                              decoration:
+                                              const InputDecoration(
+                                                fillColor: Colors.white,
+                                                filled: true,
+                                                contentPadding:
+                                                EdgeInsets.only(bottom: 10.0, left: 10.0, right: 10.0),
+                                              ),
+                                              focusColor: Colors.black,
+                                              iconEnabledColor: Colors.black,
+                                              dropdownColor: Colors.white,
+                                              value: selectedValue,
+                                              onChanged: (String? newValue) {
+                                                setState(() {
+                                                  selectedValue = newValue!;
+                                                });
+                                              },
+                                              items: dropdownItems),
+                                        )
+                                      ],
+                                    ),
                                   ),
                                   buttons: [
                                     DialogButton(
                                       onPressed: () => Navigator.pop(context),
-                                      child: Text(
+                                      child: const Text(
                                         "حفظ",
                                         style: TextStyle(color: Colors.white, fontSize: 20),
                                       ),
                                     )
                                   ]).show();
-                            }, icon: Icon(Icons.add_box_outlined,size: 25,),
-                              padding: EdgeInsets.all(8.0),
+                            }, icon:const Icon(Icons.add_box_outlined,size: 25,),
+                              padding:const EdgeInsets.all(8.0),
                             ),
                           ],
                         ),
@@ -118,7 +167,7 @@ class _medicineScreenState extends State<medicineScreen> {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Container(
-                        decoration:  BoxDecoration(
+                        decoration: const BoxDecoration(
                           border: Border(
                             top: BorderSide(width: 30, color: Color(0xFFBFBFBF)),
                             left: BorderSide(width: 30, color: Color(0xFFBFBFBF)),
@@ -130,8 +179,8 @@ class _medicineScreenState extends State<medicineScreen> {
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('ليوبونيسيل',
+                          children: const[
+                             Text('ليوبونيسيل',
                               style: TextStyle(
                                   fontSize: 25
                               ),),
@@ -151,17 +200,24 @@ class _medicineScreenState extends State<medicineScreen> {
         }
     );
   }
-  _selectTime(BuildContext context) async {
-    final TimeOfDay? timeOfDay = await showTimePicker(
-      context: context,
-      initialTime: selectedTime,
-      initialEntryMode: TimePickerEntryMode.dial,
-    );
-    if(timeOfDay != null && timeOfDay != selectedTime)
-    {
-      setState(() {
-        selectedTime = timeOfDay;
-      });
-    }
-  }
-}
+  Future<TimeOfDay?> showTimePicker({
+    required BuildContext context,
+    required TimeOfDay initialTime,
+    TransitionBuilder? builder,
+    bool useRootNavigator = true,
+    TimePickerEntryMode initialEntryMode = TimePickerEntryMode.dial,
+    String? cancelText,
+    String? confirmText,
+    String? helpText,
+    String? errorInvalidText,
+    String? hourLabelText,
+    String? minuteLabelText,
+    RouteSettings? routeSettings,
+    EntryModeChangeCallback? onEntryModeChanged,
+  }) async {
+    assert(context != null);
+    assert(initialTime != null);
+    assert(useRootNavigator != null);
+    assert(initialEntryMode != null);
+    assert(debugCheckHasMaterialLocalizations(context));
+}}

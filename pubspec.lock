@@ -120,6 +120,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.1"
+  day_night_time_picker:
+    dependency: "direct main"
+    description:
+      name: day_night_time_picker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.5"
   dio:
     dependency: "direct main"
     description:
@@ -258,6 +265,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.5.0"
+  flutter_datetime_picker:
+    dependency: "direct main"
+    description:
+      name: flutter_datetime_picker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.5.1"
   flutter_lints:
     dependency: "direct dev"
     description:

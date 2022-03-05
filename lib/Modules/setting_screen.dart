@@ -1,263 +1,223 @@
-import 'package:flutter/cupertino.dart';
+
+import 'package:day_night_time_picker/lib/constants.dart';
+import 'package:day_night_time_picker/lib/daynight_timepicker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pulse_app/Shared/Cubit/states.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
-class Profile extends StatefulWidget {
-  static const routeName = "/profile";
+import '../Shared/Cubit/cubit.dart';
+class MedicineScreen extends StatefulWidget {
+  const MedicineScreen({Key? key}) : super(key: key);
 
   @override
-  _ProfileState createState() => _ProfileState();
+  State<MedicineScreen> createState() => _MedicineScreenState();
 }
 
-class _ProfileState extends State<Profile> {
+class _MedicineScreenState extends State<MedicineScreen> {
+  TimeOfDay _time = TimeOfDay.now().replacing(hour: 11, minute: 30);
+  void onTimeChanged(TimeOfDay newTime) {
+    setState(() {
+      _time = newTime;
+    });
+  }
+  String dropdownValue = 'One';
+  List<DropdownMenuItem<String>> get dropdownItems{
+    List<DropdownMenuItem<String>>  menuItems = [
+     const DropdownMenuItem(child: Text("كل يوم"),value: "كل يوم"),
+     const  DropdownMenuItem(child: Text("مرة في الاسبوع"),value: "مرة في الاسبوع"),
+     const  DropdownMenuItem(child: Text("مرتين في الاسبوع"),value: "مرتين في الاسبوع"),
+     const  DropdownMenuItem(child: Text("كل شهر"),value: "كل شهر"),
+    ];
+    return menuItems;
+  }
   @override
+
+
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-          child: SingleChildScrollView(
-           child: Container(
-          color: Color(0xffBBBBBB),
-          child: Column(
-            children: [
-              //for circle avtar image
-              _getHeader(),
-              _profileName("assmaakhaled609@gmail.com"),
-              SizedBox(
-                height: 14,
-              ),
-              _heading("الانقاذ"),
-              _helpMode(),
-              SizedBox(
-                height: 6,
-              ),
-              _heading("الاعدادت"),
-              SizedBox(
-                height: 6,
-              ),
-              _detailsCard(),
-              SizedBox(
-                height: 10,
-              ),
-              _heading("عن التطبيق"),
-              SizedBox(
-                height: 6,
-              ),
-              _settingsCard(),
-            ],
-          ),
-        ),
-          )),
-    );
-  }
-
-  Widget _getHeader() {
-    return SingleChildScrollView(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Container(
-              height: 100,
-              width: 100,
-              decoration: BoxDecoration(
-                //borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: NetworkImage(
-                      "https://img.freepik.com/free-photo/no-problem-concept-bearded-man-makes-okay-gesture-has-everything-control-all-fine-gesture-wears-spectacles-jumper-poses-against-pink-wall-says-i-got-this-guarantees-something_273609-42817.jpg?w=996",
-                    ) // color: Colors.orange[100],
+    String? selectedValue ='كل يوم';
+    final _dropdownFormKey = GlobalKey<FormState>();
+    return BlocConsumer<AppCubit, AppStates>(
+        listener:(context, state ){},
+        builder: (context,state){
+          var cubit = AppCubit.get(context);
+          return Scaffold(
+            appBar: AppBar(
+              title:  const Text('المساعدة',
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                    color: Colors.black
+                ),),
+            ),
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Image.asset('assets/images/Stuck at Home Health.png'),
+                    const Divider(
+                      height: 0.6,
+                      color: Colors.black87,
                     ),
+                   const SizedBox(
+                      height: 30,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Container(
+                        color: const Color(0xffCCCCCC),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children:<Widget> [
+                            const Text('اضافة دواء جديد',
+                              textAlign: TextAlign.start,
+                              style: TextStyle(fontSize: 15),),
+
+                            IconButton(onPressed: (){
+                              Alert(
+                                  context: context,
+                                  title: "اضافة دواء جديد",
+                                  content: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      children: <Widget>[
+                                        Text(
+                                          "معاد الدواء",
+                                          style: Theme.of(context).textTheme.headline6,
+                                        ),
+                                        Text(
+                                          _time.format(context),
+                                          textAlign: TextAlign.center,
+                                          style: Theme.of(context).textTheme.headline1,
+                                        ),
+                                        SizedBox(height: 10),
+                                        TextButton(
+                                          style: TextButton.styleFrom(
+                                            backgroundColor: Theme.of(context).colorScheme.secondary,
+                                          ),
+                                          onPressed: () {
+                                            Navigator.of(context).push(
+                                              showPicker(
+                                                context: context,
+                                                onChange: onTimeChanged,
+                                                value: _time,
+                                                minuteInterval: MinuteInterval.FIVE,
+                                                onChangeDateTime: (DateTime dateTime) {
+                                                  print(dateTime);
+                                                },
+                                              ),
+                                            );
+                                          },
+                                          child: Text(
+                                            "تحديد المعاد",
+                                            style: TextStyle(color: Colors.white),
+                                          ),
+
+                                        ),
+                                        // Render inline widget
+                                        const TextField(
+                                          decoration: InputDecoration(
+                                            icon: Icon(Icons.medical_services_outlined),
+                                            labelText: 'اسم الدواء',
+                                          ),
+                                        ),
+                                        const SizedBox(height: 10,),
+                                        Form(
+                                          key: _dropdownFormKey,
+                                          child:
+                                          DropdownButtonFormField(
+                                              decoration:
+                                              const InputDecoration(
+                                                fillColor: Colors.white,
+                                                filled: true,
+                                                contentPadding:
+                                                EdgeInsets.only(bottom: 10.0, left: 10.0, right: 10.0),
+                                              ),
+                                              focusColor: Colors.black,
+                                              iconEnabledColor: Colors.black,
+                                              dropdownColor: Colors.white,
+                                              value: selectedValue,
+                                              onChanged: (String? newValue) {
+                                                setState(() {
+                                                  selectedValue = newValue!;
+                                                });
+                                              },
+                                              items: dropdownItems),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  buttons: [
+                                    DialogButton(
+                                      onPressed: () => Navigator.pop(context),
+                                      child: const Text(
+                                        "حفظ",
+                                        style: TextStyle(color: Colors.white, fontSize: 20),
+                                      ),
+                                    )
+                                  ]).show();
+                            }, icon:const Icon(Icons.add_box_outlined,size: 25,),
+                              padding:const EdgeInsets.all(8.0),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          border: Border(
+                            top: BorderSide(width: 30, color: Color(0xFFBFBFBF)),
+                            left: BorderSide(width: 30, color: Color(0xFFBFBFBF)),
+                            right: BorderSide(width: 30, color: Color(0xFFBFBFBF)),
+                            bottom: BorderSide(width:30, color: Color(0xFFBFBFBF)),
+                          ),
+                          color: Color(0xFFBFBFBF),
+
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const[
+                             Text('ليوبونيسيل',
+                              style: TextStyle(
+                                  fontSize: 25
+                              ),),
+                            Text('7:45 مساء',
+                              style: TextStyle(
+                                  fontSize: 25
+                              ),)
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-          )
-        ],
-      ),
+          );
+        }
     );
   }
-
-  Widget _profileName(String name) {
-    return SingleChildScrollView(
-      child: Container(
-        width: MediaQuery.of(context).size.width * 0.80, //80% of width,
-        child: Center(
-          child: Text(
-            name,
-            style: TextStyle(color: Colors.grey),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _heading(String heading) {
-    return Container(
-      width: MediaQuery.of(context).size.width * 0.80, //80% of width,
-      child: Text(
-        heading,
-        style: TextStyle(fontSize: 16),
-      ),
-    );
-  }
-
-  Widget _detailsCard() {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Card(
-          elevation: 4,
-          child: Container(
-            color: Colors.white,
-            child: Column(
-              children: [
-                //row for each deatails
-                ListTile(
-                  leading: Icon(
-                    Icons.account_circle_outlined,
-                    color: Colors.black,
-                  ),
-                  title: Text(
-                    "الملف الشخصي",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ),
-                Divider(
-                  height: 0.6,
-                  color: Colors.black87,
-                ),
-                ListTile(
-                  leading: Icon(
-                    Icons.settings,
-                    color: Colors.black,
-                  ),
-                  title: Text(
-                    "اعدادت الصفحة",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ),
-                Divider(
-                  height: 0.6,
-                  color: Colors.black87,
-                ),
-                ListTile(
-                  leading: Icon(
-                    Icons.people,
-                    color: Colors.black,
-                  ),
-                  title: Text(
-                    "الاشخاص المقربون",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ),
-                Divider(
-                  height: 0.6,
-                  color: Colors.black87,
-                ),
-                ListTile(
-                  leading: Icon(
-                    Icons.assignment_outlined,
-                    color: Colors.black,
-                  ),
-                  title: Text(
-                    "اعداد التقرير",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ),
-                Divider(
-                  height: 0.6,
-                  color: Colors.black87,
-                ),
-                ListTile(
-                  leading: Icon(
-                    Icons.notifications,
-                    color: Colors.black,
-                  ),
-                  title: Text(
-                    "الاشعارات",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _settingsCard() {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Card(
-          elevation: 4,
-          child: Column(
-            children: [
-              //row for each deatails
-              ListTile(
-                leading: Icon(
-                  Icons.book_sharp,
-                  color: Colors.black,
-                ),
-                title: Text(
-                  "طريقة الاستخدام",
-                  style: TextStyle(color: Colors.black),
-                ),
-              ),
-              Divider(
-                height: 0.6,
-                color: Colors.black87,
-              ),
-              ListTile(
-                leading: Icon(
-                  Icons.privacy_tip,
-                  color: Colors.black,
-                ),
-                title: Text(
-                  "البيانات والخصوصية",
-                  style: TextStyle(color: Colors.black),
-                ),
-              ),
-              Divider(
-                height: 0.6,
-                color: Colors.black87,
-              ),
-              ListTile(
-                leading: Icon(
-                  Icons.error_outline_outlined,
-                  color: Colors.black,
-                ),
-                title: Text(
-                  "الاصدار",
-                  style: TextStyle(color: Colors.black),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _helpMode() {
-    bool status = true;
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Card(
-          elevation: 4,
-          child: ListTile(
-            leading: Icon(
-              Icons.person_outline,
-              color: Colors.black,
-            ),
-            title: Text(
-              "تفعيل الانقاذ",
-              style: TextStyle(color: Colors.black),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
+  Future<TimeOfDay?> showTimePicker({
+    required BuildContext context,
+    required TimeOfDay initialTime,
+    TransitionBuilder? builder,
+    bool useRootNavigator = true,
+    TimePickerEntryMode initialEntryMode = TimePickerEntryMode.dial,
+    String? cancelText,
+    String? confirmText,
+    String? helpText,
+    String? errorInvalidText,
+    String? hourLabelText,
+    String? minuteLabelText,
+    RouteSettings? routeSettings,
+    EntryModeChangeCallback? onEntryModeChanged,
+  }) async {
+    assert(context != null);
+    assert(initialTime != null);
+    assert(useRootNavigator != null);
+    assert(initialEntryMode != null);
+    assert(debugCheckHasMaterialLocalizations(context));
+}}
