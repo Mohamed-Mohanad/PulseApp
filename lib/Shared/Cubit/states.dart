@@ -9,3 +9,5 @@ class AppBottomNavState extends AppStates {}
 
 ///Tab State
 class AppTabState extends AppStates {}
+//change time medicine
+class ChangeTime extends AppStates{}

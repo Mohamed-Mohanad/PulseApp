@@ -34,6 +34,7 @@ class MainScreen extends StatelessWidget {
                     ),
                   ),
                   radius: 23.0.r,
+
                 ),
               ),
             ],

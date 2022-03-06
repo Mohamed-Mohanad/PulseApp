@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pulse_app/Modules/close_people/close_people_screen.dart';
+import 'package:pulse_app/Modules/help_screen.dart';
+import 'package:pulse_app/Modules/medicine_screen.dart';
 import 'package:pulse_app/Shared/Cubit/states.dart';
 
 import '../../Modules/Home/home_screen.dart';
@@ -13,9 +17,9 @@ class AppCubit extends Cubit<AppStates> {
   int currentIndex = 0;
   List<Widget> bottomScreens = [
     const HomeScreen(),
-    Container(),
-    Container(),
-    Container(),
+    const closePeople(),
+    const helpScreen(),
+     MedicineScreen(),
   ];
 
   void changeBottomNav(int index) {
@@ -34,4 +38,7 @@ class AppCubit extends Cubit<AppStates> {
     currentTabIndex = index;
     emit(AppTabState());
   }
+
+
+
 }

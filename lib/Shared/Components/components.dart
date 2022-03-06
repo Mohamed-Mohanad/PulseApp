@@ -317,3 +317,108 @@ class TempTab extends StatelessWidget {
     );
   }
 }
+Widget buildChatItem(BuildContext context) =>
+    Container(
+      decoration:  BoxDecoration(
+        border: Border(
+          top: BorderSide(width: 1.5, color: Color(0xFFBFBFBF)),
+          left: BorderSide(width: 1.5, color: Color(0xFFBFBFBF)),
+          right: BorderSide(width: 1.5, color: Color(0xFFBFBFBF)),
+          bottom: BorderSide(width: 1.5, color: Color(0xFFBFBFBF)),
+        ),
+        color: Color(0xFFBFBFBF),
+
+      ),
+
+      child: Row(
+        children: [
+          Stack(
+            alignment: AlignmentDirectional.bottomEnd,
+            children: [
+              CircleAvatar(
+                  radius: 30.0,
+                  backgroundImage: NetworkImage('https://www.hollywoodreporter.com/wp-content/uploads/2019/03/avatar-publicity_still-h_2019.jpg?w=1024')),
+              Padding(
+                padding: const EdgeInsetsDirectional.only(
+                  bottom: 3.0,
+                  end: 3.0,
+                ),
+                child: CircleAvatar(
+                  radius: 7.0,
+                  backgroundColor: Colors.red,
+                ),
+              ),
+            ],
+          ),
+
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'أسماء خالد',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                SizedBox(
+                  height: 5.0,
+                ),
+                Row(
+                  children:
+                  [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 100.0,
+                      ),
+
+                    ),
+                    IconButton(onPressed:(){
+                      _bottomSheet(context);
+                    }, icon: Icon(Icons.more_vert))
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+_bottomSheet(context){
+  showModalBottomSheet(context: context, builder: (BuildContext c){
+    return Wrap(
+      children: [
+        Container(
+          child: Column(
+            crossAxisAlignment:CrossAxisAlignment.center,
+            children: const <Widget>[
+            Divider(
+                color: Colors.grey,
+                height: 2.0,
+                thickness: 2,
+                indent: 3,
+                endIndent:5,
+              ),
+              ListTile(
+                leading: Icon(Icons.help_outline_sharp),
+                title: Text('طلب المساعدة '),
+              ),
+              ListTile(
+                leading: Icon(Icons.location_on_outlined),
+                title: Text('مشاركة الموقع'),
+              ),
+              ListTile(
+                leading:Icon(Icons.not_interested_outlined),
+                title: Text('ازالة المقربون'),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  });
+
+}
