@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pulse_app/Shared/Cubit/states.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-import '../Shared/Cubit/cubit.dart';
+import '../../Shared/Cubit/cubit.dart';
 class MedicineScreen extends StatefulWidget {
   const MedicineScreen({Key? key}) : super(key: key);
 

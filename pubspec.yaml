@@ -61,6 +61,7 @@ dependencies:
   dropdown_button2: ^1.2.0
   flutter_datetime_picker: ^1.5.1
   day_night_time_picker: ^1.0.5
+  animate_icons: ^2.0.0
 
 dev_dependencies:
   flutter_test:

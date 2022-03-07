@@ -6,8 +6,11 @@ class AppInitialState extends AppStates {}
 ///Bottom Navigation Bar State
 class AppBottomNavState extends AppStates {}
 
-
 ///Tab State
 class AppTabState extends AppStates {}
-//change time medicine
-class ChangeTime extends AppStates{}
+
+///change time medicine
+class ChangeTime extends AppStates {}
+
+///show & hide hover screen state
+class HoverScreenChangeState extends AppStates {}

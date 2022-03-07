@@ -49,27 +49,37 @@ ThemeData lightMode = ThemeData(
     unselectedItemColor: Colors.grey,
     backgroundColor: Colors.white,
   ),
-  textTheme: TextTheme(
-    headline1: TextStyle(
-      fontSize: 36.0.sp,
-      fontWeight: FontWeight.w800,
-      color: Colors.black,
-    ),
-    bodyText1: TextStyle(
-      fontSize: 24.0.sp,
-      fontWeight: FontWeight.normal,
-      color: Colors.black,
-    ),
-    subtitle1: TextStyle(
-      fontSize: 18.0.sp,
-      fontWeight: FontWeight.w800,
-      color: Colors.grey,
-      height: 1.3.sp,
-    ),
-    caption: TextStyle(
-      fontSize: 15.0.sp,
-      color: Colors.grey,
-    ),
-  ),
   fontFamily: "Tajawal",
 );
+
+TextStyle bodyText() => TextStyle(
+      fontSize: 16.0.sp,
+      fontWeight: FontWeight.normal,
+      color: Colors.black,
+      fontFamily: "Tajawal",
+    );
+TextStyle subTitle() => TextStyle(
+      fontSize: 14.0.sp,
+      fontWeight: FontWeight.w800,
+      color: Colors.grey,
+      height: 1.3.h,
+    );
+TextStyle caption() => TextStyle(
+      fontSize: 13.0.sp,
+      color: Colors.grey,
+      fontFamily: "Tajawal",
+    );
+
+TextStyle headLine() => TextStyle(
+      fontSize: 25.0.sp,
+      fontWeight: FontWeight.w800,
+      color: Colors.black,
+      fontFamily: "Tajawal",
+    );
+
+TextStyle appBarText() => TextStyle(
+      color: primaryColor,
+      fontSize: 20.0.sp,
+      fontWeight: FontWeight.bold,
+      fontFamily: "Tajawal",
+    );

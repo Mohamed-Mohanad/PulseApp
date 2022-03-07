@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pulse_app/Shared/Components/components.dart';
 import 'package:pulse_app/Shared/Cubit/cubit.dart';
 import 'package:pulse_app/Shared/Cubit/states.dart';
+import 'package:pulse_app/Shared/Style/theme.dart';
 
 import '../../Shared/Style/color.dart';
 
@@ -53,15 +54,11 @@ class HomeScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   "نبضة/دقيقة",
-                                  style: Theme.of(context).textTheme.caption,
+                                  style: caption(),
                                 ),
                                 Text(
                                   "65",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline1!
-                                      .copyWith(
-                                          color: blackColor, fontSize: 60.0.sp),
+                                  style: headLine().copyWith(color: blackColor, fontSize: 60.sp,),
                                 ),
                               ],
                             ),
@@ -70,7 +67,7 @@ class HomeScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   "< نبضة في الدقيقة  ",
-                                  style: Theme.of(context).textTheme.caption,
+                                  style: caption(),
                                 ),
                                 Image.asset("assets/icons/~.png"),
                               ],
@@ -89,12 +86,7 @@ class HomeScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   "30C",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline1!
-                                      .copyWith(
-                                        color: blackColor,
-                                      ),
+                                  style: headLine().copyWith(color: blackColor,),
                                 ),
                                 Image.asset(
                                   "assets/icons/temp.png",
@@ -103,7 +95,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                             Text(
                               "< درجة الحرارة",
-                              style: Theme.of(context).textTheme.caption,
+                              style: caption(),
                             )
                           ],
                         ),
@@ -116,12 +108,7 @@ class HomeScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   "82%",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline1!
-                                      .copyWith(
-                                        color: blackColor,
-                                      ),
+                                  style: headLine().copyWith(color: blackColor,),
                                 ),
                                 Image.asset(
                                   "assets/icons/oxegen.png",
@@ -130,7 +117,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                             Text(
                               "< الاكسجين",
-                              style: Theme.of(context).textTheme.caption,
+                              style: caption(),
                             )
                           ],
                         ),
@@ -138,21 +125,21 @@ class HomeScreen extends StatelessWidget {
                     ),
                     Text(
                       "اليوم, 21 فبراير",
-                      style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20.0,
-                          ),
+                      style: bodyText().copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.0,
+                      ),
                     ),
                     SizedBox(
                       height: 15.h,
                     ),
                     Text(
                       "البطارية منخفضة 25%",
-                      style: Theme.of(context).textTheme.caption,
+                      style: caption(),
                     ),
                     Text(
                       "يرجي شحن البطارية",
-                      style: Theme.of(context).textTheme.caption,
+                      style: caption(),
                     ),
                   ],
                 ),

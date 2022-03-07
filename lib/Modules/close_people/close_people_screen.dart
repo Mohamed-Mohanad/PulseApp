@@ -1,6 +1,6 @@
-
-
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pulse_app/Shared/Style/theme.dart';
 
 import '../../Shared/Components/components.dart';
 
@@ -16,7 +16,10 @@ class _closePeopleState extends State<closePeople> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: EdgeInsets.only(
+          left: 20.w,
+          right: 20.w,
+        ),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,22 +29,20 @@ class _closePeopleState extends State<closePeople> {
                   "assets/icons/pulseIcon.png",
                 ),
               ),
-              Text('المقربون',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 20.0,
-              ),),
+              Text(
+                'المقربون',
+                style: headLine(),
+              ),
               SizedBox(
-                height: 20.0,
+                height: 20.0.h,
               ),
               ListView.separated(
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemBuilder: (context, index) => buildChatItem(context),
-                separatorBuilder: (context, index) =>
-                    SizedBox(
-                      height: 20.0,
-                    ),
+                itemBuilder: (context, index) => const BuildChatItem(),
+                separatorBuilder: (context, index) => SizedBox(
+                  height: 20.0.h,
+                ),
                 itemCount: 15,
               ),
             ],
@@ -51,5 +52,3 @@ class _closePeopleState extends State<closePeople> {
     );
   }
 }
-
-
