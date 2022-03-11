@@ -154,6 +154,38 @@ class DefaultTextField extends StatelessWidget {
   }
 }
 
+class DefaultRadioButton extends StatelessWidget {
+  late final String label;
+  late int  value;
+  late int group;
+  late final Function onChange;
+  late final Color activeColor;
+
+  DefaultRadioButton({
+    required this.label,
+    required this.value,
+    required this.group,
+    required this.onChange,
+    required this.activeColor,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(label),
+      leading: Radio(
+        value: value,
+        groupValue: group,
+        onChanged: (value) {
+          onChange(value);
+        },
+        activeColor: activeColor,
+      ),
+    );
+  }
+}
+
 class BuildTab extends StatelessWidget {
   final String image;
   final String title;
