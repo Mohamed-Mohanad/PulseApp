@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pulse_app/Shared/Style/theme.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -25,7 +24,7 @@ navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
       (Route<dynamic> route) => false,
     );
 
-AppLocalizations getLang(context) => AppLocalizations.of(context)!;
+
 
 ///SHOW TOAST
 enum ToastStates {

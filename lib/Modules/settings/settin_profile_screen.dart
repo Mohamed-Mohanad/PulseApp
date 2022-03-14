@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:pulse_app/Shared/Style/color.dart';
@@ -12,8 +13,26 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  final _controller = ValueNotifier<bool>(false);
+  bool _checked = false;
+  bool _themeDark = false;
+
 
   @override
+  void initState() {
+    super.initState();
+
+    _controller.addListener(() {
+      setState(() {
+        if (_controller.value) {
+          _checked = true;
+        } else {
+          _checked = false;
+        }
+      });
+    });
+
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -62,7 +81,7 @@ class _ProfileState extends State<Profile> {
                                     color: Colors.grey,
                                     height: 60.h,
                                     width: 300.h,
-                                    child: const Text(
+                                    child: Text(
                                       'تعليمات الشحن',
                                       style: TextStyle(fontSize: 25,color: Colors.black),
                                       textAlign: TextAlign.center,
@@ -200,7 +219,7 @@ class _ProfileState extends State<Profile> {
 
   Widget _profileName(String name) {
     return SingleChildScrollView(
-      child: SizedBox(
+      child: Container(
         width: MediaQuery
             .of(context)
             .size
@@ -208,7 +227,7 @@ class _ProfileState extends State<Profile> {
         child: Center(
           child: Text(
             name,
-            style:const TextStyle(color: Colors.grey),
+            style: TextStyle(color: Colors.grey),
           ),
         ),
       ),
@@ -216,7 +235,7 @@ class _ProfileState extends State<Profile> {
   }
 
   Widget _heading(String heading) {
-    return SizedBox(
+    return Container(
       width: MediaQuery
           .of(context)
           .size
@@ -237,7 +256,7 @@ class _ProfileState extends State<Profile> {
           child: Container(
             color: Colors.white,
             child: Column(
-              children: const[
+              children: [
                 //row for each deatails
                 ListTile(
                   leading: Icon(
@@ -320,7 +339,7 @@ class _ProfileState extends State<Profile> {
         child: Card(
           elevation: 4,
           child: Column(
-            children: const [
+            children: [
               //row for each deatails
               ListTile(
                 leading: Icon(
@@ -370,6 +389,7 @@ class _ProfileState extends State<Profile> {
   Widget _helpMode() {
     bool status1 = false;
     bool isSwitchOn = false;
+    actions:
     [
       FlutterSwitch(
         value: isSwitchOn,
@@ -392,21 +412,24 @@ class _ProfileState extends State<Profile> {
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Icon(
+                  Icon(
                     Icons.person_outline,
                     color: Colors.black,
                   ),
-                const   Text(
+                  Text(
                     "تفعيل الانقاذ",
                     style: TextStyle(color: Colors.black),
                   ),
-                  FlutterSwitch(
-                    value: status1,
-                    onToggle: (val) {
-                      setState(() {
-                        status1 = val;
-                      });
-                    },
+                  AdvancedSwitch(
+                    controller: _controller,
+                    thumb: ValueListenableBuilder<bool>(
+                      valueListenable: _controller,
+                      builder: (_, value, __) {
+                        return Icon(value
+                            ? Icons.sports_basketball_outlined
+                            : Icons.sports_basketball_outlined);
+                      },
+                    ),
                   ),
                 ]
             ),
