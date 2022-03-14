@@ -1,9 +1,11 @@
+import 'package:animate_icons/animate_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pulse_app/Shared/Cubit/cubit.dart';
 import 'package:pulse_app/Shared/Cubit/states.dart';
 import 'package:pulse_app/Shared/Style/color.dart';
+import 'package:pulse_app/Shared/Style/theme.dart';
 
 import '../../Shared/Components/components.dart';
 
@@ -18,10 +20,29 @@ class MainScreen extends StatelessWidget {
         var cubit = AppCubit.get(context);
         return Scaffold(
           appBar: AppBar(
+            leading: AnimateIcons(
+              startIcon: Icons.add,
+              endIcon: Icons.close,
+              size: 36,
+              startIconColor: Colors.grey,
+              endIconColor: Colors.white,
+              onStartIconPress: () {
+                cubit.changeHoverScreenState();
+                return true;
+              },
+              onEndIconPress: () {
+                cubit.changeHoverScreenState();
+                return true;
+              },
+              controller: AnimateIconController(),
+              duration: const Duration(milliseconds: 300),
+              clockwise: false,
+            ),
             actions: [
               Padding(
                 padding: EdgeInsets.only(
-                  left: 20.0.w,
+                  left: 5.w,
+                  right: 10.w,
                 ),
                 child: CircleAvatar(
                   child: ClipOval(
@@ -34,19 +55,211 @@ class MainScreen extends StatelessWidget {
                     ),
                   ),
                   radius: 23.0.r,
-
                 ),
               ),
             ],
-            leading: IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.add,
-                size: 36,
-              ),
-            ),
+            backgroundColor: !cubit.showHoverScreen
+                ? Colors.white
+                : Colors.black87.withOpacity(0.6),
           ),
-          body: cubit.bottomScreens[cubit.currentIndex],
+          body: Stack(
+            children: [
+              cubit.bottomScreens[cubit.currentIndex],
+              if (cubit.showHoverScreen)
+                Container(
+                  width: double.infinity,
+                  height: (MediaQuery.of(context).size.height - 110).h,
+                  padding: EdgeInsets.only(
+                    left: 20.w,
+                    right: 26.w,
+                  ),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Colors.black87.withOpacity(0.6),
+                        Colors.transparent,
+                      ],
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 15.h,
+                      ),
+                      Row(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: Colors.white,
+                            child: Icon(
+                              Icons.search,
+                              color: redColor,
+                              size: 30,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 20.h,
+                          ),
+                          Text(
+                            'بحث',
+                            style: headLine().copyWith(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 15.h,
+                      ),
+                      Row(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: Colors.white,
+                            child: Icon(
+                              Icons.add_circle_outline_outlined,
+                              color: redColor,
+                              size: 30,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 20.h,
+                          ),
+                          Text(
+                            'اضافة جهاز جديد',
+                            style: headLine().copyWith(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 15.h,
+                      ),
+                      Row(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: Colors.white,
+                            child: Icon(
+                              Icons.group_add_outlined,
+                              color: redColor,
+                              size: 30,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 20.h,
+                          ),
+                          Text(
+                            'اضافة شخص مقرب',
+                            style: headLine().copyWith(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+            ],
+          ),
+          /*
+                // if (cubit.showHoverScreen)
+                //   Container(
+                //     width: double.infinity,
+                //     height: (MediaQuery.of(context).size.height - 110).h,
+                //     padding: EdgeInsets.only(
+                //       left: 20.w,
+                //       right: 26.w,
+                //     ),
+                //     decoration: BoxDecoration(
+                //       gradient: LinearGradient(
+                //         begin: Alignment.topCenter,
+                //         end: Alignment.bottomCenter,
+                //         colors: [
+                //           Colors.black87.withOpacity(0.6),
+                //           Colors.transparent,
+                //         ],
+                //       ),
+                //     ),
+                //     child: Column(
+                //       crossAxisAlignment: CrossAxisAlignment.start,
+                //       children: [
+                //         SizedBox(
+                //           height: 15.h,
+                //         ),
+                //         Row(
+                //           children: [
+                //             CircleAvatar(
+                //               backgroundColor: Colors.white,
+                //               child: Icon(
+                //                 Icons.search,
+                //                 color: redColor,
+                //                 size: 30,
+                //               ),
+                //             ),
+                //             SizedBox(
+                //               width: 20.h,
+                //             ),
+                //             Text(
+                //               'بحث',
+                //               style: headLine().copyWith(
+                //                 color: Colors.white,
+                //               ),
+                //             ),
+                //           ],
+                //         ),
+                //         SizedBox(
+                //           height: 15.h,
+                //         ),
+                //         Row(
+                //           children: [
+                //             CircleAvatar(
+                //               backgroundColor: Colors.white,
+                //               child: Icon(
+                //                 Icons.add_circle_outline_outlined,
+                //                 color: redColor,
+                //                 size: 30,
+                //               ),
+                //             ),
+                //             SizedBox(
+                //               width: 20.h,
+                //             ),
+                //             Text(
+                //               'اضافة جهاز جديد',
+                //               style: headLine().copyWith(
+                //                 color: Colors.white,
+                //               ),
+                //             ),
+                //           ],
+                //         ),
+                //         SizedBox(
+                //           height: 15.h,
+                //         ),
+                //         Row(
+                //           children: [
+                //             CircleAvatar(
+                //               backgroundColor: Colors.white,
+                //               child: Icon(
+                //                 Icons.group_add_outlined,
+                //                 color: redColor,
+                //                 size: 30,
+                //               ),
+                //             ),
+                //             SizedBox(
+                //               width: 20.h,
+                //             ),
+                //             Text(
+                //               'اضافة شخص مقرب',
+                //               style: headLine().copyWith(
+                //                 color: Colors.white,
+                //               ),
+                //             ),
+                //           ],
+                //         ),
+                //       ],
+                //     ),
+                //   ),*/
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: cubit.currentIndex,
             onTap: (index) {

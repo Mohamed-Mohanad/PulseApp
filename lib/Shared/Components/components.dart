@@ -4,10 +4,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pulse_app/Shared/Cubit/cubit.dart';
+import 'package:pulse_app/Shared/Style/theme.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-import '../../Models/GraphData/graph_data.dart';
+import '../../Models/graph_data/graph_data.dart';
 import '../Style/color.dart';
 
 void navigateTo(context, widget) => Navigator.push(
@@ -129,7 +129,13 @@ class BuildTab extends StatelessWidget {
   final String title;
   final Color tabColor;
   final Function onPressTab;
-  const BuildTab({Key? key, required this.tabColor, required this.title, required this.image, required this.onPressTab}) : super(key: key);
+  const BuildTab({
+    Key? key,
+    required this.tabColor,
+    required this.title,
+    required this.image,
+    required this.onPressTab,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -162,10 +168,7 @@ class BuildTab extends StatelessWidget {
             ),
             Text(
               title,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1!
-                  .copyWith(
+              style: bodyText().copyWith(
                 color: Colors.white,
                 fontSize: 15,
                 fontWeight: FontWeight.w500,
@@ -177,7 +180,6 @@ class BuildTab extends StatelessWidget {
     );
   }
 }
-
 
 class BuildHealthDataTab extends StatelessWidget {
   final String tabTitle;
@@ -203,11 +205,12 @@ class BuildHealthDataTab extends StatelessWidget {
               padding: const EdgeInsets.all(20.0),
               child: Text(
                 tabTitle,
-                style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                      color: Colors.white,
-                      fontSize: 36.0,
-                      fontWeight: FontWeight.w700,
-                    ),
+                textAlign: TextAlign.start,
+                style: bodyText().copyWith(
+                  color: Colors.white,
+                  fontSize: 36.0,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ),
             SizedBox(
@@ -261,6 +264,85 @@ class BuildHealthDataTab extends StatelessWidget {
   }
 }
 
+class BuildDateilsHealthDataTab extends StatelessWidget {
+  final String tabTitle;
+  final Color tabColor;
+  final List<GraphDataClass> graphPoint;
+  const BuildDateilsHealthDataTab({
+    Key? key,
+    required this.graphPoint,
+    required this.tabColor,
+    required this.tabTitle,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 200.h,
+            ),
+            Container(
+              height: 88.h,
+              width: double.infinity,
+              color: tabColor,
+              padding: const EdgeInsets.all(20.0),
+            )
+          ],
+        ),
+        Column(
+          children: [
+            Text(
+              tabTitle,
+              textAlign: TextAlign.start,
+              style: bodyText().copyWith(
+                color: Colors.black,
+                fontSize: 36.0,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            ClipRect(
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                child: Container(
+                  width: 340.0.w,
+                  height: 208.0.h,
+                  decoration: BoxDecoration(
+                      color: Colors.grey.shade200.withOpacity(0.5)),
+                  child: SfCartesianChart(
+                    primaryXAxis: CategoryAxis(),
+                    series: <LineSeries<GraphDataClass, String>>[
+                      LineSeries<GraphDataClass, String>(
+                        color: tabColor,
+                        dataSource: graphPoint,
+                        xValueMapper: (GraphDataClass sales, _) => sales.year,
+                        yValueMapper: (GraphDataClass sales, _) => sales.sales,
+                        dataLabelSettings:
+                            const DataLabelSettings(isVisible: true),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 37.h,
+            ),
+            Container(
+              height: 7.h,
+              width: double.infinity,
+              color: tabColor,
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
 class HeartTab extends StatelessWidget {
   const HeartTab({Key? key}) : super(key: key);
 
@@ -272,7 +354,7 @@ class HeartTab extends StatelessWidget {
         GraphDataClass('Feb', 28),
         GraphDataClass('Mar', 34),
         GraphDataClass('Apr', 32),
-        GraphDataClass('May', 40)
+        GraphDataClass('May', 40),
       ],
       tabColor: redColor,
       tabTitle: "القلب",
@@ -317,108 +399,182 @@ class TempTab extends StatelessWidget {
     );
   }
 }
-Widget buildChatItem(BuildContext context) =>
-    Container(
-      decoration:  BoxDecoration(
-        border: Border(
+
+class BuildChatItem extends StatelessWidget {
+  const BuildChatItem({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        border: const Border(
           top: BorderSide(width: 1.5, color: Color(0xFFBFBFBF)),
           left: BorderSide(width: 1.5, color: Color(0xFFBFBFBF)),
           right: BorderSide(width: 1.5, color: Color(0xFFBFBFBF)),
           bottom: BorderSide(width: 1.5, color: Color(0xFFBFBFBF)),
         ),
-        color: Color(0xFFBFBFBF),
-
+        borderRadius: BorderRadius.circular(
+          15.0,
+        ),
+        color: const Color(0xFFBFBFBF),
       ),
-
+      padding: const EdgeInsets.all(
+        2.0,
+      ),
       child: Row(
         children: [
-          Stack(
-            alignment: AlignmentDirectional.bottomEnd,
-            children: [
-              CircleAvatar(
-                  radius: 30.0,
-                  backgroundImage: NetworkImage('https://www.hollywoodreporter.com/wp-content/uploads/2019/03/avatar-publicity_still-h_2019.jpg?w=1024')),
-              Padding(
-                padding: const EdgeInsetsDirectional.only(
-                  bottom: 3.0,
-                  end: 3.0,
-                ),
-                child: CircleAvatar(
-                  radius: 7.0,
-                  backgroundColor: Colors.red,
-                ),
+          Container(
+            width: 70.w,
+            height: 80.h,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(
+                15.0,
               ),
-            ],
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: const Image(
+              image: NetworkImage(
+                  'https://www.hollywoodreporter.com/wp-content/uploads/2019/03/avatar-publicity_still-h_2019.jpg?w=1024'),
+              fit: BoxFit.cover,
+            ),
           ),
-
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'أسماء خالد',
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                SizedBox(
-                  height: 5.0,
-                ),
-                Row(
-                  children:
-                  [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 100.0,
+          SizedBox(
+            width: 15.w,
+          ),
+          Text(
+            'أسماء خالد',
+            style: bodyText().copyWith(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          const Spacer(),
+          IconButton(
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                builder: (BuildContext c) {
+                  return Wrap(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Divider(
+                            color: Colors.grey,
+                            height: 2.0,
+                            thickness: 2,
+                            indent: 3,
+                            endIndent: 5,
+                          ),
+                          ListTile(
+                            leading: const Icon(
+                              Icons.help_outline_sharp,
+                              color: Colors.black,
+                            ),
+                            title: Text(
+                              'طلب المساعدة ',
+                              style: bodyText().copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          ListTile(
+                            leading: const Icon(
+                              Icons.location_on_outlined,
+                              color: Colors.black,
+                            ),
+                            title: Text(
+                              'مشاركة الموقع',
+                              style: bodyText().copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          ListTile(
+                            leading: const Icon(
+                              Icons.not_interested_outlined,
+                              color: Colors.black,
+                            ),
+                            title: Text(
+                              'إزالة من المقربون',
+                              style: bodyText().copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-
-                    ),
-                    IconButton(onPressed:(){
-                      _bottomSheet(context);
-                    }, icon: Icon(Icons.more_vert))
-                  ],
-                ),
-              ],
+                    ],
+                  );
+                },
+              );
+            },
+            icon: const Icon(
+              Icons.more_vert,
+              color: Colors.black,
             ),
           ),
         ],
       ),
     );
-_bottomSheet(context){
-  showModalBottomSheet(context: context, builder: (BuildContext c){
-    return Wrap(
-      children: [
-        Container(
-          child: Column(
-            crossAxisAlignment:CrossAxisAlignment.center,
-            children: const <Widget>[
-            Divider(
-                color: Colors.grey,
-                height: 2.0,
-                thickness: 2,
-                indent: 3,
-                endIndent:5,
-              ),
-              ListTile(
-                leading: Icon(Icons.help_outline_sharp),
-                title: Text('طلب المساعدة '),
-              ),
-              ListTile(
-                leading: Icon(Icons.location_on_outlined),
-                title: Text('مشاركة الموقع'),
-              ),
-              ListTile(
-                leading:Icon(Icons.not_interested_outlined),
-                title: Text('ازالة المقربون'),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  });
+  }
+}
 
+class DayTab extends StatelessWidget {
+  const DayTab({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BuildHealthDataTab(
+      graphPoint: [
+        GraphDataClass('Jan', 35),
+        GraphDataClass('Feb', 28),
+        GraphDataClass('Mar', 34),
+        GraphDataClass('Apr', 32),
+        GraphDataClass('May', 40),
+      ],
+      tabColor: redColor,
+      tabTitle: "القلب",
+    );
+  }
+}
+
+class WeekTab extends StatelessWidget {
+  const WeekTab({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BuildHealthDataTab(
+      graphPoint: [
+        GraphDataClass('Jan', 35),
+        GraphDataClass('Feb', 28),
+        GraphDataClass('Mar', 34),
+        GraphDataClass('Apr', 32),
+        GraphDataClass('May', 40),
+      ],
+      tabColor: redColor,
+      tabTitle: "القلب",
+    );
+  }
+}
+
+class MonthTab extends StatelessWidget {
+  const MonthTab({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BuildHealthDataTab(
+      graphPoint: [
+        GraphDataClass('Jan', 35),
+        GraphDataClass('Feb', 28),
+        GraphDataClass('Mar', 34),
+        GraphDataClass('Apr', 32),
+        GraphDataClass('May', 40),
+      ],
+      tabColor: redColor,
+      tabTitle: "القلب",
+    );
+  }
 }

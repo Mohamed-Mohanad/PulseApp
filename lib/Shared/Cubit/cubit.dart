@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pulse_app/Modules/close_people/close_people_screen.dart';
-import 'package:pulse_app/Modules/help_screen.dart';
-import 'package:pulse_app/Modules/medicine_screen.dart';
+import 'package:pulse_app/Modules/help/help_screen.dart';
+import 'package:pulse_app/Modules/medicine/medicine_screen.dart';
 import 'package:pulse_app/Shared/Cubit/states.dart';
 
 import '../../Modules/Home/home_screen.dart';
@@ -38,7 +38,23 @@ class AppCubit extends Cubit<AppStates> {
     currentTabIndex = index;
     emit(AppTabState());
   }
+  int currentHistoryIndex = 0;
+  List<Widget> tabHeartHistoryScreens = [
+    const DayTab(),
+    const WeekTab(),
+    const MonthTab(),
+  ];
+
+  void changeTabHeartHistoryScreens(int index) {
+    currentTabIndex = index;
+    emit(AppTabState());
+  }
 
 
+  bool showHoverScreen = false;
+  void changeHoverScreenState(){
+    showHoverScreen = !showHoverScreen;
+    emit(HoverScreenChangeState());
+  }
 
 }
