@@ -264,6 +264,85 @@ class BuildHealthDataTab extends StatelessWidget {
   }
 }
 
+class BuildDateilsHealthDataTab extends StatelessWidget {
+  final String tabTitle;
+  final Color tabColor;
+  final List<GraphDataClass> graphPoint;
+  const BuildDateilsHealthDataTab({
+    Key? key,
+    required this.graphPoint,
+    required this.tabColor,
+    required this.tabTitle,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 200.h,
+            ),
+            Container(
+              height: 88.h,
+              width: double.infinity,
+              color: tabColor,
+              padding: const EdgeInsets.all(20.0),
+            )
+          ],
+        ),
+        Column(
+          children: [
+            Text(
+              tabTitle,
+              textAlign: TextAlign.start,
+              style: bodyText().copyWith(
+                color: Colors.black,
+                fontSize: 36.0,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            ClipRect(
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                child: Container(
+                  width: 340.0.w,
+                  height: 208.0.h,
+                  decoration: BoxDecoration(
+                      color: Colors.grey.shade200.withOpacity(0.5)),
+                  child: SfCartesianChart(
+                    primaryXAxis: CategoryAxis(),
+                    series: <LineSeries<GraphDataClass, String>>[
+                      LineSeries<GraphDataClass, String>(
+                        color: tabColor,
+                        dataSource: graphPoint,
+                        xValueMapper: (GraphDataClass sales, _) => sales.year,
+                        yValueMapper: (GraphDataClass sales, _) => sales.sales,
+                        dataLabelSettings:
+                            const DataLabelSettings(isVisible: true),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 37.h,
+            ),
+            Container(
+              height: 7.h,
+              width: double.infinity,
+              color: tabColor,
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
 class HeartTab extends StatelessWidget {
   const HeartTab({Key? key}) : super(key: key);
 
@@ -439,6 +518,63 @@ class BuildChatItem extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class DayTab extends StatelessWidget {
+  const DayTab({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BuildHealthDataTab(
+      graphPoint: [
+        GraphDataClass('Jan', 35),
+        GraphDataClass('Feb', 28),
+        GraphDataClass('Mar', 34),
+        GraphDataClass('Apr', 32),
+        GraphDataClass('May', 40),
+      ],
+      tabColor: redColor,
+      tabTitle: "القلب",
+    );
+  }
+}
+
+class WeekTab extends StatelessWidget {
+  const WeekTab({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BuildHealthDataTab(
+      graphPoint: [
+        GraphDataClass('Jan', 35),
+        GraphDataClass('Feb', 28),
+        GraphDataClass('Mar', 34),
+        GraphDataClass('Apr', 32),
+        GraphDataClass('May', 40),
+      ],
+      tabColor: redColor,
+      tabTitle: "القلب",
+    );
+  }
+}
+
+class MonthTab extends StatelessWidget {
+  const MonthTab({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BuildHealthDataTab(
+      graphPoint: [
+        GraphDataClass('Jan', 35),
+        GraphDataClass('Feb', 28),
+        GraphDataClass('Mar', 34),
+        GraphDataClass('Apr', 32),
+        GraphDataClass('May', 40),
+      ],
+      tabColor: redColor,
+      tabTitle: "القلب",
     );
   }
 }

@@ -38,6 +38,17 @@ class AppCubit extends Cubit<AppStates> {
     currentTabIndex = index;
     emit(AppTabState());
   }
+  int currentHistoryIndex = 0;
+  List<Widget> tabHeartHistoryScreens = [
+    const DayTab(),
+    const WeekTab(),
+    const MonthTab(),
+  ];
+
+  void changeTabHeartHistoryScreens(int index) {
+    currentTabIndex = index;
+    emit(AppTabState());
+  }
 
 
   bool showHoverScreen = false;

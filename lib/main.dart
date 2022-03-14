@@ -4,6 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pulse_app/Modules/Home/home_screen.dart';
+import 'package:pulse_app/Modules/history_screen/heart_details_screens.dart';
+import 'package:pulse_app/Modules/history_screen/ox_details_screen.dart';
+import 'package:pulse_app/Modules/history_screen/temp_details_screen.dart';
 import 'package:pulse_app/Modules/settings/setting_screen.dart';
 import 'Layout/Main/main_screen.dart';
 import 'Shared/Cubit/bloc_observer.dart';
@@ -58,7 +62,7 @@ class MyApp extends StatelessWidget {
               },
               theme: lightMode,
               themeMode: ThemeMode.light,
-              home:  MainScreen(),
+              home: const MainScreen(),
             ),
           );
         },
