@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
               },
               theme: lightMode,
               themeMode: ThemeMode.light,
-              home:  MainScreen(),
+              home: const MainScreen(),
             ),
           );
         },
