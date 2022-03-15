@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pulse/Models/onboarding_data/onboard_data.dart';
 import 'package:pulse/Layout/signup_screen/signup_screen.dart';
 import 'package:pulse/Shared/Components/components.dart';
+import 'package:pulse/Shared/Style/theme.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../Shared/Style/color.dart';
@@ -48,11 +49,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     width: size.width,
                   ),
                 ),
-                Container(
-                  alignment: Alignment.topCenter,
-                  child: Logo(
-                    height: size.height * 0.2,
-                    width: size.width * 0.25,
+                SafeArea(
+                  child: Container(
+                    alignment: Alignment.topCenter,
+                    child: Logo(
+                      height: size.height * 0.2,
+                      width: size.width * 0.25,
+                    ),
                   ),
                 ),
               ],
@@ -218,7 +221,7 @@ class BuildBoardingItem extends StatelessWidget {
         Center(
           child: Text(
             model.title,
-            style: Theme.of(context).textTheme.subtitle1,
+            style: subTitle(),
             textDirection: TextDirection.rtl,
           ),
         ),
@@ -227,7 +230,7 @@ class BuildBoardingItem extends StatelessWidget {
         ),
         Text(
           model.body,
-          style: Theme.of(context).textTheme.caption,
+          style: bodyText(),
           textDirection: TextDirection.rtl,
         ),
       ],
