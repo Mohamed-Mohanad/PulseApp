@@ -1,10 +1,9 @@
-// import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'Layout/Main/main_screen.dart';
-import 'Layout/OnBoarding/onboarding_screen.dart';
+import 'Layout/calculation_screen/calculation_screen.dart';
+import 'Layout/helper_home_screen/helper_home_screen.dart';
 import 'Layout/selection_screen/selection_screen.dart';
 import 'Shared/Cubit/bloc_observer.dart';
 import 'Shared/Cubit/cubit.dart';
@@ -54,7 +53,7 @@ class MyApp extends StatelessWidget {
                   child: widget!,
                 );
               },
-              home: const SelectionScreen(),
+              home: const CalculationScreen(),
             ),
           );
         },

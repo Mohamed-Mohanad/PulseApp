@@ -6,19 +6,21 @@ import 'package:pulse/Shared/Style/theme.dart';
 
 import '../Style/color.dart';
 
-void navigateTo(context, widget) => Navigator.push(
+void navigateTo(context, widget) =>
+    Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => widget,
       ),
     );
 
-navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
+navigateAndFinish(context, widget) =>
+    Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(
         builder: (context) => widget,
       ),
-      (Route<dynamic> route) => false,
+          (Route<dynamic> route) => false,
     );
 
 ///SHOW TOAST
@@ -42,6 +44,32 @@ Color chooseToastColor(ToastStates state) {
       break;
   }
   return color;
+}
+
+class HorizontalSpace extends StatelessWidget {
+  final double width;
+
+  const HorizontalSpace({required this.width, Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: width,
+    );
+  }
+}
+
+class VerticalSpace extends StatelessWidget {
+  final double height;
+
+  const VerticalSpace({required this.height, Key? key,}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: height,
+    );
+  }
 }
 
 class DefaultButton extends StatelessWidget {
@@ -148,7 +176,10 @@ class DefaultTextField extends StatelessWidget {
           textDirection: TextDirection.rtl,
           textAlign: TextAlign.right,
         ),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+        SizedBox(height: MediaQuery
+            .of(context)
+            .size
+            .height * 0.02),
       ],
     );
   }
@@ -156,7 +187,7 @@ class DefaultTextField extends StatelessWidget {
 
 class DefaultRadioButton extends StatelessWidget {
   late final String label;
-  late int  value;
+  late int value;
   late int group;
   late final Function onChange;
   late final Color activeColor;
@@ -192,12 +223,11 @@ class BuildTab extends StatelessWidget {
   final Color tabColor;
   final Function onPressTab;
 
-  const BuildTab(
-      {Key? key,
-      required this.tabColor,
-      required this.title,
-      required this.image,
-      required this.onPressTab})
+  const BuildTab({Key? key,
+    required this.tabColor,
+    required this.title,
+    required this.image,
+    required this.onPressTab})
       : super(key: key);
 
   @override
@@ -296,7 +326,9 @@ class Background extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery
+        .of(context)
+        .size;
 
     return SingleChildScrollView(
       child: Container(
@@ -435,7 +467,10 @@ class MyLine extends StatelessWidget {
           horizontal: 20.0,
         ),
         child: Container(
-          width: MediaQuery.of(context).size.width * 0.4,
+          width: MediaQuery
+              .of(context)
+              .size
+              .width * 0.4,
           height: 1.0,
           color: Colors.grey,
         ),
@@ -466,19 +501,23 @@ class OrRow extends StatelessWidget {
 class GoogleAuth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery
+        .of(context)
+        .size;
 
     return Center(
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.65,
+        width: MediaQuery
+            .of(context)
+            .size
+            .width * 0.65,
         height: size.height * 0.05,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular( size.height * 0.05 * 0.5,),
+          borderRadius: BorderRadius.circular(size.height * 0.05 * 0.5,),
           color: backgroundColor,
         ),
         child: InkWell(
-          onTap: () {
-          },
+          onTap: () {},
           child: Row(
             children: [
               Expanded(

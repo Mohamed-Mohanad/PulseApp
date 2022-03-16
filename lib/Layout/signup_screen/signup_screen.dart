@@ -23,6 +23,8 @@ class SignUpScreen extends StatelessWidget {
         cityController = TextEditingController(),
         townController = TextEditingController();
 
+    int val = -1;
+
     return Scaffold(
       body: Background(
         child: Padding(
@@ -116,49 +118,45 @@ class SignUpScreen extends StatelessWidget {
                                     label: 'العمر',
                                   ),
                                   SizedBox(height: size.height * 0.02),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      Text(
-                                        'الجنس:',
-                                        style: bodyText().copyWith(
-                                          fontSize: 18,
-                                        ),
-                                        textDirection: TextDirection.rtl,
-                                        textAlign: TextAlign.right,
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(
-                                            width: size.width * 0.4,
-                                            child: DefaultRadioButton(
-                                              label: 'ذكر',
-                                              value: 1,
-                                              group: val,
-                                              onChange: (value) {
-                                                setState(() {
-                                                  val = value;
-                                                });
-                                              },
-                                              activeColor: redColor,
-                                            ),
-                                          ),
-                                          Container(
-                                            width: size.width * 0.4,
-                                            child: DefaultRadioButton(
-                                              label: 'انثى',
-                                              value: 2,
-                                              group: val,
-                                              onChange: () {},
-                                              activeColor: redColor,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
+                                  // Column(
+                                  //   crossAxisAlignment: CrossAxisAlignment.end,
+                                  //   children: [
+                                  //     Text(
+                                  //       'الجنس:',
+                                  //       style: bodyText().copyWith(
+                                  //         fontSize: 18,
+                                  //       ),
+                                  //       textDirection: TextDirection.rtl,
+                                  //       textAlign: TextAlign.right,
+                                  //     ),
+                                  //     Row(
+                                  //       mainAxisAlignment:
+                                  //           MainAxisAlignment.spaceBetween,
+                                  //       children: [
+                                  //         Container(
+                                  //           width: size.width * 0.4,
+                                  //           child: DefaultRadioButton(
+                                  //             label: 'ذكر',
+                                  //             value: 1,
+                                  //             group: val,
+                                  //             onChange: (value) {},
+                                  //             activeColor: redColor,
+                                  //           ),
+                                  //         ),
+                                  //         Container(
+                                  //           width: size.width * 0.4,
+                                  //           child: DefaultRadioButton(
+                                  //             label: 'انثى',
+                                  //             value: 2,
+                                  //             group: val,
+                                  //             onChange: () {},
+                                  //             activeColor: redColor,
+                                  //           ),
+                                  //         ),
+                                  //       ],
+                                  //     ),
+                                  //   ],
+                                  // ),
                                   SizedBox(height: size.height * 0.02),
                                   DefaultTextField(
                                     controller: nationalIDController,
