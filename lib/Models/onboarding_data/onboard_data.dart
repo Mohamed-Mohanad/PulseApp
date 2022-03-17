@@ -25,7 +25,7 @@ List<OnBoarding> onBoardingContents = [
     color: redColor,
   ),
   OnBoarding(
-    image: 'assets/images/Open Peeps Together.png',
+    image: 'assets/images/Shopaholics Shopping Pals.png',
     title: 'الأقارب بجانبك',
     body: 'يمكن للأقارب العثور عليك في اي وقت وفي حالة تعرضك لأي متاعب',
     color: primaryColor,
