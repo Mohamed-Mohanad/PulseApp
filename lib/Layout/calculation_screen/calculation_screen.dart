@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
 import '../../Shared/Components/components.dart';
 import '../../Shared/Style/color.dart';
@@ -19,17 +18,30 @@ class CalculationScreen extends StatelessWidget {
 
     return Scaffold(
       body: Container(
+        color: Colors.white,
         child: Stack(
           children: [
             Positioned(
               child: Opacity(
                 opacity: 0.5,
-                child: ClipPath(
-                  clipper: WaveClipperOne(),
-                  child: Container(
-                    color: primaryColor.withOpacity(0.5),
-                    height: size.height * 0.2,
-                    width: size.width,
+                child:  Container(
+                  width: size.width,
+                  height: size.height * 0.2,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      stops: const [
+                        0.0,
+                        0.2,
+                        0.8,
+                      ],
+                      colors: [
+                        primaryColor.withOpacity(0.9),
+                        primaryColor.withOpacity(0.5),
+                        Colors.white,
+                      ],
+                    ),
                   ),
                 ),
               ),

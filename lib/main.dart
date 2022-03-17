@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'Layout/history_screen/history_screen.dart';
+import 'Layout/calculation_screen/calculation_screen.dart';
 import 'Shared/Cubit/bloc_observer.dart';
 import 'Shared/Cubit/cubit.dart';
 import 'Shared/Cubit/states.dart';
@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
                   child: widget!,
                 );
               },
-              home: HistoryScreen(),
+              home: CalculationScreen(),
             ),
           );
         },
