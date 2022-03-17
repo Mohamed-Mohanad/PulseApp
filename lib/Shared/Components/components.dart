@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pulse_app/Shared/Style/theme.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -25,8 +24,6 @@ navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
       ),
       (Route<dynamic> route) => false,
     );
-
-AppLocalizations getLang(context) => AppLocalizations.of(context)!;
 
 ///SHOW TOAST
 enum ToastStates {
@@ -58,7 +55,7 @@ class HorizontalSpace extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width,
+      width: width.w,
     );
   }
 }
@@ -71,7 +68,7 @@ class VerticalSpace extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height,
+      height: height.h,
     );
   }
 }
@@ -709,7 +706,7 @@ class Logo extends StatelessWidget {
       height: height,
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/logo/logo.png'),
+          image: AssetImage('assets/icons/pulseIcon.png'),
         ),
       ),
     );
@@ -938,7 +935,7 @@ class GoogleAuth extends StatelessWidget {
                   height: 24,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/logo/google.png'),
+                      image: AssetImage('assets/icons/google.png'),
                     ),
                   ),
                 ),

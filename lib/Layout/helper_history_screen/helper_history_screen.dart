@@ -5,7 +5,7 @@ import '../../Shared/Components/components.dart';
 import '../../Shared/Style/color.dart';
 import '../../Shared/Style/theme.dart';
 
-class HistoryScreen extends StatelessWidget {
+class HelperHistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../../Shared/Components/components.dart';
 import '../../Shared/Style/color.dart';
-import '../signup_screen/signup_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
