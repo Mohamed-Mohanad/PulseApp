@@ -1,4 +1,4 @@
-import  'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -54,35 +54,33 @@ ThemeData lightMode = ThemeData(
 );
 
 TextStyle bodyText() => TextStyle(
-  fontSize: 16.0.sp,
-  fontWeight: FontWeight.normal,
-  color: Colors.black,
-  fontFamily: "Tajawal",
-);
-
+      fontSize: 16.0.sp,
+      fontWeight: FontWeight.normal,
+      color: Colors.black,
+      fontFamily: "Tajawal",
+    );
 TextStyle subTitle() => TextStyle(
-  fontSize: 14.0.sp,
-  fontWeight: FontWeight.w800,
-  color: Colors.grey,
-  height: 1.3.h,
-);
-
+      fontSize: 14.0.sp,
+      fontWeight: FontWeight.w800,
+      color: Colors.grey,
+      height: 1.3.h,
+    );
 TextStyle caption() => TextStyle(
-  fontSize: 13.0.sp,
-  color: Colors.grey,
-  fontFamily: "Tajawal",
-);
+      fontSize: 13.0.sp,
+      color: Colors.grey,
+      fontFamily: "Tajawal",
+    );
 
 TextStyle headLine() => TextStyle(
-  fontSize: 25.0.sp,
-  fontWeight: FontWeight.w800,
-  color: Colors.black,
-  fontFamily: "Tajawal",
-);
+      fontSize: 25.0.sp,
+      fontWeight: FontWeight.w800,
+      color: Colors.black,
+      fontFamily: "Tajawal",
+    );
 
 TextStyle appBarText() => TextStyle(
-  color: primaryColor,
-  fontSize: 20.0.sp,
-  fontWeight: FontWeight.bold,
-  fontFamily: "Tajawal",
-);
+      color: primaryColor,
+      fontSize: 20.0.sp,
+      fontWeight: FontWeight.bold,
+      fontFamily: "Tajawal",
+    );
