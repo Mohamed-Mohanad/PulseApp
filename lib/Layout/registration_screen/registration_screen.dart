@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pulse/Layout/login_screen/login_screen.dart';
-import 'package:pulse/Layout/signup_screen/signup_screen.dart';
-import 'package:pulse/Shared/Components/components.dart';
-import 'package:pulse/Shared/Style/color.dart';
+
+import '../../Shared/Components/components.dart';
+import '../../Shared/Style/color.dart';
+import '../login_screen/login_screen.dart';
+import '../signup_screen/signup_screen.dart';
 
 class RegistrationScreen extends StatelessWidget {
   @override

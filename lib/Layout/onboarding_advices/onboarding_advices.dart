@@ -1,13 +1,12 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:pulse/Models/onboarding_data/onboard_data.dart';
-import 'package:pulse/Shared/Components/components.dart';
-import 'package:pulse/Shared/Style/theme.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../Models/onboarding_advices_data/onboarding_advices_data.dart';
+import '../../Shared/Components/components.dart';
 import '../../Shared/Style/color.dart';
+import '../../Shared/Style/theme.dart';
 import '../registration_screen/registration_screen.dart';
 
 class OnBoardingAdvicesScreen extends StatefulWidget {

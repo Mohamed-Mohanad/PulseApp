@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pulse/Models/history_data/history_data.dart';
-import 'package:pulse/Shared/Style/color.dart';
-import 'package:pulse/Shared/Style/theme.dart';
 
+import '../../Models/history_data/history_data.dart';
 import '../../Shared/Components/components.dart';
+import '../../Shared/Style/color.dart';
+import '../../Shared/Style/theme.dart';
 
 class HistoryScreen extends StatelessWidget {
   @override

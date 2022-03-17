@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pulse/Shared/Style/theme.dart';
 
 import '../../Shared/Components/components.dart';
 import '../../Shared/Style/color.dart';
+import '../../Shared/Style/theme.dart';
 
 class SignUpScreen extends StatelessWidget {
   @override
@@ -18,12 +18,9 @@ class SignUpScreen extends StatelessWidget {
         passwordConfirmController = TextEditingController(),
         phoneController = TextEditingController(),
         ageController = TextEditingController(),
-        genderController = TextEditingController(),
         nationalIDController = TextEditingController(),
         cityController = TextEditingController(),
         townController = TextEditingController();
-
-    int val = -1;
 
     return Scaffold(
       body: Background(
@@ -117,46 +114,6 @@ class SignUpScreen extends StatelessWidget {
                                     type: TextInputType.datetime,
                                     label: 'العمر',
                                   ),
-                                  SizedBox(height: size.height * 0.02),
-                                  // Column(
-                                  //   crossAxisAlignment: CrossAxisAlignment.end,
-                                  //   children: [
-                                  //     Text(
-                                  //       'الجنس:',
-                                  //       style: bodyText().copyWith(
-                                  //         fontSize: 18,
-                                  //       ),
-                                  //       textDirection: TextDirection.rtl,
-                                  //       textAlign: TextAlign.right,
-                                  //     ),
-                                  //     Row(
-                                  //       mainAxisAlignment:
-                                  //           MainAxisAlignment.spaceBetween,
-                                  //       children: [
-                                  //         Container(
-                                  //           width: size.width * 0.4,
-                                  //           child: DefaultRadioButton(
-                                  //             label: 'ذكر',
-                                  //             value: 1,
-                                  //             group: val,
-                                  //             onChange: (value) {},
-                                  //             activeColor: redColor,
-                                  //           ),
-                                  //         ),
-                                  //         Container(
-                                  //           width: size.width * 0.4,
-                                  //           child: DefaultRadioButton(
-                                  //             label: 'انثى',
-                                  //             value: 2,
-                                  //             group: val,
-                                  //             onChange: () {},
-                                  //             activeColor: redColor,
-                                  //           ),
-                                  //         ),
-                                  //       ],
-                                  //     ),
-                                  //   ],
-                                  // ),
                                   SizedBox(height: size.height * 0.02),
                                   DefaultTextField(
                                     controller: nationalIDController,

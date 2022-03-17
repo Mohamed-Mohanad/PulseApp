@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pulse/Shared/Style/theme.dart';
 
 import '../../Shared/Components/components.dart';
+import '../../Shared/Style/theme.dart';
 import '../OnBoarding/onboarding_screen.dart';
 import '../../Shared/Style/color.dart';
 import '../registration_screen/registration_screen.dart';

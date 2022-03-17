@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
-import 'package:intl/intl.dart';
-import 'package:pulse/Layout/selection_screen/selection_screen.dart';
-import 'package:pulse/Shared/Components/components.dart';
-import 'package:pulse/Shared/Style/theme.dart';
 
+import '../../Shared/Components/components.dart';
 import '../../Shared/Style/color.dart';
+import '../../Shared/Style/theme.dart';
 
 class HelperHomeScreen extends StatelessWidget {
   const HelperHomeScreen({Key? key}) : super(key: key);
