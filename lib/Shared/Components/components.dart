@@ -31,6 +31,7 @@ enum ToastStates {
   error,
   warning,
 }
+
 Color chooseToastColor(ToastStates state) {
   Color color;
   switch (state) {
@@ -63,7 +64,10 @@ class HorizontalSpace extends StatelessWidget {
 class VerticalSpace extends StatelessWidget {
   final double height;
 
-  const VerticalSpace({required this.height, Key? key,}) : super(key: key);
+  const VerticalSpace({
+    required this.height,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +82,7 @@ class CustomCachedNetworkImage extends StatelessWidget {
   final double imageWidth;
   final String imageUrl;
   final BoxFit imageFit;
+
   const CustomCachedNetworkImage({
     Key? key,
     required this.imageHeight,
@@ -85,6 +90,7 @@ class CustomCachedNetworkImage extends StatelessWidget {
     required this.imageUrl,
     required this.imageFit,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
@@ -207,10 +213,7 @@ class DefaultTextField extends StatelessWidget {
           textDirection: TextDirection.rtl,
           textAlign: TextAlign.right,
         ),
-        SizedBox(height: MediaQuery
-            .of(context)
-            .size
-            .height * 0.02),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.02),
       ],
     );
   }
@@ -221,6 +224,7 @@ class BuildTab extends StatelessWidget {
   final String title;
   final Color tabColor;
   final Function onPressTab;
+
   const BuildTab({
     Key? key,
     required this.tabColor,
@@ -277,6 +281,7 @@ class BuildHealthDataTab extends StatelessWidget {
   final String tabTitle;
   final Color tabColor;
   final List<GraphDataClass> graphPoint;
+
   const BuildHealthDataTab({
     Key? key,
     required this.graphPoint,
@@ -360,6 +365,7 @@ class BuildDateilsHealthDataTab extends StatelessWidget {
   final String tabTitle;
   final Color tabColor;
   final List<GraphDataClass> graphPoint;
+
   const BuildDateilsHealthDataTab({
     Key? key,
     required this.graphPoint,
@@ -723,9 +729,7 @@ class Background extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
+    Size size = MediaQuery.of(context).size;
 
     return SingleChildScrollView(
       child: Container(
@@ -854,7 +858,6 @@ class WaveClipperBack_2 extends CustomClipper<Path> {
   }
 }
 
-
 class MyLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -864,10 +867,7 @@ class MyLine extends StatelessWidget {
           horizontal: 20.0,
         ),
         child: Container(
-          width: MediaQuery
-              .of(context)
-              .size
-              .width * 0.4,
+          width: MediaQuery.of(context).size.width * 0.4,
           height: 1.0,
           color: Colors.grey,
         ),
@@ -898,19 +898,16 @@ class OrRow extends StatelessWidget {
 class GoogleAuth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
+    Size size = MediaQuery.of(context).size;
 
     return Center(
       child: Container(
-        width: MediaQuery
-            .of(context)
-            .size
-            .width * 0.65,
+        width: MediaQuery.of(context).size.width * 0.65,
         height: size.height * 0.05,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(size.height * 0.05 * 0.5,),
+          borderRadius: BorderRadius.circular(
+            size.height * 0.05 * 0.5,
+          ),
           color: backgroundColor,
         ),
         child: InkWell(
@@ -1044,5 +1041,132 @@ class OneWaveClipper extends CustomClipper<Path> {
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
     return true;
+  }
+}
+
+class Header extends StatelessWidget {
+  final String title;
+
+  const Header({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
+    return Container(
+      padding: EdgeInsets.only(
+        top: size.height * 0.03,
+      ),
+      alignment: Alignment.centerRight,
+      width: size.width,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20.0,
+          vertical: 5,
+        ),
+        child: Text(
+          title,
+          style: headLine().copyWith(
+            color: blackColor,
+          ),
+        ),
+      ),
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            width: 1.0,
+            style: BorderStyle.solid,
+            color: blackColor,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CalculateBox extends StatelessWidget {
+  final double width;
+  final double textWidth;
+  final String header;
+  final String text;
+  final Function function;
+
+  const CalculateBox({
+    Key? key,
+    required this.width,
+    required this.textWidth,
+    required this.header,
+    required this.text,
+    required this.function,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: size.width * 0.05,
+        vertical: size.height * 0.02,
+      ),
+      child: Column(
+        children: [
+          Container(
+            width: size.width * 0.32,
+            child: Text(
+              header,
+              style: caption(),
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              function;
+            },
+            child: Container(
+              width: width,
+              padding: EdgeInsets.symmetric(
+                horizontal: 12.0.w,
+                vertical: 10.0.h,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(
+                  10.0,
+                ),
+                color: greyColor2.withOpacity(0.3),
+                border: Border.all(
+                  color: greyColor1,
+                  style: BorderStyle.solid,
+                  width: 1.0,
+                ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    width: textWidth,
+                    child: Center(
+                      child: Text(
+                        text,
+                        style: bodyText().copyWith(
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Icon(
+                    Icons.keyboard_arrow_down,
+                    size: size.width * 0.06,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

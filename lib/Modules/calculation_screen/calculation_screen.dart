@@ -17,99 +17,144 @@ class CalculationScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: Container(
-        color: Colors.white,
-        child: Stack(
-          children: [
-            Positioned(
-              child: Opacity(
-                opacity: 0.5,
-                child:  Container(
-                  width: size.width,
-                  height: size.height * 0.2,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      stops: const [
-                        0.0,
-                        0.2,
-                        0.8,
-                      ],
-                      colors: [
-                        primaryColor.withOpacity(0.9),
-                        primaryColor.withOpacity(0.5),
-                        Colors.white,
-                      ],
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Container(
+          color: Colors.white,
+          child: Stack(
+            children: [
+              Positioned(
+                child: Opacity(
+                  opacity: 0.5,
+                  child: Container(
+                    width: size.width,
+                    height: size.height * 0.2,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        stops: const [
+                          0.0,
+                          0.2,
+                          0.8,
+                        ],
+                        colors: [
+                          primaryColor.withOpacity(0.9),
+                          primaryColor.withOpacity(0.5),
+                          Colors.white,
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            SafeArea(
-              child: Column(
-                textDirection: TextDirection.rtl,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Center(
-                    child: Logo(
-                      height: size.height * 0.1,
-                      width: size.width * 0.2,
+              SafeArea(
+                child: Column(
+                  textDirection: TextDirection.rtl,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Logo(
+                        height: size.height * 0.1,
+                        width: size.width * 0.2,
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: size.height * 0.01,
-                      horizontal: size.width * 0.15,
-                    ),
-                    child: Text(
-                      'الحساب',
-                      style: headLine(),
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(
-                      top: size.height * 0.03,
-                    ),
-                    alignment: Alignment.centerRight,
-                    width: size.width,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20.0,
-                        vertical: 5,
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: size.height * 0.01,
+                        horizontal: size.width * 0.15,
                       ),
                       child: Text(
-                        'الأهداف',
-                        style: headLine().copyWith(
-                          color: blackColor,
-                        ),
+                        'الحساب',
+                        style: headLine(),
                       ),
                     ),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          width: 1.0,
-                          style: BorderStyle.solid,
-                          color: blackColor,
-                        ),
+                    const Header(
+                      title: 'الأهداف',
+                    ),
+                    CalculateBox(
+                      width: size.width * 0.32,
+                      textWidth: size.width * 0.15,
+                      header: 'الخطوات',
+                      text: '5000',
+                      function: () {},
+                    ),
+                    const Header(
+                      title: 'وقت النوم',
+                    ),
+                    Container(
+                      width: size.width * 0.9,
+                      child: Row(
+                        children: [
+                          CalculateBox(
+                            width: size.width * 0.32,
+                            textWidth: size.width * 0.15,
+                            header: 'موعد النوم',
+                            text: 'م11:00',
+                            function: () {},
+                          ),
+                          CalculateBox(
+                            width: size.width * 0.32,
+                            textWidth: size.width * 0.15,
+                            header: 'موعد الأستيقاذ',
+                            text: 'ص7:00',
+                            function: () {},
+                          ),
+                        ],
                       ),
                     ),
-                  ),
-                  Container(
-                    child: Column(
-                      children: [
-                        Text(
-                          'الخطوات',
-                          style: caption(),
-                        ),
-                      ],
+                    const Header(
+                      title: 'معلومات عنك',
                     ),
-                  ),
-                ],
+                    Container(
+                      width: size.width * 0.9,
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              CalculateBox(
+                                width: size.width * 0.32,
+                                textWidth: size.width * 0.15,
+                                header: 'النوع',
+                                text: 'ذكر',
+                                function: () {},
+                              ),
+                              CalculateBox(
+                                width: size.width * 0.38,
+                                textWidth: size.width * 0.25,
+                                header: 'تاريخ الميلاد',
+                                text: '32 مايو, 2000',
+                                function: () {},
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              CalculateBox(
+                                width: size.width * 0.32,
+                                textWidth: size.width * 0.15,
+                                header: 'الطول',
+                                text: '371 سم',
+                                function: () {},
+                              ),
+                              CalculateBox(
+                                width: size.width * 0.32,
+                                textWidth: size.width * 0.15,
+                                header: 'الوزن',
+                                text: '56 كجم',
+                                function: () {},
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
