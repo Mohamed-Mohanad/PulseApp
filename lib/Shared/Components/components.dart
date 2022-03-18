@@ -213,7 +213,7 @@ class DefaultTextField extends StatelessWidget {
           textDirection: TextDirection.rtl,
           textAlign: TextAlign.right,
         ),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+        VerticalSpace(height: MediaQuery.of(context).size.height * 0.02),
       ],
     );
   }
@@ -1007,6 +1007,190 @@ class WaveClipperSecond extends CustomClipper<Path> {
 
     path.lineTo(size.width, 0.0);
 
+    path.close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return true;
+  }
+}
+
+class WaveClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    debugPrint(size.width.toString());
+    var path = Path();
+    path.lineTo(0.0, size.height * 0.7);
+
+    var firstControlPoint = Offset(size.width * 0.5, size.height);
+    var firstEndPoint = Offset(size.width * 0.75, size.height * 0.7);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+        firstEndPoint.dx, firstEndPoint.dy);
+
+    var secondControlPoint = Offset(size.width, size.height * 0.35);
+    var secondEndPoint = Offset(size.width * 0.55, 0.0);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondEndPoint.dx, secondEndPoint.dy);
+
+    path.close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return true;
+  }
+}
+
+class WaveClipperSec extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    debugPrint(size.width.toString());
+    var path = Path();
+
+    var zeroControlPoint = Offset(size.width * 0.06, size.height * 0.3);
+    var zeroEndPoint = Offset(size.width * 0.07, size.height * 0.5);
+    path.quadraticBezierTo(zeroControlPoint.dx, zeroControlPoint.dy,
+        zeroEndPoint.dx, zeroEndPoint.dy);
+
+    var firstControlPoint = Offset(size.width * 0.09, size.height * 0.92);
+    var firstEndPoint = Offset(size.width * 0.2, size.height * 0.95);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+        firstEndPoint.dx, firstEndPoint.dy);
+
+    var secondControlPoint = Offset(size.width * 0.4, size.height);
+    var secondEndPoint = Offset(size.width * 0.6, size.height * 0.72);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondEndPoint.dx, secondEndPoint.dy);
+
+    var thirdControlPoint = Offset(size.width * 0.88, size.height * 0.6);
+    var thirdEndPoint = Offset(size.width, size.height * 0.5);
+    path.quadraticBezierTo(thirdControlPoint.dx, thirdControlPoint.dy,
+        thirdEndPoint.dx, thirdEndPoint.dy);
+
+    path.lineTo(size.width, 0.0);
+    path.close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return true;
+  }
+}
+
+class WaveClipperThi extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    debugPrint(size.width.toString());
+    var path = Path();
+
+    path.lineTo(0, size.height * 0.75);
+
+    var firstControlPoint = Offset(size.width * 0.17, size.height * 0.6);
+    var firstEndPoint = Offset(size.width * 0.25, size.height * 0.7);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+        firstEndPoint.dx, firstEndPoint.dy);
+
+    var secondControlPoint = Offset(size.width * 0.25, size.height * 0.7);
+    var secondEndPoint = Offset(size.width * 0.38, size.height * 0.85);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondEndPoint.dx, secondEndPoint.dy);
+
+    var thirdControlPoint = Offset(size.width * 0.5, size.height);
+    var thirdEndPoint = Offset(size.width * 0.65, size.height * 0.85);
+    path.quadraticBezierTo(thirdControlPoint.dx, thirdControlPoint.dy,
+        thirdEndPoint.dx, thirdEndPoint.dy);
+
+    var fourthControlPoint = Offset(size.width * 0.95, size.height * 0.5);
+    var fourthEndPoint = Offset(size.width, size.height * 0.2);
+    path.quadraticBezierTo(fourthControlPoint.dx, fourthControlPoint.dy,
+        fourthEndPoint.dx, fourthEndPoint.dy);
+
+    path.lineTo(size.width, 0.0);
+    path.close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return true;
+  }
+}
+
+class WaveClipperFour extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    debugPrint(size.width.toString());
+    var path = Path();
+
+    path.lineTo(0, size.height * 0.58);
+
+    var firstControlPoint = Offset(size.width * 0.15, size.height * 0.8);
+    var firstEndPoint = Offset(size.width * 0.25, size.height * 0.7);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+        firstEndPoint.dx, firstEndPoint.dy);
+
+    var secondControlPoint = Offset(size.width * 0.45, size.height * 0.5);
+    var secondEndPoint = Offset(size.width * 0.58, size.height * 0.8);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondEndPoint.dx, secondEndPoint.dy);
+
+    var thirdControlPoint = Offset(size.width * 0.7, size.height);
+    var thirdEndPoint = Offset(size.width * 0.85, size.height * 0.85);
+    path.quadraticBezierTo(thirdControlPoint.dx, thirdControlPoint.dy,
+        thirdEndPoint.dx, thirdEndPoint.dy);
+
+    var fourthControlPoint = Offset(size.width * 0.95, size.height * 0.75);
+    var fourthEndPoint = Offset(size.width, size.height * 0.6);
+    path.quadraticBezierTo(fourthControlPoint.dx, fourthControlPoint.dy,
+        fourthEndPoint.dx, fourthEndPoint.dy);
+
+    path.lineTo(size.width, 0.0);
+    path.close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return true;
+  }
+}
+
+class WaveClipperMountain extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    debugPrint(size.width.toString());
+    var path = Path();
+
+    var firstControlPoint = Offset(0, size.height * 0.1);
+    var firstEndPoint = Offset(size.width * 0.3, size.height * 0.3);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+        firstEndPoint.dx, firstEndPoint.dy);
+
+    var secondControlPoint = Offset(size.width * 0.45, size.height * 0.4);
+    var secondEndPoint = Offset(size.width * 0.3, size.height * 0.5);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondEndPoint.dx, secondEndPoint.dy);
+
+    var thirdControlPoint = Offset(size.width * 0.15, size.height * 0.6);
+    var thirdEndPoint = Offset(size.width * 0.25, size.height * 0.7);
+    path.quadraticBezierTo(thirdControlPoint.dx, thirdControlPoint.dy,
+        thirdEndPoint.dx, thirdEndPoint.dy);
+
+    var fourthControlPoint = Offset(size.width * 0.45, size.height * 0.9);
+    var fourthEndPoint = Offset(size.width, size.height * 0.7);
+    path.quadraticBezierTo(fourthControlPoint.dx, fourthControlPoint.dy,
+        fourthEndPoint.dx, fourthEndPoint.dy);
+
+    path.lineTo(size.width, 0.0);
     path.close();
 
     return path;

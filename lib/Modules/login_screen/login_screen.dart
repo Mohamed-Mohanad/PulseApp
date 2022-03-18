@@ -1,5 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pulse_app/Layout/helper_home_screen/helper_home_screen.dart';
+import 'package:pulse_app/Shared/Style/theme.dart';
 
 import '../../Shared/Components/components.dart';
 import '../../Shared/Style/color.dart';
@@ -36,7 +37,7 @@ class LoginScreen extends StatelessWidget {
                     height: size.height * 0.1,
                   ),
                 ),
-                SizedBox(
+                VerticalSpace(
                   height: size.height * 0.1,
                 ),
                 Container(
@@ -57,12 +58,12 @@ class LoginScreen extends StatelessWidget {
                             horizontal: 43,
                             vertical: 13,
                           ),
-                          child: const Text(
+                          child: Text(
                             "تسجيل الدخول",
-                            style: TextStyle(color: Colors.black, fontSize: 36),
+                            style: headLine(),
                           ),
                         ),
-                        SizedBox(height: size.height * 0.03),
+                        VerticalSpace(height: size.height * 0.03),
                         Container(
                           alignment: Alignment.center,
                           margin: const EdgeInsets.symmetric(horizontal: 40),
@@ -72,7 +73,7 @@ class LoginScreen extends StatelessWidget {
                             label: 'البريد الالكتروني',
                           ),
                         ),
-                        SizedBox(height: size.height * 0.02),
+                        VerticalSpace(height: size.height * 0.01),
                         Container(
                           alignment: Alignment.center,
                           margin: const EdgeInsets.symmetric(horizontal: 40),
@@ -82,8 +83,8 @@ class LoginScreen extends StatelessWidget {
                             label: 'كلمة السر',
                           ),
                         ),
-                        const SizedBox(
-                          height: 40,
+                        VerticalSpace(
+                          height: size.height * 0.05,
                         ),
                         DefaultButton(
                             textColor: whitColor,
@@ -92,19 +93,21 @@ class LoginScreen extends StatelessWidget {
                             borderRadius: size.height * 0.05 * 0.5,
                             height: size.height * 0.05,
                             buttonText: 'دخول',
-                            onPressed: () {}),
-                        const SizedBox(
-                          height: 13,
+                            onPressed: () {
+                              navigateTo(context, const HelperHomeScreen());
+                            }),
+                        VerticalSpace(
+                          height: size.height * 0.01,
                         )
                       ],
                     ),
                   ),
                 ),
-                SizedBox(
+                VerticalSpace(
                   height: size.height * 0.05,
                 ),
                 OrRow(),
-                SizedBox(
+                VerticalSpace(
                   height: size.height * 0.03,
                 ),
                 GoogleAuth(),

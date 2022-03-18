@@ -3,10 +3,16 @@ import 'package:flutter/material.dart';
 import '../../Shared/Components/components.dart';
 import '../../Shared/Style/color.dart';
 import '../../Shared/Style/theme.dart';
+import '../onboarding_advices/onboarding_advices.dart';
 
-class HelperHomeScreen extends StatelessWidget {
+class HelperHomeScreen extends StatefulWidget {
   const HelperHomeScreen({Key? key}) : super(key: key);
 
+  @override
+  State<HelperHomeScreen> createState() => _HelperHomeScreenState();
+}
+
+class _HelperHomeScreenState extends State<HelperHomeScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -76,10 +82,21 @@ class HelperHomeScreen extends StatelessWidget {
                         child: Container(
                           width: size.width,
                           decoration: BoxDecoration(
-                            color: Colors.grey[200],
+                            gradient: LinearGradient(
+                              begin: Alignment.bottomLeft,
+                              end: Alignment.topRight,
+                              stops: const [
+                                0.0,
+                                0.9,
+                              ],
+                              colors: [
+                                greyColor2.withOpacity(0.1),
+                                Colors.white,
+                              ],
+                            ),
                             borderRadius: BorderRadius.circular(10.0),
                             border: Border.all(
-                              color: greyColor2,
+                              color: greyColor2.withOpacity(0.5),
                             ),
                           ),
                           child: Column(
@@ -92,7 +109,7 @@ class HelperHomeScreen extends StatelessWidget {
                                   decoration: const BoxDecoration(
                                     image: DecorationImage(
                                       image:
-                                          AssetImage('assets/images/earth.png'),
+                                      AssetImage('assets/images/earth.png'),
                                       fit: BoxFit.contain,
                                     ),
                                   ),
@@ -106,9 +123,9 @@ class HelperHomeScreen extends StatelessWidget {
                                   children: [
                                     Column(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                      MainAxisAlignment.center,
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                      CrossAxisAlignment.center,
                                       children: [
                                         Text(
                                           '6,534',
@@ -139,9 +156,9 @@ class HelperHomeScreen extends StatelessWidget {
                                     ),
                                     Column(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                      MainAxisAlignment.center,
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                      CrossAxisAlignment.center,
                                       children: [
                                         Text(
                                           '643',
@@ -174,10 +191,21 @@ class HelperHomeScreen extends StatelessWidget {
                         child: Container(
                           width: size.width,
                           decoration: BoxDecoration(
-                            color: Colors.grey[100],
+                            gradient: LinearGradient(
+                              begin: Alignment.bottomLeft,
+                              end: Alignment.topRight,
+                              stops: const [
+                                0.0,
+                                0.9,
+                              ],
+                              colors: [
+                                greyColor2.withOpacity(0.1),
+                                Colors.white,
+                              ],
+                            ),
                             borderRadius: BorderRadius.circular(10.0),
                             border: Border.all(
-                              color: greyColor1,
+                              color: greyColor2.withOpacity(0.5),
                             ),
                           ),
                           child: Column(
@@ -209,14 +237,20 @@ class HelperHomeScreen extends StatelessWidget {
                               const VerticalSpace(
                                 height: 5.0,
                               ),
-                              DefaultButton(
+                              Container(
                                 height: size.height * 0.04,
                                 width: size.width * 0.2,
-                                borderRadius: 15,
-                                buttonColor: const Color(0xffededed),
-                                onPressed: () {},
-                                textColor: blackColor,
-                                buttonText: 'العربية',
+                                decoration: BoxDecoration(
+                                  color: greyColor2.withOpacity(0.4),
+                                  borderRadius: BorderRadius.circular(size.height * 0.02),
+                                ),
+                                child: TextButton(
+                                  onPressed: () {},
+                                  child: Text(
+                                    'العربية',
+                                    style: caption(),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -230,10 +264,21 @@ class HelperHomeScreen extends StatelessWidget {
                         child: Container(
                           width: size.width,
                           decoration: BoxDecoration(
-                            color: Colors.grey[100],
+                            gradient: LinearGradient(
+                              begin: Alignment.bottomLeft,
+                              end: Alignment.topRight,
+                              stops: const [
+                                0.0,
+                                0.9,
+                              ],
+                              colors: [
+                                greyColor2.withOpacity(0.1),
+                                Colors.white,
+                              ],
+                            ),
                             borderRadius: BorderRadius.circular(10.0),
                             border: Border.all(
-                              color: greyColor1,
+                              color: greyColor2.withOpacity(0.5),
                             ),
                           ),
                           child: Row(
@@ -270,7 +315,9 @@ class HelperHomeScreen extends StatelessWidget {
                           color: primaryColor.withOpacity(0.8),
                           minWidth: size.width,
                           height: size.height,
-                          onPressed: () {},
+                          onPressed: () {
+                            navigateTo(context, const OnBoardingAdvicesScreen());
+                          },
                           textColor: Colors.white,
                           elevation: 7.0,
                           shape: RoundedRectangleBorder(

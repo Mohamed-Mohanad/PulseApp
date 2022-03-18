@@ -5,9 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../Modules/close_people/close_people_screen.dart';
 import '../../Modules/help/help_screen.dart';
 import '../../Modules/medicine/medicine_screen.dart';
-import 'package:pulse_app/Shared/Cubit/states.dart';
 import '../../Modules/Home/home_screen.dart';
 import '../Components/components.dart';
+import 'states.dart';
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialState());

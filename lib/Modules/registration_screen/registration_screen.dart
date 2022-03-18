@@ -22,23 +22,24 @@ class RegistrationScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  width: 25.0,
+                  margin: const EdgeInsets.symmetric(horizontal: 30),
                   child: const NormalButton(
                     buttonColor: Colors.transparent,
                     icon: Icons.arrow_back_ios,
                   ),
                 ),
                 Expanded(
-                  child: Logo(
-                    width: size.width,
-                    height: size.height,
+                  child: Center(
+                    child: Logo(
+                      width: size.width * 0.3,
+                      height: size.height * 0.2,
+                    ),
                   ),
                 ),
                 Expanded(
                   flex: 2,
-                  child: SizedBox(
-                    height: size.height,
-                  ),
+                  child: VerticalSpace(height: size.height * 0),
                 ),
                 Expanded(
                   flex: 2,
@@ -50,7 +51,7 @@ class RegistrationScreen extends StatelessWidget {
                           height: size.height,
                           width: size.width * 0.8,
                           borderRadius: size.height / 2,
-                          buttonColor: backgroundColor,
+                          buttonColor: whitColor.withOpacity(0.8),
                           onPressed: () {
                             navigateTo(context, SignUpScreen());
                           },
@@ -68,7 +69,7 @@ class RegistrationScreen extends StatelessWidget {
                           height: size.height,
                           width: size.width * 0.8,
                           borderRadius: size.height / 2,
-                          buttonColor: backgroundColor,
+                          buttonColor: whitColor.withOpacity(0.8),
                           onPressed: () {
                             navigateTo(context, LoginScreen());
                           },
@@ -79,11 +80,9 @@ class RegistrationScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                Expanded(
+                const Expanded(
                   flex: 2,
-                  child: SizedBox(
-                    height: size.height,
-                  ),
+                  child: VerticalSpace(height: 0),
                 ),
               ],
             ),

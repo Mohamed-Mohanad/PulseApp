@@ -25,20 +25,28 @@ class _SelectionScreenState extends State<SelectionScreen> {
         height: size.height,
         child: Stack(
           children: [
-            ClipPath(
-              clipper: WaveClipper(),
-              child: Container(
-                color: redColor.withOpacity(0.7),
-                height: size.height * 0.34,
-                width: size.width * 0.7,
+            Positioned(
+              top: 0,
+              left: 0,
+              child: ClipPath(
+                clipper: WaveClipper(),
+                child: Container(
+                  color: redColor.withOpacity(0.7),
+                  height: size.height * 0.35,
+                  width: size.width * 0.75,
+                ),
               ),
             ),
-            ClipPath(
-              clipper: WaveClipperSec(),
-              child: Container(
-                color: primaryColor.withOpacity(0.6),
-                height: size.height * 0.27,
-                width: size.width,
+            Positioned(
+              top: 0,
+              right: 0,
+              child: ClipPath(
+                clipper: WaveClipperSec(),
+                child: Container(
+                  color: primaryColor.withOpacity(0.6),
+                  height: size.height * 0.27,
+                  width: size.width * 0.97,
+                ),
               ),
             ),
             Positioned(
@@ -50,7 +58,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
                   clipper: WaveClipperThi(),
                   child: Container(
                     color: primaryColor.withOpacity(0.25),
-                    height: size.height * 0.28,
+                    height: size.height * 0.3,
                     width: size.width,
                   ),
                 ),
@@ -62,10 +70,10 @@ class _SelectionScreenState extends State<SelectionScreen> {
                 alignment: Alignment.center,
                 transform: Matrix4.rotationZ(22 / 7),
                 child: ClipPath(
-                  clipper: WaveClipperFor(),
+                  clipper: WaveClipperFour(),
                   child: Container(
                     color: greenColor.withOpacity(0.6),
-                    height: size.height * 0.28,
+                    height: size.height * 0.3,
                     width: size.width,
                   ),
                 ),
@@ -76,6 +84,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
                 width: size.width,
                 padding: EdgeInsets.symmetric(
                   horizontal: 40.0.w,
+                  vertical: 10.0.h,
                 ),
                 alignment: Alignment.topRight,
                 child: Container(
@@ -99,11 +108,11 @@ class _SelectionScreenState extends State<SelectionScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Logo(
-                    width: size.width * 0.5,
-                    height: size.height * 0.1,
+                    width: size.width * 0.7,
+                    height: size.height * 0.05,
                   ),
-                  SizedBox(
-                    height: 110.0.h,
+                  VerticalSpace(
+                    height: size.height * 0.1,
                   ),
                   Container(
                     width: size.width * 0.2,
@@ -122,11 +131,11 @@ class _SelectionScreenState extends State<SelectionScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 10.0.h,
+                  VerticalSpace(
+                    height: size.height * 0.015,
                   ),
                   Container(
-                    width: size.width * 0.8,
+                    width: size.width * 0.6,
                     child: Text(
                       'هو تطبيق جوال للرعاية الصحية '
                       'يهدف إلى تسهيل حياة الأشخاص '
@@ -160,8 +169,8 @@ class _SelectionScreenState extends State<SelectionScreen> {
                     buttonColor: redColor,
                     buttonText: 'انا مريض قلب',
                   ),
-                  SizedBox(
-                    height: 10.0.h,
+                  VerticalSpace(
+                    height: size.height * 0.01,
                   ),
                   DefaultButton(
                     height: size.height.h * 0.065,
@@ -181,156 +190,5 @@ class _SelectionScreenState extends State<SelectionScreen> {
         ),
       ),
     );
-  }
-}
-
-class WaveClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    debugPrint(size.width.toString());
-    var path = Path();
-    path.lineTo(0.0, size.height * 0.8);
-
-    var firstControlPoint = Offset(size.width * 0.5, size.height);
-    var firstEndPoint = Offset(size.width * 0.85, size.height * 0.6);
-    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
-        firstEndPoint.dx, firstEndPoint.dy);
-
-    var secondControlPoint = Offset(size.width, size.height * 0.38);
-    var secondEndPoint = Offset(size.width * 0.9, 0.0);
-    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
-        secondEndPoint.dx, secondEndPoint.dy);
-
-    path.close();
-
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    return true;
-  }
-}
-
-class WaveClipperSec extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    debugPrint(size.width.toString());
-    var path = Path();
-
-    var zeroControlPoint = Offset(size.width * 0.06, size.height * 0.3);
-    var zeroEndPoint = Offset(size.width * 0.07, size.height * 0.5);
-    path.quadraticBezierTo(zeroControlPoint.dx, zeroControlPoint.dy,
-        zeroEndPoint.dx, zeroEndPoint.dy);
-
-    var firstControlPoint = Offset(size.width * 0.09, size.height * 0.92);
-    var firstEndPoint = Offset(size.width * 0.15, size.height * 0.95);
-    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
-        firstEndPoint.dx, firstEndPoint.dy);
-
-    var secondControlPoint = Offset(size.width * 0.4, size.height);
-    var secondEndPoint = Offset(size.width * 0.6, size.height * 0.72);
-    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
-        secondEndPoint.dx, secondEndPoint.dy);
-
-    var thirdControlPoint = Offset(size.width * 0.88, size.height * 0.6);
-    var thirdEndPoint = Offset(size.width, size.height * 0.5);
-    path.quadraticBezierTo(thirdControlPoint.dx, thirdControlPoint.dy,
-        thirdEndPoint.dx, thirdEndPoint.dy);
-
-    path.lineTo(size.width, 0.0);
-    path.close();
-
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    return true;
-  }
-}
-
-class WaveClipperThi extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    debugPrint(size.width.toString());
-    var path = Path();
-
-    path.lineTo(0, size.height * 0.75);
-
-    var firstControlPoint = Offset(size.width * 0.17, size.height * 0.6);
-    var firstEndPoint = Offset(size.width * 0.25, size.height * 0.7);
-    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
-        firstEndPoint.dx, firstEndPoint.dy);
-
-    var secondControlPoint = Offset(size.width * 0.25, size.height * 0.7);
-    var secondEndPoint = Offset(size.width * 0.38, size.height * 0.85);
-    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
-        secondEndPoint.dx, secondEndPoint.dy);
-
-    var thirdControlPoint = Offset(size.width * 0.5, size.height);
-    var thirdEndPoint = Offset(size.width * 0.65, size.height * 0.85);
-    path.quadraticBezierTo(thirdControlPoint.dx, thirdControlPoint.dy,
-        thirdEndPoint.dx, thirdEndPoint.dy);
-
-    var fourthControlPoint = Offset(size.width * 0.95, size.height * 0.5);
-    var fourthEndPoint = Offset(size.width, size.height * 0.2);
-    path.quadraticBezierTo(fourthControlPoint.dx, fourthControlPoint.dy,
-        fourthEndPoint.dx, fourthEndPoint.dy);
-
-    path.lineTo(size.width, 0.0);
-    path.close();
-
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    return true;
-  }
-}
-
-class WaveClipperFor extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    debugPrint(size.width.toString());
-    var path = Path();
-
-    path.lineTo(0, size.height * 0.58);
-
-    var zeroControlPoint = Offset(size.width * 0.13, size.height * 0.65);
-    var zeroEndPoint = Offset(size.width * 0.13, size.height * 0.65);
-    path.quadraticBezierTo(zeroControlPoint.dx, zeroControlPoint.dy,
-        zeroEndPoint.dx, zeroEndPoint.dy);
-
-    var firstControlPoint = Offset(size.width * 0.2, size.height * 0.7);
-    var firstEndPoint = Offset(size.width * 0.25, size.height * 0.7);
-    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
-        firstEndPoint.dx, firstEndPoint.dy);
-
-    var secondControlPoint = Offset(size.width * 0.45, size.height * 0.55);
-    var secondEndPoint = Offset(size.width * 0.58, size.height * 0.8);
-    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
-        secondEndPoint.dx, secondEndPoint.dy);
-
-    var thirdControlPoint = Offset(size.width * 0.7, size.height);
-    var thirdEndPoint = Offset(size.width * 0.85, size.height * 0.85);
-    path.quadraticBezierTo(thirdControlPoint.dx, thirdControlPoint.dy,
-        thirdEndPoint.dx, thirdEndPoint.dy);
-
-    var fourthControlPoint = Offset(size.width * 0.95, size.height * 0.75);
-    var fourthEndPoint = Offset(size.width, size.height * 0.6);
-    path.quadraticBezierTo(fourthControlPoint.dx, fourthControlPoint.dy,
-        fourthEndPoint.dx, fourthEndPoint.dy);
-
-    path.lineTo(size.width, 0.0);
-    path.close();
-
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    return true;
   }
 }

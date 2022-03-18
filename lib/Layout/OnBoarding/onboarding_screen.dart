@@ -214,22 +214,18 @@ class BuildBoardingItem extends StatelessWidget {
         Image(
           image: AssetImage(model.image),
         ),
-        const SizedBox(
-          height: 30,
-        ),
+        const VerticalSpace(height: 30.0),
         Center(
           child: Text(
             model.title,
-            style: subTitle(),
+            style: headLine(),
             textDirection: TextDirection.rtl,
           ),
         ),
-        const SizedBox(
-          height: 15,
-        ),
+        const VerticalSpace(height: 15.0),
         Text(
           model.body,
-          style: bodyText(),
+          style: subTitle(),
           textDirection: TextDirection.rtl,
         ),
       ],

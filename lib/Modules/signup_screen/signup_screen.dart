@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pulse_app/Layout/Main/main_screen.dart';
 
 import '../../Shared/Components/components.dart';
 import '../../Shared/Style/color.dart';
@@ -44,7 +45,7 @@ class SignUpScreen extends StatelessWidget {
                     height: size.height * 0.1,
                   ),
                 ),
-                SizedBox(
+                VerticalSpace(
                   height: size.height * 0.015,
                 ),
                 Expanded(
@@ -73,7 +74,7 @@ class SignUpScreen extends StatelessWidget {
                                 style: headLine(),
                               ),
                             ),
-                            SizedBox(height: size.height * 0.01),
+                            VerticalSpace(height: size.height * 0.01),
                             Container(
                               margin:
                                   const EdgeInsets.symmetric(horizontal: 40),
@@ -114,7 +115,6 @@ class SignUpScreen extends StatelessWidget {
                                     type: TextInputType.datetime,
                                     label: 'العمر',
                                   ),
-                                  SizedBox(height: size.height * 0.02),
                                   DefaultTextField(
                                     controller: nationalIDController,
                                     type: TextInputType.number,
@@ -133,7 +133,7 @@ class SignUpScreen extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            SizedBox(
+                            VerticalSpace(
                               height: size.height * 0.15,
                             ),
                             DefaultButton(
@@ -143,9 +143,11 @@ class SignUpScreen extends StatelessWidget {
                               borderRadius: size.height * 0.05 * 0.5,
                               height: size.height * 0.05,
                               buttonText: 'انشاء حساب',
-                              onPressed: () {},
+                              onPressed: () {
+                                navigateTo(context, const MainScreen());
+                              },
                             ),
-                            SizedBox(
+                            VerticalSpace(
                               height: size.height * 0.05,
                             ),
                           ],

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'Layout/Main/main_screen.dart';
+import 'Modules/registration_screen/registration_screen.dart';
 import 'Shared/Cubit/bloc_observer.dart';
 import 'Shared/Cubit/cubit.dart';
 import 'Shared/Cubit/states.dart';
@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
               },
               theme: lightMode,
               themeMode: ThemeMode.light,
-              home: const MainScreen(),
+              home: RegistrationScreen(),
             ),
           );
         },
