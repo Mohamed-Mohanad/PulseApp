@@ -64,7 +64,7 @@ class MainScreen extends StatelessWidget {
           ),
           body: Stack(
             children: [
-              cubit.bottomScreens[cubit.currentIndex],
+              cubit.patientBottomScreens[cubit.currentIndex],
               if (cubit.showHoverScreen)
                 Container(
                   width: double.infinity,

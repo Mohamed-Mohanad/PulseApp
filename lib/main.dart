@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pulse_app/Modules/selection_screen/selection_screen.dart';
 
+import 'Layout/helper_main_screen/helper_main_screen.dart';
+import 'Modules/helper_setting/helper_setting_screen.dart';
 import 'Modules/registration_screen/registration_screen.dart';
 import 'Shared/Cubit/bloc_observer.dart';
 import 'Shared/Cubit/cubit.dart';
@@ -56,7 +59,7 @@ class MyApp extends StatelessWidget {
               },
               theme: lightMode,
               themeMode: ThemeMode.light,
-              home: RegistrationScreen(),
+              home: HelperMainScreen(),
             ),
           );
         },

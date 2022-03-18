@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../Layout/onboarding_advices/onboarding_advices.dart';
 import '../../Shared/Components/components.dart';
 import '../../Shared/Style/color.dart';
 import '../../Shared/Style/theme.dart';
-import '../onboarding_advices/onboarding_advices.dart';
 
 class HelperHomeScreen extends StatefulWidget {
   const HelperHomeScreen({Key? key}) : super(key: key);
@@ -187,7 +188,7 @@ class _HelperHomeScreenState extends State<HelperHomeScreen> {
                         height: size.height * 0.02,
                       ),
                       Expanded(
-                        flex: 3,
+                        flex: 4,
                         child: Container(
                           width: size.width,
                           decoration: BoxDecoration(
@@ -227,7 +228,7 @@ class _HelperHomeScreenState extends State<HelperHomeScreen> {
                                   ],
                                 ),
                               ),
-                              const VerticalSpace(
+                              VerticalSpace(
                                 height: 15.0,
                               ),
                               Text(
@@ -284,6 +285,11 @@ class _HelperHomeScreenState extends State<HelperHomeScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+                              Icon(
+                                Icons.notifications,
+                                color: primaryColor,
+                                size: size.width * 0.08,
+                              ),
                               Container(
                                 padding: EdgeInsets.only(
                                   left: size.width * 0.12,
@@ -298,11 +304,6 @@ class _HelperHomeScreenState extends State<HelperHomeScreen> {
                                   textAlign: TextAlign.center,
                                 ),
                               ),
-                              Icon(
-                                Icons.notifications,
-                                color: primaryColor,
-                                size: size.width * 0.08,
-                              ),
                             ],
                           ),
                         ),
@@ -311,6 +312,7 @@ class _HelperHomeScreenState extends State<HelperHomeScreen> {
                         height: size.height * 0.02,
                       ),
                       Expanded(
+                        flex: 2,
                         child: MaterialButton(
                           color: primaryColor.withOpacity(0.8),
                           minWidth: size.width,
@@ -328,6 +330,7 @@ class _HelperHomeScreenState extends State<HelperHomeScreen> {
                             style: bodyText().copyWith(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
+                              fontSize: 22.0.sp,
                             ),
                           ),
                         ),
@@ -342,7 +345,7 @@ class _HelperHomeScreenState extends State<HelperHomeScreen> {
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

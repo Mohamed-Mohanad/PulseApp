@@ -4,6 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../Modules/close_people/close_people_screen.dart';
 import '../../Modules/help/help_screen.dart';
+import '../../Modules/helper_history_screen/helper_history_screen.dart';
+import '../../Modules/helper_home_screen/helper_home_screen.dart';
+import '../../Modules/helper_setting/helper_setting_screen.dart';
 import '../../Modules/medicine/medicine_screen.dart';
 import '../../Modules/Home/home_screen.dart';
 import '../Components/components.dart';
@@ -15,11 +18,17 @@ class AppCubit extends Cubit<AppStates> {
   static AppCubit get(context) => BlocProvider.of(context);
 
   int currentIndex = 0;
-  List<Widget> bottomScreens = [
+  List<Widget> patientBottomScreens = [
     const HomeScreen(),
     const closePeople(),
     const helpScreen(),
-     MedicineScreen(),
+    const MedicineScreen(),
+  ];
+
+  List<Widget> helperBottomScreens = [
+    const HelperHomeScreen(),
+    HelperHistoryScreen(),
+    HelperSettingScreen(),
   ];
 
   void changeBottomNav(int index) {
@@ -38,6 +47,7 @@ class AppCubit extends Cubit<AppStates> {
     currentTabIndex = index;
     emit(AppTabState());
   }
+
   int currentHistoryIndex = 0;
   List<Widget> tabHeartHistoryScreens = [
     const DayTab(),
@@ -50,11 +60,10 @@ class AppCubit extends Cubit<AppStates> {
     emit(AppTabState());
   }
 
-
   bool showHoverScreen = false;
-  void changeHoverScreenState(){
+
+  void changeHoverScreenState() {
     showHoverScreen = !showHoverScreen;
     emit(HoverScreenChangeState());
   }
-
 }

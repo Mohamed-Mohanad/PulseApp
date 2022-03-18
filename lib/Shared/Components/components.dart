@@ -1354,3 +1354,31 @@ class CalculateBox extends StatelessWidget {
     );
   }
 }
+
+class MyListTile extends StatelessWidget {
+  final String text;
+  final IconData icon;
+
+  const MyListTile({
+    Key? key,
+    required this.text,
+    required this.icon,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Icon(
+        icon,
+        color: Colors.black,
+        size: MediaQuery.of(context).size.width * 0.07,
+      ),
+      title: Text(
+        text,
+        style: bodyText().copyWith(
+          fontSize: 23.0.sp,
+        ),
+      ),
+    );
+  }
+}

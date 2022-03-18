@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pulse_app/Layout/helper_home_screen/helper_home_screen.dart';
-import 'package:pulse_app/Shared/Style/theme.dart';
 
 import '../../Shared/Components/components.dart';
 import '../../Shared/Style/color.dart';
+import '../../Shared/Style/theme.dart';
+import '../helper_home_screen/helper_home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
