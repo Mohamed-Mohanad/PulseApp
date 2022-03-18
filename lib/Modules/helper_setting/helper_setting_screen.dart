@@ -19,66 +19,67 @@ class _HelperSettingScreenState extends State<HelperSettingScreen> {
 
     return Scaffold(
       body: SafeArea(
-          child: SingleChildScrollView(
-        child: Container(
-          color: whitColor,
-          padding: EdgeInsets.symmetric(
-            horizontal: size.width * 0.04,
-          ),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(
-                      Icons.search,
-                      size: size.width * 0.1,
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      size: size.width * 0.1,
-                    ),
-                  ],
+        child: SingleChildScrollView(
+          child: Container(
+            color: whitColor,
+            padding: EdgeInsets.symmetric(
+              horizontal: size.width * 0.04,
+            ),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Icon(
+                        Icons.search,
+                        size: size.width * 0.1,
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: size.width * 0.1,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              _getHeader(),
-              Container(
-                child: Text(
-                  'اسماء خالد',
-                  style: headLine(),
+                _getHeader(),
+                Container(
+                  child: Text(
+                    'اسماء خالد',
+                    style: headLine(),
+                  ),
                 ),
-              ),
-              _profileName("assmaakhaled609@gmail.com"),
-              const VerticalSpace(
-                height: 14,
-              ),
-              const VerticalSpace(
-                height: 6,
-              ),
-              _heading("الانقاذ"),
-              _helpMode(),
-              const VerticalSpace(
-                height: 6,
-              ),
-              _heading("الاعدادت"),
-              const VerticalSpace(
-                height: 6,
-              ),
-              _detailsCard(),
-              const VerticalSpace(
-                height: 10,
-              ),
-              _heading("عن التطبيق"),
-              const VerticalSpace(
-                height: 6,
-              ),
-              _settingsCard(),
-            ],
+                _profileName("assmaakhaled609@gmail.com"),
+                const VerticalSpace(
+                  height: 14,
+                ),
+                const VerticalSpace(
+                  height: 6,
+                ),
+                _heading("الانقاذ"),
+                _helpMode(),
+                const VerticalSpace(
+                  height: 6,
+                ),
+                _heading("الاعدادت"),
+                const VerticalSpace(
+                  height: 6,
+                ),
+                _detailsCard(),
+                const VerticalSpace(
+                  height: 10,
+                ),
+                _heading("عن التطبيق"),
+                const VerticalSpace(
+                  height: 6,
+                ),
+                _settingsCard(),
+              ],
+            ),
           ),
         ),
-      )),
+      ),
     );
   }
 

@@ -1382,3 +1382,45 @@ class MyListTile extends StatelessWidget {
     );
   }
 }
+
+class Content extends StatelessWidget {
+  final String text;
+  final IconData icon;
+
+  const Content({
+    Key? key,
+    required this.text,
+    required this.icon,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: MediaQuery.of(context).size.width * 0.04,
+        vertical: MediaQuery.of(context).size.height * 0.015,
+      ),
+      child: Row(
+        children: [
+          Icon(
+            icon,
+            color: Colors.grey,
+            size: MediaQuery.of(context).size.width * 0.07,
+          ),
+          HorizontalSpace(width: 50.0.w),
+          TextButton(
+            onPressed: () {},
+            child: Text(
+              text,
+              style: bodyText().copyWith(
+                fontSize: 23.0.sp,
+                color: Colors.grey,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

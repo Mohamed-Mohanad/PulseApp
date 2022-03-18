@@ -28,8 +28,11 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      "assets/icons/pulseIcon.png",
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.25,
+                      child: Image.asset(
+                        "assets/icons/pulseIcon.png",
+                      ),
                     ),
                     Stack(
                       alignment: Alignment.topCenter,

@@ -33,4 +33,28 @@ List<PersonData> people = [
     image: 'assets/images/3.png',
     name: 'مصطفى عز',
   ),
+  PersonData(
+    image: 'assets/images/1.png',
+    name: 'كمال حسين',
+  ),
+  PersonData(
+    image: 'assets/images/2.png',
+    name: 'عزيزة محمود',
+  ),
+  PersonData(
+    image: 'assets/images/3.png',
+    name: 'مصطفى عز',
+  ),
+  PersonData(
+    image: 'assets/images/1.png',
+    name: 'كمال حسين',
+  ),
+  PersonData(
+    image: 'assets/images/2.png',
+    name: 'عزيزة محمود',
+  ),
+  PersonData(
+    image: 'assets/images/3.png',
+    name: 'مصطفى عز',
+  ),
 ];

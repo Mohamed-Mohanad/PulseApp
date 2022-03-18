@@ -313,24 +313,27 @@ class _HelperHomeScreenState extends State<HelperHomeScreen> {
                       ),
                       Expanded(
                         flex: 2,
-                        child: MaterialButton(
-                          color: primaryColor.withOpacity(0.8),
-                          minWidth: size.width,
-                          height: size.height,
-                          onPressed: () {
-                            navigateTo(context, const OnBoardingAdvicesScreen());
-                          },
-                          textColor: Colors.white,
-                          elevation: 7.0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: Text(
-                            'تعلم كيف تنقذ الأشخاص',
-                            style: bodyText().copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 22.0.sp,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 10.0.h),
+                          child: MaterialButton(
+                            color: primaryColor.withOpacity(0.8),
+                            minWidth: size.width,
+                            height: size.height,
+                            onPressed: () {
+                              navigateTo(context, const OnBoardingAdvicesScreen());
+                            },
+                            textColor: Colors.white,
+                            elevation: 7.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Text(
+                              'تعلم كيف تنقذ الأشخاص',
+                              style: bodyText().copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 22.0.sp,
+                              ),
                             ),
                           ),
                         ),
