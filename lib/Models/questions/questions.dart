@@ -12,18 +12,36 @@ List<NormalQuestion> normalQuestions = [
   NormalQuestion(
     choices: [
       'الحمدلله',
+      'كويس',
+      'انت ايه اخبارك',
+      'يارب دايما',
+    ],
+    question: 'ازيك',
+  ),
+  NormalQuestion(
+    choices: [
+      'بخير',
       'الحمدلله',
-      'الحمدلله',
-      'الحمدلله',
+      'انت عامل ايه',
+      'طب الحمدلله',
     ],
     question: 'عامل ايه',
   ),
   NormalQuestion(
     choices: [
       'الحمدلله',
+      'كويس',
+      'انت ايه اخبارك',
+      'يارب دايما',
+    ],
+    question: 'ازيك',
+  ),
+  NormalQuestion(
+    choices: [
+      'بخير',
       'الحمدلله',
-      'الحمدلله',
-      'الحمدلله',
+      'انت عامل ايه',
+      'طب الحمدلله',
     ],
     question: 'عامل ايه',
   ),
@@ -52,6 +70,20 @@ List<BooleanQuestion> booleanQuestions = [
       'الحمدلله',
       'الحمدلله برضو',
     ],
+    question: 'انت عامل ايه',
+  ),
+  BooleanQuestion(
+    choices: [
+      'الحمدلله',
+      'الحمدلله برضو',
+    ],
     question: 'انت كويس',
+  ),
+  BooleanQuestion(
+    choices: [
+      'الحمدلله',
+      'الحمدلله برضو',
+    ],
+    question: 'انت عامل ايه',
   ),
 ];
