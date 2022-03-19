@@ -165,7 +165,7 @@ class _MainScreenState extends State<MainScreen> {
                                   color: Colors.grey,
                                 ),
                                 const Content(
-                                    text: 'تسجيل الخروخ', icon: Icons.logout),
+                                    text: 'تسجيل الخروج', icon: Icons.logout),
                                 const Content(
                                     text: 'البيانات والخصوصية',
                                     icon: Icons.privacy_tip_outlined),
@@ -266,77 +266,113 @@ class _MainScreenState extends State<MainScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        height: 15.h,
+                      const VerticalSpace(
+                        height: 15,
                       ),
-                      Row(
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: Colors.white,
-                            child: Icon(
-                              Icons.search,
-                              color: redColor,
-                              size: 30,
+                      InkWell(
+                        onTap: () {},
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: Colors.white,
+                              child: Icon(
+                                Icons.search,
+                                color: redColor,
+                                size: 30,
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            width: 20.h,
-                          ),
-                          Text(
-                            'بحث',
-                            style: headLine().copyWith(
-                              color: Colors.white,
+                            const HorizontalSpace(
+                              width: 20,
                             ),
-                          ),
-                        ],
+                            Text(
+                              'بحث',
+                              style: headLine().copyWith(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      SizedBox(
-                        height: 15.h,
+                      const VerticalSpace(
+                        height: 15,
                       ),
-                      Row(
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: Colors.white,
-                            child: Icon(
-                              Icons.add_circle_outline_outlined,
-                              color: redColor,
-                              size: 30,
+                      InkWell(
+                        onTap: () {},
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: Colors.white,
+                              child: Icon(
+                                Icons.add_circle_outline_outlined,
+                                color: redColor,
+                                size: 30,
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            width: 20.h,
-                          ),
-                          Text(
-                            'اضافة جهاز جديد',
-                            style: headLine().copyWith(
-                              color: Colors.white,
+                            const HorizontalSpace(
+                              width: 20,
                             ),
-                          ),
-                        ],
+                            Text(
+                              'اضافة جهاز جديد',
+                              style: headLine().copyWith(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      SizedBox(
-                        height: 15.h,
+                      const VerticalSpace(
+                        height: 15,
                       ),
-                      Row(
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: Colors.white,
-                            child: Icon(
-                              Icons.group_add_outlined,
-                              color: redColor,
-                              size: 30,
+                      InkWell(
+                        onTap: () {},
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: Colors.white,
+                              child: Icon(
+                                Icons.group_add_outlined,
+                                color: redColor,
+                                size: 30,
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            width: 20.h,
-                          ),
-                          Text(
-                            'اضافة شخص مقرب',
-                            style: headLine().copyWith(
-                              color: Colors.white,
+                            const HorizontalSpace(
+                              width: 20,
                             ),
-                          ),
-                        ],
+                            Text(
+                              'اضافة شخص مقرب',
+                              style: headLine().copyWith(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const VerticalSpace(
+                        height: 15,
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: Colors.white,
+                              child: Icon(
+                                Icons.article_outlined,
+                                color: redColor,
+                                size: 30,
+                              ),
+                            ),
+                            const HorizontalSpace(
+                              width: 20,
+                            ),
+                            Text(
+                              'نصائح الاسعافات الاولية',
+                              style: headLine().copyWith(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),

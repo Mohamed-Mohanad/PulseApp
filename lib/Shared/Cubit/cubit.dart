@@ -66,5 +66,4 @@ class AppCubit extends Cubit<AppStates> {
     showHoverScreen = !showHoverScreen;
     emit(HoverScreenChangeState());
   }
-
 }
