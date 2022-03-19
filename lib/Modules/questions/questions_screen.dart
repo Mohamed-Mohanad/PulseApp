@@ -46,12 +46,12 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                         15.0,
                       ),
                       animation: true,
-                      lineHeight: 25.0,
+                      lineHeight: size.height * 0.04,
                       animationDuration: 350,
                       animateFromLastPercent: true,
-                      percent: (cubit.questionIndex + 1.0) / normalQuestions.length,
+                      percent: (cubit.questionIndex + 1.0) / questions.length,
                       center: Text(
-                        "${cubit.questionIndex + 1.0}%",
+                        "${(cubit.questionIndex + 1.0) / questions.length * 100}%",
                         style: bodyText().copyWith(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -68,11 +68,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                   child: Center(
                     child: Container(
                       width: size.width * 0.85,
-                      height: size.height * 0.5,
-                      // decoration: BoxDecoration(
-                      //   color: greyColor2.withOpacity(0.2),
-                      //   borderRadius: BorderRadius.circular(20.0),
-                      // ),
+                      height: size.height * 0.7,
+                      decoration: BoxDecoration(
+                        color: greyColor2.withOpacity(0.2),
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
                       child: Column(
                         children: [
                           Expanded(
@@ -81,8 +81,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                               children: [
                                 Container(
                                   child: Text(
-                                    normalQuestions[cubit.questionIndex]
-                                        .question,
+                                    questions[cubit.questionIndex].question,
                                     style: headLine().copyWith(
                                       fontSize: 30.0.sp,
                                     ),
@@ -100,73 +99,38 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                             ),
                           ),
                           Expanded(
-                            flex: 4,
+                            flex: 3,
                             child: Column(
                               children: [
-                                Expanded(
-                                  child: ListTile(
-                                    onTap: () {},
-                                    title: Text(
-                                      normalQuestions[cubit.questionIndex]
-                                          .choices[0],
-                                    ),
-                                    leading: Radio(
-                                      value: 1,
-                                      groupValue: 0,
-                                      onChanged: (var value) {
-                                        val = value;
+                                for (int i = 0;
+                                    i <
+                                        questions[cubit.questionIndex]
+                                            .choices
+                                            .length;
+                                    i++)
+                                  Expanded(
+                                    child: ListTile(
+                                      onTap: () {
+                                        if (index < questions.length - 1) {
+                                          index++;
+                                          cubit.changeQuestion(index);
+                                          print(index);
+                                          print(cubit.questionIndex);
+                                        }
                                       },
+                                      title: Text(
+                                        questions[cubit.questionIndex]
+                                            .choices[i],
+                                      ),
+                                      leading: Radio(
+                                        value: 1,
+                                        groupValue: 0,
+                                        onChanged: (var value) {
+                                          val = value;
+                                        },
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Expanded(
-                                  child: ListTile(
-                                    onTap: () {},
-                                    title: Text(
-                                      normalQuestions[cubit.questionIndex]
-                                          .choices[1],
-                                    ),
-                                    leading: Radio(
-                                      value: 2,
-                                      groupValue: 0,
-                                      onChanged: (var value) {
-                                        val = value;
-                                      },
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: ListTile(
-                                    onTap: () {},
-                                    title: Text(
-                                      normalQuestions[cubit.questionIndex]
-                                          .choices[2],
-                                    ),
-                                    leading: Radio(
-                                      value: 3,
-                                      groupValue: 0,
-                                      onChanged: (var value) {
-                                        val = value;
-                                      },
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: ListTile(
-                                    onTap: () {},
-                                    title: Text(
-                                      normalQuestions[cubit.questionIndex]
-                                          .choices[3],
-                                    ),
-                                    leading: Radio(
-                                      value: 4,
-                                      groupValue: 0,
-                                      onChanged: (var value) {
-                                        val = value;
-                                      },
-                                    ),
-                                  ),
-                                ),
                               ],
                             ),
                           ),
@@ -224,7 +188,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                               ),
                             ),
                             onPressed: () {
-                              if (index < normalQuestions.length - 1) {
+                              if (index < questions.length - 1) {
                                 index++;
                                 cubit.changeQuestion(index);
                                 print(index);
