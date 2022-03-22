@@ -2,11 +2,11 @@ import 'package:animate_icons/animate_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pulse_app/Shared/Cubit/cubit.dart';
-import 'package:pulse_app/Shared/Cubit/states.dart';
-import 'package:pulse_app/Shared/Style/color.dart';
-import 'package:pulse_app/Shared/Style/theme.dart';
 
+import '../../Shared/Cubit/cubit.dart';
+import '../../Shared/Cubit/states.dart';
+import '../../Shared/Style/color.dart';
+import '../../Shared/Style/theme.dart';
 import '../../Shared/Components/components.dart';
 
 class MainScreen extends StatelessWidget {

@@ -1,20 +1,22 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../../Models/onboarding_data/onboard_data.dart';
+import '../../Models/onboarding_advices_data/onboarding_advices_data.dart';
 import '../../Shared/Components/components.dart';
 import '../../Shared/Style/color.dart';
 import '../../Shared/Style/theme.dart';
 import '../registration_screen/registration_screen.dart';
 
-class OnBoardingScreen extends StatefulWidget {
-  const OnBoardingScreen({Key? key}) : super(key: key);
+class OnBoardingAdvicesScreen extends StatefulWidget {
+  const OnBoardingAdvicesScreen({Key? key}) : super(key: key);
 
   @override
-  State<OnBoardingScreen> createState() => _OnBoardingScreenState();
+  State<OnBoardingAdvicesScreen> createState() => _OnBoardingAdvicesScreen();
 }
 
-class _OnBoardingScreenState extends State<OnBoardingScreen> {
+class _OnBoardingAdvicesScreen extends State<OnBoardingAdvicesScreen> {
   var pageController = PageController();
   bool isLast = false;
   int index = 0;
@@ -52,8 +54,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   child: Container(
                     alignment: Alignment.topCenter,
                     child: Logo(
-                      height: size.height * 0.2,
-                      width: size.width * 0.25,
+                      height: size.height * 0.1,
+                      width: size.width * 0.3,
                     ),
                   ),
                 ),
@@ -62,80 +64,52 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           ),
           Expanded(
             flex: 5,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  width: size.width,
-                  height: 20.0,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: size.width * 0.01,
-                  ),
-                  child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SmoothPageIndicator(
-                          axisDirection: Axis.horizontal,
-                          controller: pageController,
-                          effect: ScrollingDotsEffect(
-                            spacing: size.width * 0.3,
-                            radius: 5.0,
-                            dotWidth: 10.0,
-                            dotHeight: 10.0,
-                            paintStyle: PaintingStyle.fill,
-                            dotColor: Colors.black,
-                            activeDotColor: onBoardingContents[index].color,
-                          ),
-                          count: onBoardingContents.length,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: size.height * 0.05,
-                      horizontal: size.width * 0.04,
-                    ),
-                    child: PageView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      controller: pageController,
-                      onPageChanged: (index) {
-                        if (index == onBoardingContents.length - 1) {
-                          setState(() {
-                            isLast = true;
-                            this.index = index;
-                          });
-                        } else {
-                          setState(() {
-                            isLast = false;
-                            this.index = index;
-                          });
-                        }
-                      },
-                      itemBuilder: (context, index) => BuildBoardingItem(
-                        model: onBoardingContents[index],
+            child: Center(
+              child: Column(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: size.height * 0.05,
+                        horizontal: size.width * 0.04,
                       ),
-                      itemCount: onBoardingContents.length,
+                      child: PageView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        controller: pageController,
+                        onPageChanged: (index) {
+                          if (index == OnBoardingAdvicesContents.length - 1) {
+                            setState(() {
+                              isLast = true;
+                              this.index = index;
+                            });
+                          } else {
+                            setState(() {
+                              isLast = false;
+                              this.index = index;
+                            });
+                          }
+                        },
+                        itemBuilder: (context, index) => BuildBoardingItem(
+                          model: OnBoardingAdvicesContents[index],
+                        ),
+                        itemCount: OnBoardingAdvicesContents.length,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           Expanded(
-            flex: 1,
+            flex: 2,
             child: Container(
               height: size.height * 0.15,
               width: size.width,
               padding: EdgeInsets.symmetric(
-                horizontal: size.width * 0.1,
+                horizontal: size.width * 0.07,
               ),
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
@@ -166,6 +140,27 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       ),
                     ),
                   ),
+                  Container(
+                    child: Center(
+                      child: Row(
+                        children: [
+                          SmoothPageIndicator(
+                            axisDirection: Axis.horizontal,
+                            controller: pageController,
+                            effect: ExpandingDotsEffect(
+                              spacing: size.width * 0.03,
+                              radius: 5.0,
+                              dotWidth: 5.0,
+                              dotHeight: 5.0,
+                              paintStyle: PaintingStyle.fill,
+                              dotColor: primaryColor,
+                            ),
+                            count: OnBoardingAdvicesContents.length,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                   FloatingActionButton(
                     onPressed: () {
                       if (isLast) {
@@ -182,7 +177,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         );
                       }
                     },
-                    backgroundColor: redColor.withOpacity(0.33 * (index + 1)),
+                    backgroundColor: redColor.withOpacity(0.25 * (index + 1)),
                     elevation: 0.0,
                     child: const Icon(
                       Icons.arrow_forward_ios,
@@ -199,7 +194,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 }
 
 class BuildBoardingItem extends StatelessWidget {
-  final OnBoarding model;
+  final OnBoardingAdvices model;
 
   const BuildBoardingItem({
     Key? key,
@@ -215,17 +210,7 @@ class BuildBoardingItem extends StatelessWidget {
           image: AssetImage(model.image),
         ),
         const SizedBox(
-          height: 30,
-        ),
-        Center(
-          child: Text(
-            model.title,
-            style: subTitle(),
-            textDirection: TextDirection.rtl,
-          ),
-        ),
-        const SizedBox(
-          height: 15,
+          height: 50,
         ),
         Text(
           model.body,

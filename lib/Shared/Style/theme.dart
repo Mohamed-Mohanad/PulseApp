@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pulse_app/Shared/Style/color.dart';
+
+import 'color.dart';
 
 ThemeData lightMode = ThemeData(
   dialogTheme: DialogTheme(

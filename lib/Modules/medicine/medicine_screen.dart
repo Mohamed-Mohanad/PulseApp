@@ -96,8 +96,7 @@ class _MedicineScreenState extends State<MedicineScreen> {
                                             _time.format(context),
                                             textAlign: TextAlign.center,
                                             style: Theme.of(context)
-                                                .textTheme
-                                                .headline1,
+                                                .textTheme.bodyText1,
                                           ),
                                           SizedBox(height: 10),
                                           TextButton(

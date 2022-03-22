@@ -2,13 +2,13 @@ import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pulse_app/Shared/Style/theme.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../Models/graph_data/graph_data.dart';
 import '../Style/color.dart';
+import '../Style/theme.dart';
 
 void navigateTo(context, widget) => Navigator.push(
       context,
@@ -24,8 +24,6 @@ navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
       ),
       (Route<dynamic> route) => false,
     );
-
-AppLocalizations getLang(context) => AppLocalizations.of(context)!;
 
 ///SHOW TOAST
 enum ToastStates {
@@ -47,6 +45,32 @@ Color chooseToastColor(ToastStates state) {
       break;
   }
   return color;
+}
+
+class HorizontalSpace extends StatelessWidget {
+  final double width;
+
+  const HorizontalSpace({required this.width, Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: width.w,
+    );
+  }
+}
+
+class VerticalSpace extends StatelessWidget {
+  final double height;
+
+  const VerticalSpace({required this.height, Key? key,}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: height.h,
+    );
+  }
 }
 
 class CustomCachedNetworkImage extends StatelessWidget {
@@ -120,6 +144,74 @@ class DefaultButton extends StatelessWidget {
               ),
         ),
       ),
+    );
+  }
+}
+
+class NormalButton extends StatelessWidget {
+  final Color buttonColor;
+  final IconData icon;
+
+  const NormalButton({
+    Key? key,
+    required this.buttonColor,
+    required this.icon,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 25,
+      width: 25,
+      child: Center(
+        child: IconButton(
+          icon: Icon(
+            icon,
+            color: Colors.black,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          color: buttonColor,
+        ),
+      ),
+    );
+  }
+}
+
+class DefaultTextField extends StatelessWidget {
+  final TextEditingController controller;
+  final TextInputType type;
+  final bool isPassword;
+  final String label;
+
+  const DefaultTextField({
+    Key? key,
+    required this.controller,
+    required this.type,
+    this.isPassword = false,
+    required this.label,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        TextFormField(
+          controller: controller,
+          keyboardType: type,
+          obscureText: isPassword,
+          decoration: InputDecoration(
+            labelText: label,
+          ),
+          textDirection: TextDirection.rtl,
+          textAlign: TextAlign.right,
+        ),
+        SizedBox(height: MediaQuery
+            .of(context)
+            .size
+            .height * 0.02),
+      ],
     );
   }
 }
@@ -258,6 +350,85 @@ class BuildHealthDataTab extends StatelessWidget {
               ),
             ],
           ),
+        ),
+      ],
+    );
+  }
+}
+
+class BuildDateilsHealthDataTab extends StatelessWidget {
+  final String tabTitle;
+  final Color tabColor;
+  final List<GraphDataClass> graphPoint;
+  const BuildDateilsHealthDataTab({
+    Key? key,
+    required this.graphPoint,
+    required this.tabColor,
+    required this.tabTitle,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 200.h,
+            ),
+            Container(
+              height: 88.h,
+              width: double.infinity,
+              color: tabColor,
+              padding: const EdgeInsets.all(20.0),
+            )
+          ],
+        ),
+        Column(
+          children: [
+            Text(
+              tabTitle,
+              textAlign: TextAlign.start,
+              style: bodyText().copyWith(
+                color: Colors.black,
+                fontSize: 36.0,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            ClipRect(
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                child: Container(
+                  width: 340.0.w,
+                  height: 208.0.h,
+                  decoration: BoxDecoration(
+                      color: Colors.grey.shade200.withOpacity(0.5)),
+                  child: SfCartesianChart(
+                    primaryXAxis: CategoryAxis(),
+                    series: <LineSeries<GraphDataClass, String>>[
+                      LineSeries<GraphDataClass, String>(
+                        color: tabColor,
+                        dataSource: graphPoint,
+                        xValueMapper: (GraphDataClass sales, _) => sales.year,
+                        yValueMapper: (GraphDataClass sales, _) => sales.sales,
+                        dataLabelSettings:
+                            const DataLabelSettings(isVisible: true),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 37.h,
+            ),
+            Container(
+              height: 7.h,
+              width: double.infinity,
+              color: tabColor,
+            ),
+          ],
         ),
       ],
     );
@@ -440,5 +611,438 @@ class BuildChatItem extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class DayTab extends StatelessWidget {
+  const DayTab({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BuildHealthDataTab(
+      graphPoint: [
+        GraphDataClass('Jan', 35),
+        GraphDataClass('Feb', 28),
+        GraphDataClass('Mar', 34),
+        GraphDataClass('Apr', 32),
+        GraphDataClass('May', 40),
+      ],
+      tabColor: redColor,
+      tabTitle: "القلب",
+    );
+  }
+}
+
+class WeekTab extends StatelessWidget {
+  const WeekTab({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BuildHealthDataTab(
+      graphPoint: [
+        GraphDataClass('Jan', 35),
+        GraphDataClass('Feb', 28),
+        GraphDataClass('Mar', 34),
+        GraphDataClass('Apr', 32),
+        GraphDataClass('May', 40),
+      ],
+      tabColor: redColor,
+      tabTitle: "القلب",
+    );
+  }
+}
+
+class MonthTab extends StatelessWidget {
+  const MonthTab({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BuildHealthDataTab(
+      graphPoint: [
+        GraphDataClass('Jan', 35),
+        GraphDataClass('Feb', 28),
+        GraphDataClass('Mar', 34),
+        GraphDataClass('Apr', 32),
+        GraphDataClass('May', 40),
+      ],
+      tabColor: redColor,
+      tabTitle: "القلب",
+    );
+  }
+}
+
+class Circle extends StatelessWidget {
+  final Color color;
+
+  const Circle({Key? key, required this.color}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return CircleAvatar(
+      radius: 5.5.sp,
+      backgroundColor: blackColor,
+      child: CircleAvatar(
+        radius: 4.5.sp,
+        backgroundColor: color,
+      ),
+    );
+  }
+}
+
+class Logo extends StatelessWidget {
+  final double width;
+  final double height;
+
+  const Logo({
+    Key? key,
+    required this.width,
+    required this.height,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: width,
+      height: height,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/icons/pulseIcon.png'),
+        ),
+      ),
+    );
+  }
+}
+
+class Background extends StatelessWidget {
+  final Widget child;
+
+  const Background({
+    Key? key,
+    required this.child,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery
+        .of(context)
+        .size;
+
+    return SingleChildScrollView(
+      child: Container(
+        color: greenColor.withOpacity(0.2),
+        width: double.infinity,
+        height: size.height,
+        child: Stack(
+          alignment: Alignment.center,
+          children: <Widget>[
+            Positioned(
+              top: 0,
+              right: 0,
+              child: Opacity(
+                opacity: 0.3,
+                child: ClipPath(
+                  clipper: WaveClipperBack_1(),
+                  child: Container(
+                    color: primaryColor.withOpacity(0.8),
+                    height: size.height,
+                    width: size.width,
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 0.0,
+              child: Opacity(
+                opacity: 0.3,
+                child: Transform(
+                  alignment: Alignment.center,
+                  transform: Matrix4.rotationZ(22 / 7),
+                  child: ClipPath(
+                    clipper: WaveClipperBack_2(),
+                    child: Container(
+                      color: redColor.withOpacity(0.2),
+                      height: size.height,
+                      width: size.width,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            child,
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class WaveClipperBack_1 extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    debugPrint(size.width.toString());
+    var path = Path();
+
+    path.lineTo(0.0, size.height * 0.8);
+
+    var firstControlPoint = Offset(size.width * 0.15, size.height);
+    var firstEndPoint = Offset(size.width * 0.3, size.height * 0.6);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+        firstEndPoint.dx, firstEndPoint.dy);
+
+    var secondControlPoint = Offset(size.width * 0.4, size.height * 0.3);
+    var secondEndPoint = Offset(size.width * 0.5, size.height * 0.45);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondEndPoint.dx, secondEndPoint.dy);
+
+    var thirdControlPoint = Offset(size.width * 0.6, size.height * 0.55);
+    var thirdEndPoint = Offset(size.width * 0.75, size.height * 0.4);
+    path.quadraticBezierTo(thirdControlPoint.dx, thirdControlPoint.dy,
+        thirdEndPoint.dx, thirdEndPoint.dy);
+
+    path.lineTo(size.width, size.height * 0.2);
+    path.lineTo(size.width, 0.0);
+
+    path.close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return true;
+  }
+}
+
+class WaveClipperBack_2 extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    debugPrint(size.width.toString());
+    var path = Path();
+
+    path.lineTo(0.0, size.height * 0.808);
+
+    var firstControlPoint = Offset(size.width * 0.23, size.height * 0.65);
+    var firstEndPoint = Offset(size.width * 0.23, size.height * 0.65);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+        firstEndPoint.dx, firstEndPoint.dy);
+
+    var secondControlPoint = Offset(size.width * 0.4, size.height * 0.5);
+    var secondEndPoint = Offset(size.width * 0.45, size.height * 0.55);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondEndPoint.dx, secondEndPoint.dy);
+
+    var thirdControlPoint = Offset(size.width * 0.6, size.height * 0.85);
+    var thirdEndPoint = Offset(size.width * 0.86, size.height * 0.2);
+    path.quadraticBezierTo(thirdControlPoint.dx, thirdControlPoint.dy,
+        thirdEndPoint.dx, thirdEndPoint.dy);
+
+    var fourthControlPoint = Offset(size.width * 0.9, size.height * 0.15);
+    var fourthEndPoint = Offset(size.width, size.height * 0.205);
+    path.quadraticBezierTo(fourthControlPoint.dx, fourthControlPoint.dy,
+        fourthEndPoint.dx, fourthEndPoint.dy);
+
+    path.lineTo(size.width, 0.0);
+
+    path.close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return true;
+  }
+}
+
+
+class MyLine extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20.0,
+        ),
+        child: Container(
+          width: MediaQuery
+              .of(context)
+              .size
+              .width * 0.4,
+          height: 1.0,
+          color: Colors.grey,
+        ),
+      ),
+    );
+  }
+}
+
+class OrRow extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          MyLine(),
+          Text(
+            'او',
+            style: bodyText(),
+          ),
+          MyLine(),
+        ],
+      ),
+    );
+  }
+}
+
+class GoogleAuth extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery
+        .of(context)
+        .size;
+
+    return Center(
+      child: Container(
+        width: MediaQuery
+            .of(context)
+            .size
+            .width * 0.65,
+        height: size.height * 0.05,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(size.height * 0.05 * 0.5,),
+          color: backgroundColor,
+        ),
+        child: InkWell(
+          onTap: () {},
+          child: Row(
+            children: [
+              Expanded(
+                flex: 3,
+                child: Center(
+                  child: Text(
+                    'المتابعة مع جوجل',
+                    style: caption().copyWith(
+                      color: const Color(0xff7f7f7f),
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  width: 24,
+                  height: 24,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/icons/google.png'),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class WaveClipperFirst extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    debugPrint(size.width.toString());
+    var path = Path();
+
+    path.lineTo(0.0, size.height * 0.8);
+
+    var firstControlPoint = Offset(size.width * 0.15, size.height);
+    var firstEndPoint = Offset(size.width * 0.3, size.height * 0.6);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+        firstEndPoint.dx, firstEndPoint.dy);
+
+    var secondControlPoint = Offset(size.width * 0.4, size.height * 0.3);
+    var secondEndPoint = Offset(size.width * 0.5, size.height * 0.45);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondEndPoint.dx, secondEndPoint.dy);
+
+    var thirdControlPoint = Offset(size.width * 0.6, size.height * 0.55);
+    var thirdEndPoint = Offset(size.width * 0.75, size.height * 0.4);
+    path.quadraticBezierTo(thirdControlPoint.dx, thirdControlPoint.dy,
+        thirdEndPoint.dx, thirdEndPoint.dy);
+
+    path.lineTo(size.width, size.height * 0.2);
+    path.lineTo(size.width, 0.0);
+
+    path.close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return true;
+  }
+}
+
+class WaveClipperSecond extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    debugPrint(size.width.toString());
+    var path = Path();
+
+    path.lineTo(0.0, size.height * 0.5);
+
+    var firstControlPoint = Offset(size.width * 0.25, size.height);
+    var firstEndPoint = Offset(size.width * 0.5, size.height * 0.6);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+        firstEndPoint.dx, firstEndPoint.dy);
+
+    var secondControlPoint = Offset(size.width * 0.6, size.height * 0.4);
+    var secondEndPoint = Offset(size.width * 0.65, size.height * 0.5);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondEndPoint.dx, secondEndPoint.dy);
+
+    var thirdControlPoint = Offset(size.width * 0.8, size.height * 0.7);
+    var thirdEndPoint = Offset(size.width, size.height * 0.4);
+    path.quadraticBezierTo(thirdControlPoint.dx, thirdControlPoint.dy,
+        thirdEndPoint.dx, thirdEndPoint.dy);
+
+    path.lineTo(size.width, 0.0);
+
+    path.close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return true;
+  }
+}
+
+class OneWaveClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    debugPrint(size.width.toString());
+    var path = Path();
+
+    path.lineTo(0.0, size.height * 0.6);
+
+    var firstControlPoint = Offset(size.width * 0.5, size.height);
+    var firstEndPoint = Offset(size.width, size.height * 0.6);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+        firstEndPoint.dx, firstEndPoint.dy);
+
+    path.lineTo(size.width, 0.0);
+
+    path.close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return true;
   }
 }
