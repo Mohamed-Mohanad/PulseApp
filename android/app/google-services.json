@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "507338751270",
+    "firebase_url": "https://pulse-sc2022-default-rtdb.firebaseio.com",
+    "project_id": "pulse-sc2022",
+    "storage_bucket": "pulse-sc2022.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:507338751270:android:13ee2214dcf4d61b13d5e7",
+        "android_client_info": {
+          "package_name": "com.pulse.pulse_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "507338751270-02o74tlimflcv0u0nlrfuujv1tbie66n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pulse.pulse_app",
+            "certificate_hash": "d7b9474068040be32631b176c6276c207fc143f0"
+          }
+        },
+        {
+          "client_id": "507338751270-9foppc33h9e95fom0br9skh1ov705n68.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxkENWjkEfE-v62ioVC4EoSjGQUPVDLFc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "507338751270-9foppc33h9e95fom0br9skh1ov705n68.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
