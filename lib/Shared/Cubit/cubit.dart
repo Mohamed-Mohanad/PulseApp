@@ -19,7 +19,7 @@ class AppCubit extends Cubit<AppStates> {
     const HomeScreen(),
     const closePeople(),
     const helpScreen(),
-     MedicineScreen(),
+    const MedicineScreen(),
   ];
 
   void changeBottomNav(int index) {
@@ -38,6 +38,7 @@ class AppCubit extends Cubit<AppStates> {
     currentTabIndex = index;
     emit(AppTabState());
   }
+
   int currentHistoryIndex = 0;
   List<Widget> tabHeartHistoryScreens = [
     const DayTab(),
@@ -50,11 +51,9 @@ class AppCubit extends Cubit<AppStates> {
     emit(AppTabState());
   }
 
-
   bool showHoverScreen = false;
-  void changeHoverScreenState(){
+  void changeHoverScreenState() {
     showHoverScreen = !showHoverScreen;
     emit(HoverScreenChangeState());
   }
-
 }
