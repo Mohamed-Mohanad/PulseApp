@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:pulse_app/cubits/questions/questions_cubit.dart';
 
 import '../../Models/questions/questions.dart';
 import '../../Shared/Components/components.dart';
@@ -10,6 +11,7 @@ import '../../Shared/Cubit/cubit.dart';
 import '../../Shared/Cubit/states.dart';
 import '../../Shared/Style/color.dart';
 import '../../Shared/Style/theme.dart';
+import '../../cubits/questions/questions_states.dart';
 
 class QuestionsScreen extends StatefulWidget {
   const QuestionsScreen({Key? key}) : super(key: key);
@@ -25,10 +27,10 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     var val;
     int index = 0;
 
-    return BlocConsumer<AppCubit, AppStates>(
+    return BlocConsumer<QuestionsCubit, QuestionsStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var cubit = AppCubit.get(context);
+        var cubit = QuestionsCubit.get(context);
         return Scaffold(
           backgroundColor: Colors.white,
           body: SafeArea(

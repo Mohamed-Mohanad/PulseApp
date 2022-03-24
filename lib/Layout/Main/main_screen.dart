@@ -2,6 +2,7 @@ import 'package:animate_icons/animate_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 import '../../Shared/Cubit/cubit.dart';
 import '../../Shared/Cubit/states.dart';
@@ -52,63 +53,40 @@ class _MainScreenState extends State<MainScreen> {
                 ),
                 child: InkWell(
                   onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return Center(
-                          child: Container(
-                            width: size.width * 0.9,
-                            height: size.height * 0.55,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(
-                                10.0,
-                              ),
+                    Alert(
+                        context: context,
+                        content: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(
+                              10.0,
                             ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.symmetric(
-                                    horizontal:
-                                        MediaQuery.of(context).size.width *
-                                            0.05,
-                                    vertical:
-                                        MediaQuery.of(context).size.height *
-                                            0.02,
-                                  ),
-                                  child: Icon(
-                                    Icons.close,
-                                    size: size.width * 0.1,
-                                  ),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: size.width * 0.04),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      CircleAvatar(
-                                        child: ClipOval(
-                                          child: CustomCachedNetworkImage(
-                                            imageHeight: 45.h,
-                                            imageWidth: 60.w,
-                                            imageUrl:
-                                                "https://img.freepik.com/free-photo/no-problem-concept-bearded-man-makes-okay-gesture-has-everything-control-all-fine-gesture-wears-spectacles-jumper-poses-against-pink-wall-says-i-got-this-guarantees-something_273609-42817.jpg?w=996",
-                                            imageFit: BoxFit.cover,
-                                          ),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const VerticalSpace(height: 10.0),
+                              Container(
+                                child: Row(
+                                  children: [
+                                    CircleAvatar(
+                                      child: ClipOval(
+                                        child: CustomCachedNetworkImage(
+                                          imageHeight: 50.h,
+                                          imageWidth: 50.w,
+                                          imageUrl:
+                                              "https://img.freepik.com/free-photo/no-problem-concept-bearded-man-makes-okay-gesture-has-everything-control-all-fine-gesture-wears-spectacles-jumper-poses-against-pink-wall-says-i-got-this-guarantees-something_273609-42817.jpg?w=996",
+                                          imageFit: BoxFit.cover,
                                         ),
-                                        radius: 23.0.r,
                                       ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                      radius: 25.0.r,
+                                    ),
+                                    Expanded(
+                                      child: Column(
                                         children: [
                                           Container(
                                             padding: EdgeInsets.symmetric(
-                                              horizontal: size.width * 0.03,
+                                              horizontal: 10.0.w,
                                             ),
                                             child: Text(
                                               'محمد معتز',
@@ -117,30 +95,30 @@ class _MainScreenState extends State<MainScreen> {
                                               ),
                                             ),
                                           ),
+                                          const VerticalSpace(height: 5.0),
                                           Container(
                                             padding: EdgeInsets.symmetric(
-                                              horizontal: size.width * 0.03,
+                                              horizontal: 10.0.w,
                                             ),
                                             child: Text(
                                               'mohammedrambo326@gmail.com',
                                               style: subTitle(),
+                                              overflow: TextOverflow.ellipsis,
                                             ),
                                           ),
-                                          VerticalSpace(
-                                              height: size.height * 0.02),
+                                          const VerticalSpace(height: 15.0),
                                           Container(
+                                            width: 180.0.w,
+                                            height: 40.0.h,
                                             decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(
-                                                      size.height * 0.02),
+                                                  BorderRadius.circular(20.0.r),
                                               border: Border.all(
                                                 color: Colors.grey,
                                                 style: BorderStyle.solid,
                                                 width: 1.0,
                                               ),
                                             ),
-                                            width: size.width * 0.65,
-                                            height: size.height * 0.04,
                                             child: TextButton(
                                               child: Text(
                                                 'قم بادارة حسابك',
@@ -151,76 +129,90 @@ class _MainScreenState extends State<MainScreen> {
                                               onPressed: () {},
                                             ),
                                           ),
-                                          VerticalSpace(
-                                              height: size.height * 0.02),
+                                          const VerticalSpace(height: 10.0),
                                         ],
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                                Container(
-                                  width: size.width,
-                                  height: 1.0,
-                                  color: Colors.grey,
+                              ),
+                              Container(
+                                width: size.width,
+                                height: 1.0,
+                                color: Colors.grey,
+                              ),
+                              const Content(
+                                  text: 'تسجيل الخروج', icon: Icons.logout),
+                              const Content(
+                                  text: 'البيانات والخصوصية',
+                                  icon: Icons.privacy_tip_outlined),
+                              Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: 1.0,
+                                color: Colors.grey,
+                              ),
+                              const Content(
+                                  text: 'المساعدة والاراء',
+                                  icon: Icons.help_outline_rounded),
+                              Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: 1.0,
+                                color: Colors.grey,
+                              ),
+                              const VerticalSpace(height: 10.0),
+                              Container(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: size.width * 0.05,
                                 ),
-                                const Content(
-                                    text: 'تسجيل الخروج', icon: Icons.logout),
-                                const Content(
-                                    text: 'البيانات والخصوصية',
-                                    icon: Icons.privacy_tip_outlined),
-                                Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 1.0,
-                                  color: Colors.grey,
-                                ),
-                                const Content(
-                                    text: 'المساعدة والاراء',
-                                    icon: Icons.help_outline_rounded),
-                                Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 1.0,
-                                  color: Colors.grey,
-                                ),
-                                VerticalSpace(height: size.height * 0.02),
-                                Container(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: size.width * 0.05,
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      TextButton(
-                                        onPressed: () {},
-                                        child: Text(
-                                          'حقوق الاستخدام',
-                                          style: caption(),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    TextButton(
+                                      onPressed: () {},
+                                      child: Text(
+                                        'حقوق الاستخدام',
+                                        style: caption(),
+                                      ),
+                                    ),
+                                    Container(
+                                      child: Text(
+                                        '.',
+                                        style: caption().copyWith(
+                                          fontSize: 30.0.sp,
                                         ),
                                       ),
-                                      Container(
-                                        child: Text(
-                                          '.',
-                                          style: caption().copyWith(
-                                            fontSize: 30.0.sp,
-                                          ),
-                                        ),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {},
+                                      child: Text(
+                                        'سياسة الخصوصية',
+                                        style: caption(),
                                       ),
-                                      TextButton(
-                                        onPressed: () {},
-                                        child: Text(
-                                          'سياسة الخصوصية',
-                                          style: caption(),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        );
-                      },
-                    );
+                        ),
+                        closeIcon: const Icon(
+                          Icons.close,
+                          size: 40.0,
+                        ),
+                        type: AlertType.none,
+                        buttons: [
+                          DialogButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: Text(
+                              "خروج",
+                              style: bodyText().copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          )
+                        ]).show();
                   },
                   child: CircleAvatar(
                     child: ClipOval(

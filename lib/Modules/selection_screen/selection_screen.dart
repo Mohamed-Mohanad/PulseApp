@@ -88,15 +88,13 @@ class _SelectionScreenState extends State<SelectionScreen> {
                 ),
                 alignment: Alignment.topRight,
                 child: Container(
-                  width: size.width * 0.45,
+                  width: size.width * 0.4,
                   child: Text(
                     'مرحبا بك, في تطبيق',
-                    textWidthBasis: TextWidthBasis.parent,
                     style: headLine().copyWith(
                       color: whiteColor,
                       fontWeight: FontWeight.w500,
-                      fontSize: 36.sp,
-                      height: 1.3.sp,
+                      fontSize: 33.sp,
                     ),
                     textDirection: TextDirection.rtl,
                   ),
@@ -108,11 +106,11 @@ class _SelectionScreenState extends State<SelectionScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Logo(
-                    width: size.width * 0.7,
-                    height: size.height * 0.05,
-                  ),
-                  VerticalSpace(
+                    width: size.width * 0.8,
                     height: size.height * 0.1,
+                  ),
+                  const VerticalSpace(
+                    height: 90.0,
                   ),
                   Container(
                     width: size.width * 0.2,
@@ -159,8 +157,8 @@ class _SelectionScreenState extends State<SelectionScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   DefaultButton(
-                    height: size.height.h * 0.065,
-                    width: size.width.w * 0.85,
+                    height: size.height * 0.065,
+                    width: size.width * 0.8,
                     onPressed: () {
                       navigateTo(context, const OnBoardingScreen());
                     },
@@ -173,8 +171,8 @@ class _SelectionScreenState extends State<SelectionScreen> {
                     height: size.height * 0.01,
                   ),
                   DefaultButton(
-                    height: size.height.h * 0.065,
-                    width: size.width.w * 0.85,
+                    height: size.height * 0.065,
+                    width: size.width * 0.8,
                     onPressed: () {
                       navigateTo(context, RegistrationScreen());
                     },

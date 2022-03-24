@@ -146,9 +146,10 @@ class DefaultButton extends StatelessWidget {
         },
         child: Text(
           buttonText,
-          style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                color: textColor,
-              ),
+          style: bodyText().copyWith(
+            color: textColor,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
     );
@@ -1536,17 +1537,16 @@ class Content extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width * 0.04,
-        vertical: MediaQuery.of(context).size.height * 0.015,
+        vertical: 10.0.h,
       ),
       child: Row(
         children: [
           Icon(
             icon,
             color: Colors.grey,
-            size: MediaQuery.of(context).size.width * 0.07,
+            size: 30.0,
           ),
-          HorizontalSpace(width: 50.0.w),
+          const HorizontalSpace(width: 30.0),
           TextButton(
             onPressed: () {},
             child: Text(
