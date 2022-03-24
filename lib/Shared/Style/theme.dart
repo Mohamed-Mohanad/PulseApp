@@ -59,12 +59,14 @@ TextStyle bodyText() => TextStyle(
       color: Colors.black,
       fontFamily: "Tajawal",
     );
+
 TextStyle subTitle() => TextStyle(
       fontSize: 14.0.sp,
       fontWeight: FontWeight.w800,
       color: Colors.grey,
       height: 1.3.h,
     );
+
 TextStyle caption() => TextStyle(
       fontSize: 13.0.sp,
       color: Colors.grey,

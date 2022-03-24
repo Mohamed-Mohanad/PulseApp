@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../Layout/helper_main_screen/helper_main_screen.dart';
 import '../../Shared/Components/components.dart';
 import '../../Shared/Style/color.dart';
 import '../../Shared/Style/theme.dart';
-import '../helper_home_screen/helper_home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -87,14 +87,14 @@ class LoginScreen extends StatelessWidget {
                           height: size.height * 0.05,
                         ),
                         DefaultButton(
-                            textColor: whitColor,
+                            textColor: whiteColor,
                             width: size.width * 0.70,
                             buttonColor: redColor.withOpacity(0.87),
                             borderRadius: size.height * 0.05 * 0.5,
                             height: size.height * 0.05,
                             buttonText: 'دخول',
                             onPressed: () {
-                              navigateTo(context, const HelperHomeScreen());
+                              navigateTo(context, const HelperMainScreen());
                             }),
                         VerticalSpace(
                           height: size.height * 0.01,

@@ -42,11 +42,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                     ),
                     child: LinearPercentIndicator(
                       width: size.width * 0.8,
-                      barRadius: const Radius.circular(
-                        15.0,
+                      barRadius: Radius.circular(
+                        size.height * 0.017,
                       ),
                       animation: true,
-                      lineHeight: size.height * 0.04,
+                      lineHeight: size.height * 0.035,
                       animationDuration: 350,
                       animateFromLastPercent: true,
                       percent: (cubit.questionIndex + 1.0) / questions.length,
@@ -69,10 +69,6 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                     child: Container(
                       width: size.width * 0.85,
                       height: size.height * 0.7,
-                      decoration: BoxDecoration(
-                        color: greyColor2.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
                       child: Column(
                         children: [
                           Expanded(

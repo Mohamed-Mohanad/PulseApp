@@ -6,7 +6,7 @@ Color greenColor = const Color(0xff15D1D1);
 Color blackColor = const Color(0xff686868);
 Color greyColor1 = const Color(0xffBBBBBB);
 Color greyColor2 = const Color(0xffCCCCCC);
-Color whitColor = const Color(0xffF2F1F1);
+Color whiteColor = const Color(0xffF2F1F1);
 Color backgroundColor = const Color(0xaaffffff);
 
 MaterialColor primarySwatchColor = const MaterialColor(

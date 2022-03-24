@@ -1,5 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pulse_app/Shared/Style/theme.dart';
+
+import '../../Shared/Components/components.dart';
+import '../../Shared/Style/color.dart';
 
 class helpScreen extends StatefulWidget {
   const helpScreen({Key? key}) : super(key: key);
@@ -11,106 +15,124 @@ class helpScreen extends StatefulWidget {
 class _helpScreenState extends State<helpScreen> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'المساعدة',
-          textAlign: TextAlign.start,
-          style: TextStyle(color: Colors.black),
-        ),
-      ),
       body: DefaultTabController(
         length: 2,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          padding: EdgeInsets.symmetric(
+            horizontal: size.width * 0.05,
+          ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                height: 48,
-                decoration: BoxDecoration(
-                    color: const Color(0xffBBBBBB),
-                    borderRadius: BorderRadius.circular(10)),
-                child: Padding(
-                  padding: const EdgeInsets.all(7.0),
-                  child: TabBar(
-                      indicator: BoxDecoration(
-                          color: const Color(0xffEE1C5D),
-                          borderRadius: BorderRadius.circular(15)),
-                      tabs: const [
-                        Tab(
-                          text: 'المقربون',
-                        ),
-                        Tab(
-                          text: 'الجميع',
-                        )
-                      ]),
+              Center(
+                child: Logo(
+                  width: size.width * 0.2,
+                  height: size.height * 0.05,
                 ),
               ),
-              const SizedBox(
-                height: 20,
+              Text(
+                'المساعدة',
+                textAlign: TextAlign.start,
+                style: headLine(),
               ),
-              SizedBox(
-                height: 300,
+              Container(
+                height: 40.0.h,
+                decoration: BoxDecoration(
+                    color: greyColor1, borderRadius: BorderRadius.circular(20)),
+                child: TabBar(
+                    indicator: BoxDecoration(
+                        color: redColor,
+                        borderRadius: BorderRadius.circular(20)),
+                    tabs: const [
+                      Tab(
+                        text: 'المقربون',
+                      ),
+                      Tab(
+                        text: 'الجميع',
+                      )
+                    ]),
+              ),
+              const VerticalSpace(
+                height: 20.0,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20.0),
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      greyColor2.withOpacity(0.3),
+                      whiteColor.withOpacity(0.1),
+                    ],
+                  ),
+                ),
+                height: size.height * 0.6,
                 child: TabBarView(
                   children: [
                     Container(
-                      decoration: BoxDecoration(
-                        color: const Color(0xffBBBBBB),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      height: 150,
-                      width: 60,
-                      child: Stack(
+                      child: Column(
                         children: [
-                          Column(
-                            children: [
-                              Image.asset(
-                                  'assets/images/Wavy Buddies Delivering.png'),
-                              const SizedBox(
-                                height: 10,
+                          const VerticalSpace(
+                            height: 35.0,
+                          ),
+                          Image.asset(
+                              'assets/images/Family Values Family 1.png'),
+                          const VerticalSpace(
+                            height: 70,
+                          ),
+                          Text(
+                            'الاقرباء بجانبك',
+                            textAlign: TextAlign.center,
+                            style: headLine(),
+                          ),
+                          const VerticalSpace(
+                            height: 20.0,
+                          ),
+                          Container(
+                            width: size.width * 0.6,
+                            child: Text(
+                              'بتفعيل وضع المساعدة للاقرباء سوف يكون اقرباْئك بجانبك دائماً',
+                              textAlign: TextAlign.center,
+                              style: subTitle().copyWith(
+                                fontSize: 15.sp,
                               ),
-                              const Text(
-                                'الاقرباء بجانبك ً',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              const Text(
-                                'بتفعيل وضع المساعدة للاقرباء _سوف يكون اقرباْئك بجانبك دائماً',
-                                textAlign: TextAlign.center,
-                              ),
-                            ],
+                            ),
                           ),
                         ],
                       ),
                     ),
                     Container(
-                      decoration: BoxDecoration(
-                        color: const Color(0xffBBBBBB),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
                       child: Column(
                         children: [
+                          const VerticalSpace(
+                            height: 35.0,
+                          ),
                           Image.asset(
-                              'assets/images/Family Values Family 1.png'),
-                          const SizedBox(
-                            height: 10,
+                              'assets/images/Wavy Buddies Delivering.png'),
+                          const VerticalSpace(
+                            height: 70,
                           ),
-                          const Text(
-                            'الجميع بجانبك ً',
+                          Text(
+                            'الحميع بجانبك',
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: headLine(),
                           ),
-                          const SizedBox(
-                            height: 5,
+                          const VerticalSpace(
+                            height: 20.0,
                           ),
-                          const Text(
-                            'هناك الكثير من حولك علي_استعداد لتقديم المساعدة في اي وقتًً',
-                            textAlign: TextAlign.center,
+                          Container(
+                            width: size.width * 0.6,
+                            child: Text(
+                              'هناك الكثير من حولك علي استعداد لتقديم المساعدة في اي وقت',
+                              textAlign: TextAlign.center,
+                              style: subTitle().copyWith(
+                                fontSize: 15.sp,
+                              ),
+                            ),
                           ),
                         ],
                       ),

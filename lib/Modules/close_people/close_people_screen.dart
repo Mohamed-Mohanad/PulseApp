@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pulse_app/Shared/Style/theme.dart';
 
 import '../../Shared/Components/components.dart';
+import '../../Shared/Style/color.dart';
+import '../../Shared/Style/theme.dart';
 
 class closePeople extends StatefulWidget {
   const closePeople({Key? key}) : super(key: key);
@@ -14,36 +15,53 @@ class closePeople extends StatefulWidget {
 class _closePeopleState extends State<closePeople> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.only(
-          left: 20.w,
-          right: 20.w,
-        ),
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.only(
+            left: 20.w,
+            right: 20.w,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
-                child: Image.asset(
-                  "assets/icons/pulseIcon.png",
+                child: Logo(
+                  width: size.width * 0.2,
+                  height: size.height * 0.05,
                 ),
               ),
               Text(
                 'المقربون',
                 style: headLine(),
               ),
-              SizedBox(
-                height: 20.0.h,
-              ),
-              ListView.separated(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemBuilder: (context, index) => const BuildChatItem(),
-                separatorBuilder: (context, index) => SizedBox(
-                  height: 20.0.h,
+              VerticalSpace(height: 10.0.h),
+              Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 5.0.w,
                 ),
-                itemCount: 15,
+                decoration: BoxDecoration(
+                  color: greyColor2.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: Column(
+                  children: [
+                    VerticalSpace(
+                      height: 10.0.h,
+                    ),
+                    ListView.separated(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) => const BuildChatItem(),
+                      separatorBuilder: (context, index) => VerticalSpace(
+                        height: 10.0.h,
+                      ),
+                      itemCount: 15,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

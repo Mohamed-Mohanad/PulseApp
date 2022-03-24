@@ -47,9 +47,8 @@ class _MainScreenState extends State<MainScreen> {
             ),
             actions: [
               Padding(
-                padding: EdgeInsets.only(
-                  left: 5.w,
-                  right: 10.w,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10.w,
                 ),
                 child: InkWell(
                   onTap: () {

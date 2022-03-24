@@ -51,7 +51,7 @@ class RegistrationScreen extends StatelessWidget {
                           height: size.height,
                           width: size.width * 0.8,
                           borderRadius: size.height / 2,
-                          buttonColor: whitColor.withOpacity(0.8),
+                          buttonColor: whiteColor.withOpacity(0.8),
                           onPressed: () {
                             navigateTo(context, SignUpScreen());
                           },
@@ -69,7 +69,7 @@ class RegistrationScreen extends StatelessWidget {
                           height: size.height,
                           width: size.width * 0.8,
                           borderRadius: size.height / 2,
-                          buttonColor: whitColor.withOpacity(0.8),
+                          buttonColor: whiteColor.withOpacity(0.8),
                           onPressed: () {
                             navigateTo(context, LoginScreen());
                           },

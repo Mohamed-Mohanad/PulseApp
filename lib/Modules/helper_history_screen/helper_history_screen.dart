@@ -117,6 +117,7 @@ class HelperHistoryScreen extends StatelessWidget {
                           const VerticalSpace(height: 10.0),
                       itemCount: people.length,
                       shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
                     ),
                   ],
                 ),

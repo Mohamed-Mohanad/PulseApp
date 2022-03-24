@@ -137,7 +137,7 @@ class SignUpScreen extends StatelessWidget {
                               height: size.height * 0.15,
                             ),
                             DefaultButton(
-                              textColor: whitColor,
+                              textColor: whiteColor,
                               width: size.width * 0.70,
                               buttonColor: redColor.withOpacity(0.87),
                               borderRadius: size.height * 0.05 * 0.5,

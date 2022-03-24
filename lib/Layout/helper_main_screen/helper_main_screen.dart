@@ -37,11 +37,12 @@ class HelperMainScreen extends StatelessWidget {
                 label: 'السجل',
               ),
               BottomNavigationBarItem(
-                icon: Image.asset(
-                  "assets/icons/user.png",
+                icon: Icon(
+                  Icons.settings_outlined,
                   color: cubit.currentIndex == 2 ? primaryColor : blackColor,
+                  size: 27,
                 ),
-                label: 'setting',
+                label: 'settings',
               ),
             ],
           ),

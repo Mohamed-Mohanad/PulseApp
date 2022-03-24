@@ -1,9 +1,10 @@
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:day_night_time_picker/lib/constants.dart';
+import 'package:day_night_time_picker/lib/daynight_timepicker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pulse_app/Shared/Style/theme.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../Models/graph_data/graph_data.dart';
@@ -361,12 +362,12 @@ class BuildHealthDataTab extends StatelessWidget {
   }
 }
 
-class BuildDateilsHealthDataTab extends StatelessWidget {
+class BuildDetailsHealthDataTab extends StatelessWidget {
   final String tabTitle;
   final Color tabColor;
   final List<GraphDataClass> graphPoint;
 
-  const BuildDateilsHealthDataTab({
+  const BuildDetailsHealthDataTab({
     Key? key,
     required this.graphPoint,
     required this.tabColor,
@@ -505,19 +506,13 @@ class BuildChatItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: const Border(
-          top: BorderSide(width: 1.5, color: Color(0xFFBFBFBF)),
-          left: BorderSide(width: 1.5, color: Color(0xFFBFBFBF)),
-          right: BorderSide(width: 1.5, color: Color(0xFFBFBFBF)),
-          bottom: BorderSide(width: 1.5, color: Color(0xFFBFBFBF)),
-        ),
         borderRadius: BorderRadius.circular(
           15.0,
         ),
-        color: const Color(0xFFBFBFBF),
+        color: Colors.white,
       ),
       padding: const EdgeInsets.all(
-        2.0,
+        5.0,
       ),
       child: Row(
         children: [
@@ -536,7 +531,7 @@ class BuildChatItem extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          SizedBox(
+          HorizontalSpace(
             width: 15.w,
           ),
           Text(
@@ -611,7 +606,7 @@ class BuildChatItem extends StatelessWidget {
             },
             icon: const Icon(
               Icons.more_vert,
-              color: Colors.black,
+              color: Color(0xff686868),
             ),
           ),
         ],
@@ -859,6 +854,8 @@ class WaveClipperBack_2 extends CustomClipper<Path> {
 }
 
 class MyLine extends StatelessWidget {
+  const MyLine({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -877,6 +874,8 @@ class MyLine extends StatelessWidget {
 }
 
 class OrRow extends StatelessWidget {
+  const OrRow({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -896,6 +895,8 @@ class OrRow extends StatelessWidget {
 }
 
 class GoogleAuth extends StatelessWidget {
+  const GoogleAuth({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -1273,19 +1274,15 @@ class Header extends StatelessWidget {
 
 class CalculateBox extends StatelessWidget {
   final double width;
-  final double textWidth;
   final String header;
-  final String text;
-  final Function function;
+  final Widget child;
 
-  const CalculateBox({
-    Key? key,
-    required this.width,
-    required this.textWidth,
-    required this.header,
-    required this.text,
-    required this.function,
-  }) : super(key: key);
+  const CalculateBox(
+      {Key? key,
+      required this.width,
+      required this.header,
+      required this.child})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -1305,51 +1302,193 @@ class CalculateBox extends StatelessWidget {
               style: caption(),
             ),
           ),
-          InkWell(
-            onTap: () {
-              function;
-            },
-            child: Container(
-              width: width,
-              padding: EdgeInsets.symmetric(
-                horizontal: 12.0.w,
-                vertical: 10.0.h,
+          Container(
+            width: width,
+            padding: EdgeInsets.symmetric(
+              horizontal: 12.0.w,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(
+                10.0,
               ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(
-                  10.0,
-                ),
-                color: greyColor2.withOpacity(0.3),
-                border: Border.all(
-                  color: greyColor1,
-                  style: BorderStyle.solid,
-                  width: 1.0,
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    width: textWidth,
-                    child: Center(
-                      child: Text(
-                        text,
-                        style: bodyText().copyWith(
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Icon(
-                    Icons.keyboard_arrow_down,
-                    size: size.width * 0.06,
-                  ),
-                ],
+              color: greyColor2.withOpacity(0.3),
+              border: Border.all(
+                color: greyColor1,
+                style: BorderStyle.solid,
+                width: 1.0,
               ),
             ),
+            child: child,
           ),
         ],
+      ),
+    );
+  }
+}
+
+class MyTimer extends StatelessWidget {
+  String timer;
+
+  MyTimer({
+    Key? key,
+    required this.timer,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        Navigator.of(context).push(
+          showPicker(
+            context: context,
+            onChange: (value) {},
+            value: TimeOfDay.now(),
+            minuteInterval: MinuteInterval.FIVE,
+            is24HrFormat: true,
+            onChangeDateTime: (DateTime dateTime) {
+              timer =
+                  dateTime.hour.toString() + ':' + dateTime.minute.toString();
+              print(timer);
+            },
+          ),
+        );
+      },
+      child: Text(
+        timer == '' ? '00:00' : timer,
+        style: bodyText(),
+      ),
+    );
+  }
+}
+
+class GetHeader extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Container(
+              height: 100,
+              width: 100,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(
+                    "https://img.freepik.com/free-photo/no-problem-concept-bearded-man-makes-okay-gesture-has-everything-control-all-fine-gesture-wears-spectacles-jumper-poses-against-pink-wall-says-i-got-this-guarantees-something_273609-42817.jpg?w=996",
+                  ),
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class ProfileName extends StatelessWidget {
+  final String name;
+
+  const ProfileName({
+    Key? key,
+    required this.name,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Container(
+        width: MediaQuery.of(context).size.width * 0.80, //80% of width,
+        child: Center(
+          child: Text(
+            name,
+            style: const TextStyle(color: Colors.grey),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Heading extends StatelessWidget {
+  final String heading;
+
+  const Heading({
+    Key? key,
+    required this.heading,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      child: Text(
+        heading,
+        style: subTitle().copyWith(
+          fontSize: 23.0.sp,
+        ),
+      ),
+    );
+  }
+}
+
+class DetailsCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Container(
+        color: Colors.white,
+        child: Column(
+          children: const [
+            //row for each deatails
+            MyListTile(
+              icon: Icons.account_circle_outlined,
+              text: 'الملف الشخصي',
+            ),
+            MyListTile(
+              icon: Icons.settings_outlined,
+              text: "اعدادت الصفحة",
+            ),
+            MyListTile(
+              icon: Icons.assignment_outlined,
+              text: "اعداد التقرير",
+            ),
+            MyListTile(
+              icon: Icons.notifications_outlined,
+              text: "الاشعارات",
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SettingCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Card(
+        child: Column(
+          children: const [
+            MyListTile(
+              icon: Icons.book_outlined,
+              text: "طريقة الاستخدام",
+            ),
+            MyListTile(
+              icon: Icons.privacy_tip_outlined,
+              text: "البيانات والخصوصية",
+            ),
+            MyListTile(
+              icon: Icons.error_outline_outlined,
+              text: "الاصدار",
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -1425,3 +1564,35 @@ class Content extends StatelessWidget {
   }
 }
 
+class TopBlur extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
+    return Positioned(
+      child: Opacity(
+        opacity: 0.5,
+        child: Container(
+          width: size.width,
+          height: size.height * 0.2,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              stops: const [
+                0.0,
+                0.2,
+                0.8,
+              ],
+              colors: [
+                primaryColor.withOpacity(0.9),
+                primaryColor.withOpacity(0.5),
+                Colors.white,
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

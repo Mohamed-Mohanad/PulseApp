@@ -61,14 +61,12 @@ class AppCubit extends Cubit<AppStates> {
   }
 
   bool showHoverScreen = false;
-
   void changeHoverScreenState() {
     showHoverScreen = !showHoverScreen;
     emit(HoverScreenChangeState());
   }
 
   int questionIndex = 0;
-
   void changeQuestion(int index) {
     questionIndex = index;
     emit(ChangeQuestionState());

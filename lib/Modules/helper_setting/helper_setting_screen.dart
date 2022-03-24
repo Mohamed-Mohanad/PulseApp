@@ -21,7 +21,7 @@ class _HelperSettingScreenState extends State<HelperSettingScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-            color: whitColor,
+            color: whiteColor,
             padding: EdgeInsets.symmetric(
               horizontal: size.width * 0.04,
             ),
@@ -43,145 +43,40 @@ class _HelperSettingScreenState extends State<HelperSettingScreen> {
                     ],
                   ),
                 ),
-                _getHeader(),
+                GetHeader(),
                 Container(
                   child: Text(
                     'اسماء خالد',
                     style: headLine(),
                   ),
                 ),
-                _profileName("assmaakhaled609@gmail.com"),
+                const ProfileName(
+                  name: 'assmaakhaled609@gmail.com',
+                ),
                 const VerticalSpace(
                   height: 14,
                 ),
-                const VerticalSpace(
-                  height: 6,
-                ),
-                _heading("الانقاذ"),
+                const Heading(heading: "الانقاذ",),
                 _helpMode(),
                 const VerticalSpace(
                   height: 6,
                 ),
-                _heading("الاعدادت"),
+                const Heading(heading: "الاعدادت",),
                 const VerticalSpace(
                   height: 6,
                 ),
-                _detailsCard(),
+                DetailsCard(),
                 const VerticalSpace(
                   height: 10,
                 ),
-                _heading("عن التطبيق"),
+                const Heading(heading: "عن التطبيق",),
                 const VerticalSpace(
                   height: 6,
                 ),
-                _settingsCard(),
+                SettingCard(),
               ],
             ),
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget _getHeader() {
-    return SingleChildScrollView(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Container(
-              height: 100,
-              width: 100,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
-                    "https://img.freepik.com/free-photo/no-problem-concept-bearded-man-makes-okay-gesture-has-everything-control-all-fine-gesture-wears-spectacles-jumper-poses-against-pink-wall-says-i-got-this-guarantees-something_273609-42817.jpg?w=996",
-                  ),
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget _profileName(String name) {
-    return SingleChildScrollView(
-      child: Container(
-        width: MediaQuery.of(context).size.width * 0.80, //80% of width,
-        child: Center(
-          child: Text(
-            name,
-            style: const TextStyle(color: Colors.grey),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _heading(String heading) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      child: Text(
-        heading,
-        style: subTitle().copyWith(
-          fontSize: 23.0.sp,
-        ),
-      ),
-    );
-  }
-
-  Widget _detailsCard() {
-    return SingleChildScrollView(
-      child: Container(
-        color: Colors.white,
-        child: Column(
-          children: const [
-            //row for each deatails
-            MyListTile(
-              icon: Icons.account_circle_outlined,
-              text: 'الملف الشخصي',
-            ),
-            MyListTile(
-              icon: Icons.settings_outlined,
-              text: "اعدادت الصفحة",
-            ),
-            MyListTile(
-              icon: Icons.assignment_outlined,
-              text: "اعداد التقرير",
-            ),
-            MyListTile(
-              icon: Icons.notifications_outlined,
-              text: "الاشعارات",
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _settingsCard() {
-    return SingleChildScrollView(
-      child: Card(
-        child: Column(
-          children: const [
-            MyListTile(
-              icon: Icons.book_outlined,
-              text: "طريقة الاستخدام",
-            ),
-            MyListTile(
-              icon: Icons.privacy_tip_outlined,
-              text: "البيانات والخصوصية",
-            ),
-            MyListTile(
-              icon: Icons.error_outline_outlined,
-              text: "الاصدار",
-            ),
-          ],
         ),
       ),
     );

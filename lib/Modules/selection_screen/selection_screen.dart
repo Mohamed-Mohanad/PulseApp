@@ -93,7 +93,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
                     'مرحبا بك, في تطبيق',
                     textWidthBasis: TextWidthBasis.parent,
                     style: headLine().copyWith(
-                      color: whitColor,
+                      color: whiteColor,
                       fontWeight: FontWeight.w500,
                       fontSize: 36.sp,
                       height: 1.3.sp,
