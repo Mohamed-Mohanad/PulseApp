@@ -2,6 +2,8 @@ import 'package:animate_icons/animate_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pulse_app/Models/patient/patient_model.dart';
+import 'package:pulse_app/cubits/authintication/auth_cubit.dart';
 
 import '../../Shared/Cubit/cubit.dart';
 import '../../Shared/Cubit/states.dart';
@@ -263,6 +265,7 @@ class MainScreen extends StatelessWidget {
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: cubit.currentIndex,
             onTap: (index) {
+              AuthCubit.get(context).getPatientProfile(userName: 'user_name');
               cubit.changeBottomNav(index);
             },
             items: [

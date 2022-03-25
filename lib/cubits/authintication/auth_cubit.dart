@@ -1,11 +1,15 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pulse_app/Models/user/user_model.dart';
 import 'package:pulse_app/Models/user_network/contacts_model.dart';
 import 'package:pulse_app/Shared/Network/Local/cache_keys.dart';
 import 'package:pulse_app/cubits/authintication/auth_states.dart';
 
+import '../../Models/patient/patient_model.dart';
 import '../../Shared/Network/Local/cache_helper.dart';
 
 class AuthCubit extends Cubit<AuthStates> {
@@ -42,7 +46,6 @@ class AuthCubit extends Cubit<AuthStates> {
     required int age,
     required String city,
     required String governorate,
-    required bool helperMode,
     required bool language,
     required int nationalId,
     required String password,
@@ -51,25 +54,30 @@ class AuthCubit extends Cubit<AuthStates> {
     FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password)
         .then((value) {
+      String userName = firstName +
+          '_' +
+          nationalId.toString()[0] +
+          nationalId.toString()[1] +
+          nationalId.toString()[2] +
+          nationalId.toString()[3];
       CacheHelper.saveData(
         key: USER_ID,
         value: value.user!.uid,
       );
+      CacheHelper.saveData(
+        key: USER_NAME,
+        value: userName,
+      );
       UserModel userModel = UserModel(
         firstName: firstName,
         secondName: secondName,
-        userName: firstName +
-            '_' +
-            nationalId.toString()[0] +
-            nationalId.toString()[1] +
-            nationalId.toString()[2] +
-            nationalId.toString()[3],
+        userName: userName,
         email: email,
         phoneNumber: phoneNumber,
         age: age,
         city: city,
         governorate: governorate,
-        helperMode: helperMode,
+        helperMode: false,
         language: language,
         nationalId: nationalId,
         password: password,
@@ -127,6 +135,38 @@ class AuthCubit extends Cubit<AuthStates> {
       emit(AuthAddToMyNetworkSuccessState());
     }).catchError((onError) {
       emit(AuthAddToMyNetworkErrorState());
+    });
+  }
+
+  PatientModel? patientModel;
+  List<History> healthHistory = [];
+  void getPatientProfile({required String userName}) {
+    emit(AuthGetPatientProfileLoadingState());
+    FirebaseDatabase.instance.ref('patients/$userName').onValue.listen((event) {
+      patientModel = PatientModel.fromDataBase(
+          event.snapshot.value as Map<dynamic, dynamic>);
+      healthHistory.clear();
+      event.snapshot.child('history').children.forEach((element) {
+        healthHistory
+            .add(History.fromDataBase(element.value as Map<dynamic, dynamic>));
+      });
+    });
+    emit(AuthGetPatientProfileSuccessState());
+  }
+
+  void addToHealthHistory({
+    required String userName,
+    required History history,
+  }) {
+    emit(AuthAddToPatientHistoryLoadingState());
+    FirebaseDatabase.instance
+        .ref('patients/$userName/history')
+        .push()
+        .set(history.toMap())
+        .then((value) {
+      emit(AuthAddToPatientHistorySuccessState());
+    }).catchError((onError) {
+      emit(AuthAddToPatientHistoryErrorState());
     });
   }
 }

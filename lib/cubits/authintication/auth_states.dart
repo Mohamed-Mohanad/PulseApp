@@ -22,3 +22,16 @@ class AuthAddToMyNetworkLoadingState extends AuthStates {}
 class AuthAddToMyNetworkSuccessState extends AuthStates {}
 
 class AuthAddToMyNetworkErrorState extends AuthStates {}
+
+class AuthGetPatientProfileLoadingState extends AuthStates {}
+
+class AuthGetPatientProfileSuccessState extends AuthStates {}
+
+class AuthGetPatientProfileErrorState extends AuthStates {}
+
+
+class AuthAddToPatientHistoryLoadingState extends AuthStates {}
+
+class AuthAddToPatientHistorySuccessState extends AuthStates {}
+
+class AuthAddToPatientHistoryErrorState extends AuthStates {}
