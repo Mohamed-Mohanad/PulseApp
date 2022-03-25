@@ -4,10 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../Modules/close_people/close_people_screen.dart';
 import '../../Modules/help/help_screen.dart';
+import '../../Modules/helper_history_screen/helper_history_screen.dart';
+import '../../Modules/helper_home_screen/helper_home_screen.dart';
+import '../../Modules/helper_setting/helper_setting_screen.dart';
 import '../../Modules/medicine/medicine_screen.dart';
-import 'package:pulse_app/Shared/Cubit/states.dart';
 import '../../Modules/Home/home_screen.dart';
 import '../Components/components.dart';
+import 'states.dart';
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialState());
@@ -15,11 +18,17 @@ class AppCubit extends Cubit<AppStates> {
   static AppCubit get(context) => BlocProvider.of(context);
 
   int currentIndex = 0;
-  List<Widget> bottomScreens = [
+  List<Widget> patientBottomScreens = [
     const HomeScreen(),
     const closePeople(),
     const helpScreen(),
     const MedicineScreen(),
+  ];
+
+  List<Widget> helperBottomScreens = [
+    const HelperHomeScreen(),
+    HelperHistoryScreen(),
+    HelperSettingScreen(),
   ];
 
   void changeBottomNav(int index) {

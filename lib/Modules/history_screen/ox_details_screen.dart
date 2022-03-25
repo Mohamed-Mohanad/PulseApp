@@ -58,7 +58,7 @@ class _OxDetailsHstoryScreenState extends State<OxDetailsHistoryScreen> {
                 Expanded(
                   child: TabBarView(
                     children: [
-                      BuildDateilsHealthDataTab(
+                      BuildDetailsHealthDataTab(
                         graphPoint: [
                           GraphDataClass('12:00', 35),
                           GraphDataClass('2:00', 28),
@@ -69,7 +69,7 @@ class _OxDetailsHstoryScreenState extends State<OxDetailsHistoryScreen> {
                         tabColor: primaryColor,
                         tabTitle: "الاوكسجين",
                       ),
-                      BuildDateilsHealthDataTab(
+                      BuildDetailsHealthDataTab(
                         graphPoint: [
                           GraphDataClass('sat', 35),
                           GraphDataClass('sun', 28),
@@ -80,7 +80,7 @@ class _OxDetailsHstoryScreenState extends State<OxDetailsHistoryScreen> {
                         tabColor: primaryColor,
                         tabTitle: "الاوكسجين",
                       ),
-                      BuildDateilsHealthDataTab(
+                      BuildDetailsHealthDataTab(
                         graphPoint: [
                           GraphDataClass('Jan', 35),
                           GraphDataClass('Feb', 28),

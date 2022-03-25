@@ -14,3 +14,6 @@ class ChangeTime extends AppStates {}
 
 ///show & hide hover screen state
 class HoverScreenChangeState extends AppStates {}
+
+///Change Question
+class ChangeQuestionState extends AppStates {}

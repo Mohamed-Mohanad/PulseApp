@@ -2,20 +2,23 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+// import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pulse_app/Modules/selection_screen/selection_screen.dart';
 import 'package:pulse_app/cubits/authintication/auth_cubit.dart';
-import 'Layout/Main/main_screen.dart';
 import 'Shared/Cubit/bloc_observer.dart';
 import 'Shared/Cubit/cubit.dart';
 import 'Shared/Cubit/states.dart';
 import 'Shared/Network/Local/cache_helper.dart';
 import 'Shared/Network/Remote/dio_helper.dart';
 import 'Shared/Style/theme.dart';
+import 'cubits/calculation/calculation_cubit.dart';
+import 'cubits/onboarding/onboarding_cubit.dart';
+import 'cubits/questions/questions_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp();
   await CacheHelper.init();
   DioHelper.init();
   BlocOverrides.runZoned(
@@ -36,6 +39,15 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (BuildContext context) => AuthCubit(),
         ),
+        BlocProvider(
+          create: (BuildContext context) => OnBoardingCubit(),
+        ),
+        BlocProvider(
+          create: (BuildContext context) => QuestionsCubit(),
+        ),
+        BlocProvider(
+          create: (BuildContext context) => CalculationCubit(),
+        ),
       ],
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},
@@ -47,7 +59,6 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               title: 'Pulse',
               localizationsDelegates: const [
-                AppLocalizations.delegate, // Add this line
                 GlobalMaterialLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate,
                 GlobalCupertinoLocalizations.delegate,
@@ -65,7 +76,7 @@ class MyApp extends StatelessWidget {
               },
               theme: lightMode,
               themeMode: ThemeMode.light,
-              home: const MainScreen(),
+              home: const SelectionScreen(),
             ),
           );
         },

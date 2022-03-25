@@ -21,14 +21,14 @@ List<OnBoarding> onBoardingContents = [
     image: 'assets/images/Open Peeps Standing.png',
     title: 'تابع مؤشراتك الحيوية',
     body:
-        'يمكنك متابعة )نبضات قلبك - نسبة الأكسجين في الدم - درجة حرارت جسمك( وسوف نهتم بك في حالة حدوث اي خلل',
-    color: redColor,
+        'يمكنك متابعة,\n (نبضات قلبك - نسبة الأكسجين في الدم - درجة حرارت جسمك) وسوف نهتم بك في حالة حدوث اي خلل',
+    color: primaryColor,
   ),
   OnBoarding(
     image: 'assets/images/Shopaholics Shopping Pals.png',
     title: 'الأقارب بجانبك',
     body: 'يمكن للأقارب العثور عليك في اي وقت وفي حالة تعرضك لأي متاعب',
-    color: primaryColor,
+    color: redColor,
   ),
   OnBoarding(
     image: 'assets/images/Wavy Buddies Address.png',
