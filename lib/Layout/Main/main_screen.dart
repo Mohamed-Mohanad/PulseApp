@@ -265,7 +265,6 @@ class MainScreen extends StatelessWidget {
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: cubit.currentIndex,
             onTap: (index) {
-              AuthCubit.get(context).getPatientProfile(userName: 'user_name');
               cubit.changeBottomNav(index);
             },
             items: [
