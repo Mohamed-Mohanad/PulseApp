@@ -20,7 +20,7 @@ class CalculationCubit extends Cubit<CalculationStates> {
     emit(ChangeWakeUpTimeState());
   }
 
-  String genderValue = 'النوع';
+  String genderValue = 'ذكر';
   List<DropdownMenuItem<String>> get genderItems {
     List<DropdownMenuItem<String>> menuItems = [
       const DropdownMenuItem(child: Text("ذكر"), value: "ذكر" ),
@@ -34,31 +34,33 @@ class CalculationCubit extends Cubit<CalculationStates> {
     emit(ChangeGenderState());
   }
 
-  String tallValue = '150سم';
-  List<DropdownMenuItem<String>> get tallItems {
-    List<DropdownMenuItem<String>> menuItems = [
-      for (int i = 50; i < 250; i++)
-        DropdownMenuItem(child: Text('${i++}سم'), value: '${i++}سم'),
-    ];
-    return menuItems;
-  }
-
-  void changeTallValue(String newValue) {
-    genderValue = newValue;
-    emit(ChangeTallState());
-  }
-
-  String weightValue = '150سم';
-  List<DropdownMenuItem<String>> get weightItems {
-    List<DropdownMenuItem<String>> menuItems = [
-      for (int i = 20; i < 500; i++)
-        DropdownMenuItem(child: Text('${i++}كجم'), value: '${i++}كجم'),
-    ];
-    return menuItems;
-  }
-
-  void changeWeightValue(String newValue) {
-    genderValue = newValue;
-    emit(ChangeWeightState());
-  }
+  // int i = 50;
+  // String tallValue = '$i';
+  // List<DropdownMenuItem<String>> get tallItems {
+  //   List<DropdownMenuItem<String>> menuItems = [
+  //     for (i = 50; i < 250; i++)
+  //       DropdownMenuItem(child: Text('${i++}'), value: '${i++}'),
+  //   ];
+  //   return menuItems;
+  // }
+  //
+  // void changeTallValue(String newValue) {
+  //   genderValue = newValue;
+  //   emit(ChangeTallState());
+  // }
+  //
+  // int j = 20;
+  // String weightValue = '$j';
+  // List<DropdownMenuItem<String>> get weightItems {
+  //   List<DropdownMenuItem<String>> menuItems = [
+  //     for (j = 20; j < 500; j++)
+  //       DropdownMenuItem(child: Text('${j++}'), value: '${j++}'),
+  //   ];
+  //   return menuItems;
+  // }
+  //
+  // void changeWeightValue(String newValue) {
+  //   genderValue = newValue;
+  //   emit(ChangeWeightState());
+  // }
 }

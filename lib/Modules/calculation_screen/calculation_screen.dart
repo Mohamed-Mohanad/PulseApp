@@ -119,20 +119,20 @@ class _CalculationScreenState extends State<CalculationScreen> {
                             children: [
                               Row(
                                 children: [
-                                  // CalculateBox(
-                                  //   width: size.width * 0.32,
-                                  //   header: 'النوع',
-                                  //   child: DropdownButton(
-                                  //     value: cubit.genderValue,
-                                  //     icon: const Icon(Icons.keyboard_arrow_down),
-                                  //     items: cubit.genderItems,
-                                  //     onChanged: (String? newValue) {
-                                  //       if (newValue != null) {
-                                  //         cubit.changeGenderValue(newValue);
-                                  //       }
-                                  //     },
-                                  //   ),
-                                  // ),
+                                  CalculateBox(
+                                    width: size.width * 0.32,
+                                    header: 'النوع',
+                                    child: DropdownButton(
+                                      value: cubit.genderValue,
+                                      icon: const Icon(Icons.keyboard_arrow_down),
+                                      items: cubit.genderItems,
+                                      onChanged: (String? newValue) {
+                                        if (newValue != null) {
+                                          cubit.changeGenderValue(newValue);
+                                        }
+                                      },
+                                    ),
+                                  ),
                                   // CalculateBox(
                                   //   width: size.width * 0.38,
                                   //   header: 'تاريخ الميلاد',
