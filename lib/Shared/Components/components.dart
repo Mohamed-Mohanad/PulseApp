@@ -1329,10 +1329,14 @@ class CalculateBox extends StatelessWidget {
 
 class MyTimer extends StatelessWidget {
   String timer;
+  var cubit;
+  Function function;
 
   MyTimer({
     Key? key,
     required this.timer,
+    required this.cubit,
+    required this.function,
   }) : super(key: key);
 
   @override
@@ -1342,14 +1346,14 @@ class MyTimer extends StatelessWidget {
         Navigator.of(context).push(
           showPicker(
             context: context,
-            onChange: (value) {},
+            onChange: (value) {
+              function(value);
+            },
             value: TimeOfDay.now(),
             minuteInterval: MinuteInterval.FIVE,
             is24HrFormat: true,
             onChangeDateTime: (DateTime dateTime) {
-              timer =
-                  dateTime.hour.toString() + ':' + dateTime.minute.toString();
-              print(timer);
+              function(dateTime);
             },
           ),
         );

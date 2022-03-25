@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 // import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pulse_app/Modules/selection_screen/selection_screen.dart';
 import 'package:pulse_app/cubits/authintication/auth_cubit.dart';
-import 'Modules/calculation_screen/calculation_screen.dart';
 import 'Shared/Cubit/bloc_observer.dart';
 import 'Shared/Cubit/cubit.dart';
 import 'Shared/Cubit/states.dart';
@@ -76,7 +76,7 @@ class MyApp extends StatelessWidget {
               },
               theme: lightMode,
               themeMode: ThemeMode.light,
-              home: const CalculationScreen(),
+              home: const SelectionScreen(),
             ),
           );
         },
