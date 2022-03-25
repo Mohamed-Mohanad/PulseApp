@@ -1,10 +1,9 @@
 class PatientModel {
   int? batteryCharge;
-  int? currentHeartRate;
+  double? temperature;
   double? heartBeat;
   int? spO2;
   int? currentOxy;
-  int? currentTemp;
   int? deviceId;
   int? height;
   int? weight;
@@ -15,11 +14,10 @@ class PatientModel {
   PatientModel.fromDataBase(Map<dynamic, dynamic> db) {
     privacy = db['privacy'];
     batteryCharge = db['battaryCharge'];
-    currentHeartRate = db['currentHeartRate'];
+    temperature = db['sensors']['tempreture'];
     heartBeat = db['sensors']['heartBeat'];
     spO2 = db['sensors']['spO2'];
     currentOxy = db['currentOxy'];
-    currentTemp = db['currentTemp'];
     deviceId = db['deviceId'];
     height = db['height'];
     weight = db['weight'];

@@ -12,6 +12,8 @@ class UserModel {
   String? password;
   String? userName;
   DateTime? registerTime;
+  DateTime? birthDate;
+  int? gender;
 
   UserModel({
     required this.firstName,
@@ -26,6 +28,8 @@ class UserModel {
     required this.nationalId,
     required this.password,
     required this.userName,
+    required this.birthDate,
+    required this.gender,
     this.registerTime,
   });
 
@@ -43,6 +47,8 @@ class UserModel {
     password = db['password'];
     userName = db['userName'];
     registerTime = db['registerTime'];
+    birthDate = db['birthDate'];
+    gender = db['gender'];
   }
 
   Map<String, dynamic> toMap() {
@@ -59,6 +65,8 @@ class UserModel {
       'nationalId': nationalId,
       'password': password,
       'userName': userName,
+      'birthDate': birthDate,
+      'gender': gender,
       'registerTime': registerTime ?? DateTime.now(),
     };
   }

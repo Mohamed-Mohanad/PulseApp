@@ -265,6 +265,7 @@ class MainScreen extends StatelessWidget {
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: cubit.currentIndex,
             onTap: (index) {
+              AuthCubit.get(context).addToHealthHistory(userName: 'user_name', history: History(timeOfTemperatureValue: "80/50/60", temperatureValue: 40, timeOfOxygenValue: "80/50/60", oxygenValue: 80, timeOfHeartRateValue: "80/50/60", heartRateValue: 40,),);
               cubit.changeBottomNav(index);
             },
             items: [

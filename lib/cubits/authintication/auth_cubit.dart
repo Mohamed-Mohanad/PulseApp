@@ -43,7 +43,8 @@ class AuthCubit extends Cubit<AuthStates> {
     required String secondName,
     required String email,
     required String phoneNumber,
-    required int age,
+    required DateTime birthDate,
+    required int gender,
     required String city,
     required String governorate,
     required bool language,
@@ -56,10 +57,10 @@ class AuthCubit extends Cubit<AuthStates> {
         .then((value) {
       String userName = firstName +
           '_' +
-          nationalId.toString()[0] +
-          nationalId.toString()[1] +
-          nationalId.toString()[2] +
-          nationalId.toString()[3];
+          nationalId.toString()[10] +
+          nationalId.toString()[11] +
+          nationalId.toString()[12] +
+          nationalId.toString()[13];
       CacheHelper.saveData(
         key: USER_ID,
         value: value.user!.uid,
@@ -74,7 +75,9 @@ class AuthCubit extends Cubit<AuthStates> {
         userName: userName,
         email: email,
         phoneNumber: phoneNumber,
-        age: age,
+        birthDate: birthDate,
+        gender: gender,
+        age: DateTime.now().year - birthDate.year,
         city: city,
         governorate: governorate,
         helperMode: false,
@@ -115,16 +118,14 @@ class AuthCubit extends Cubit<AuthStates> {
   }
 
   void addToMyNetwork({
-    required userName,
-    required photo,
-    required phoneNumber,
+    required ContactModel contact,
   }) {
     emit(AuthAddToMyNetworkLoadingState());
     String uid = CacheHelper.getData(key: USER_ID);
     ContactModel contactModel = ContactModel(
-      userName: userName,
-      photo: photo,
-      phoneNumber: phoneNumber,
+      userName: contact.userName,
+      photo: contact.photo,
+      phoneNumber: contact.phoneNumber,
     );
     FirebaseFirestore.instance
         .collection('users')
