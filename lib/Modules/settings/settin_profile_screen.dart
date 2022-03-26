@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:pulse_app/Shared/Components/components.dart';
@@ -14,7 +15,24 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  final _controller = ValueNotifier<bool>(false);
+  bool _checked = false;
+
   @override
+  void initState() {
+    super.initState();
+
+    _controller.addListener(() {
+      setState(() {
+        if (_controller.value) {
+          _checked = true;
+        } else {
+          _checked = false;
+        }
+      });
+    });
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -245,8 +263,7 @@ class _ProfileState extends State<Profile> {
               Container(
                 width: 280.0.w,
                 child: Row(
-                  mainAxisAlignment:
-                  MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextButton(
                       onPressed: () {},
@@ -318,13 +335,16 @@ class _ProfileState extends State<Profile> {
             HorizontalSpace(
               width: MediaQuery.of(context).size.width * 0.1,
             ),
-            FlutterSwitch(
-              value: status1,
-              onToggle: (val) {
-                setState(() {
-                  status1 = val;
-                });
-              },
+            AdvancedSwitch(
+              controller: _controller,
+              thumb: ValueListenableBuilder<bool>(
+                valueListenable: _controller,
+                builder: (_, value, __) {
+                  return Icon(value
+                      ? Icons.sports_basketball_outlined
+                      : Icons.sports_basketball_outlined);
+                },
+              ),
             ),
           ],
         ),

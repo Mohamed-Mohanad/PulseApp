@@ -2,6 +2,8 @@ abstract class CalculationStates {}
 
 class CalculationInitialState extends CalculationStates {}
 
+class ChangeDateState extends CalculationStates {}
+
 class ChangeGenderState extends CalculationStates {}
 
 class ChangeTallState extends CalculationStates {}

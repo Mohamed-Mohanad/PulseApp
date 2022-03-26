@@ -101,7 +101,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     ),
                     Container(
                       width: size.width,
-                      height: size.height * 0.68,
+                      height: size.height * 0.65,
                       padding: EdgeInsets.symmetric(
                         vertical: size.height * 0.05,
                         horizontal: size.width * 0.04,
@@ -124,7 +124,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       ),
                     ),
                     Container(
-                      height: size.height * 0.12,
+                      height: size.height * 0.10,
                       width: size.width,
                       padding: EdgeInsets.symmetric(
                         horizontal: size.width * 0.1,

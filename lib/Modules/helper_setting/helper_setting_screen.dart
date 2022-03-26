@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:pulse_app/Shared/Components/components.dart';
 import 'package:pulse_app/Shared/Style/color.dart';
 import 'package:pulse_app/Shared/Style/theme.dart';
@@ -13,7 +13,24 @@ class HelperSettingScreen extends StatefulWidget {
 }
 
 class _HelperSettingScreenState extends State<HelperSettingScreen> {
+  final _controller = ValueNotifier<bool>(false);
+  bool _checked = false;
+
   @override
+  void initState() {
+    super.initState();
+
+    _controller.addListener(() {
+      setState(() {
+        if (_controller.value) {
+          _checked = true;
+        } else {
+          _checked = false;
+        }
+      });
+    });
+  }
+
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
@@ -56,12 +73,16 @@ class _HelperSettingScreenState extends State<HelperSettingScreen> {
                 const VerticalSpace(
                   height: 14,
                 ),
-                const Heading(heading: "الانقاذ",),
+                const Heading(
+                  heading: "الانقاذ",
+                ),
                 _helpMode(),
                 const VerticalSpace(
                   height: 6,
                 ),
-                const Heading(heading: "الاعدادت",),
+                const Heading(
+                  heading: "الاعدادت",
+                ),
                 const VerticalSpace(
                   height: 6,
                 ),
@@ -69,7 +90,9 @@ class _HelperSettingScreenState extends State<HelperSettingScreen> {
                 const VerticalSpace(
                   height: 10,
                 ),
-                const Heading(heading: "عن التطبيق",),
+                const Heading(
+                  heading: "عن التطبيق",
+                ),
                 const VerticalSpace(
                   height: 6,
                 ),
@@ -86,13 +109,16 @@ class _HelperSettingScreenState extends State<HelperSettingScreen> {
     bool status1 = false;
     bool isSwitchOn = false;
     [
-      FlutterSwitch(
-        value: isSwitchOn,
-        onToggle: (value) {
-          setState(() {
-            isSwitchOn = value;
-          });
-        },
+      AdvancedSwitch(
+        controller: _controller,
+        thumb: ValueListenableBuilder<bool>(
+          valueListenable: _controller,
+          builder: (_, value, __) {
+            return Icon(value
+                ? Icons.sports_basketball_outlined
+                : Icons.sports_basketball_outlined);
+          },
+        ),
       ),
     ];
     return SingleChildScrollView(
@@ -120,13 +146,16 @@ class _HelperSettingScreenState extends State<HelperSettingScreen> {
             HorizontalSpace(
               width: MediaQuery.of(context).size.width * 0.1,
             ),
-            FlutterSwitch(
-              value: status1,
-              onToggle: (val) {
-                setState(() {
-                  status1 = val;
-                });
-              },
+            AdvancedSwitch(
+              controller: _controller,
+              thumb: ValueListenableBuilder<bool>(
+                valueListenable: _controller,
+                builder: (_, value, __) {
+                  return Icon(value
+                      ? Icons.sports_basketball_outlined
+                      : Icons.sports_basketball_outlined);
+                },
+              ),
             ),
           ],
         ),

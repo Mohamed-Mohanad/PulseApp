@@ -67,7 +67,7 @@ class _OxDetailsHstoryScreenState extends State<OxDetailsHistoryScreen> {
                           GraphDataClass('8:00', 40),
                         ],
                         tabColor: primaryColor,
-                        tabTitle: "الاوكسجين",
+                        tabTitle: "الاكسجين",
                       ),
                       BuildDetailsHealthDataTab(
                         graphPoint: [

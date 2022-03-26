@@ -6,9 +6,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pulse_app/Modules/selection_screen/selection_screen.dart';
 import 'package:pulse_app/cubits/authintication/auth_cubit.dart';
-import 'Layout/Main/main_screen.dart';
-import 'Layout/OnBoarding/onboarding_screen.dart';
-import 'Modules/device_add/add_device_screen.dart';
 import 'Shared/Cubit/bloc_observer.dart';
 import 'Shared/Cubit/cubit.dart';
 import 'Shared/Cubit/states.dart';
@@ -21,7 +18,7 @@ import 'cubits/questions/questions_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+  //await Firebase.initializeApp();
   await CacheHelper.init();
   DioHelper.init();
   BlocOverrides.runZoned(
@@ -79,7 +76,7 @@ class MyApp extends StatelessWidget {
               },
               theme: lightMode,
               themeMode: ThemeMode.light,
-              home: const MainScreen(),
+              home: const SelectionScreen(),
             ),
           );
         },

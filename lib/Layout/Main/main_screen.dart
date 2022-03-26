@@ -2,8 +2,13 @@ import 'package:animate_icons/animate_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pulse_app/Modules/settings/settin_profile_screen.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
+import '../../Modules/add_person/add_person_screen.dart';
+import '../../Modules/add_search/add_search_screen.dart';
+import '../../Modules/basic_treatment/screen/screen.dart';
+import '../../Modules/device_add/add_device_screen.dart';
 import '../../Shared/Cubit/cubit.dart';
 import '../../Shared/Cubit/states.dart';
 import '../../Shared/Style/color.dart';
@@ -89,7 +94,7 @@ class _MainScreenState extends State<MainScreen> {
                                               horizontal: 10.0.w,
                                             ),
                                             child: Text(
-                                              'محمد معتز',
+                                              'اسماء خالد',
                                               style: bodyText().copyWith(
                                                 fontWeight: FontWeight.w600,
                                               ),
@@ -101,7 +106,7 @@ class _MainScreenState extends State<MainScreen> {
                                               horizontal: 10.0.w,
                                             ),
                                             child: Text(
-                                              'mohammedrambo326@gmail.com',
+                                              'assmaakhaled609@gmail.com',
                                               style: subTitle(),
                                               overflow: TextOverflow.ellipsis,
                                             ),
@@ -126,7 +131,9 @@ class _MainScreenState extends State<MainScreen> {
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                navigateTo(context, Profile());
+                                              },
                                             ),
                                           ),
                                           const VerticalSpace(height: 10.0),
@@ -260,8 +267,10 @@ class _MainScreenState extends State<MainScreen> {
                       const VerticalSpace(
                         height: 15,
                       ),
-                      InkWell(
-                        onTap: () {},
+                      GestureDetector(
+                        onTap: () {
+                          navigateTo(context, SearchScreen());
+                        },
                         child: Row(
                           children: [
                             CircleAvatar(
@@ -287,8 +296,10 @@ class _MainScreenState extends State<MainScreen> {
                       const VerticalSpace(
                         height: 15,
                       ),
-                      InkWell(
-                        onTap: () {},
+                      GestureDetector(
+                        onTap: () {
+                          navigateTo(context, AddDeviceScreen());
+                        },
                         child: Row(
                           children: [
                             CircleAvatar(
@@ -314,8 +325,10 @@ class _MainScreenState extends State<MainScreen> {
                       const VerticalSpace(
                         height: 15,
                       ),
-                      InkWell(
-                        onTap: () {},
+                      GestureDetector(
+                        onTap: () {
+                          navigateTo(context, AddPersonScreen());
+                        },
                         child: Row(
                           children: [
                             CircleAvatar(
@@ -341,8 +354,10 @@ class _MainScreenState extends State<MainScreen> {
                       const VerticalSpace(
                         height: 15,
                       ),
-                      InkWell(
-                        onTap: () {},
+                      GestureDetector(
+                        onTap: () {
+                          navigateTo(context, Screen());
+                        },
                         child: Row(
                           children: [
                             CircleAvatar(

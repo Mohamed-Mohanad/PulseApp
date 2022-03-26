@@ -64,10 +64,9 @@ class _CalculationScreenState extends State<CalculationScreen> {
                                 textAlign: TextAlign.center,
                                 controller: stepsController,
                                 keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   hintText: '5000',
-                                  hintStyle: bodyText(),
-                                  border: InputBorder.none,
+                                  enabledBorder: InputBorder.none,
                                 ),
                               ),
                             ),
@@ -133,53 +132,45 @@ class _CalculationScreenState extends State<CalculationScreen> {
                                       },
                                     ),
                                   ),
-                                  // CalculateBox(
-                                  //   width: size.width * 0.38,
-                                  //   header: 'تاريخ الميلاد',
-                                  //   child: InkWell(
-                                  //     onTap: () {
-                                  //       showDatePicker(
-                                  //         context: context,
-                                  //         initialDate: DateTime.now(),
-                                  //         firstDate: DateTime.now(),
-                                  //         lastDate: DateTime.parse('2030-12-31'),
-                                  //       ).then((value) {
-                                  //         dateController.text =
-                                  //             DateFormat.yMMMd().format(value!);
-                                  //       });
-                                  //     },
-                                  //   ),
-                                  // ),
+                                  CalculateBox(
+                                    width: size.width * 0.38,
+                                    header: 'تاريخ الميلاد',
+                                    child: InkWell(
+                                      onTap: () {
+                                        cubit.selectDate(context);
+                                      },
+                                    ),
+                                  ),
                                 ],
                               ),
                               Row(
                                 children: [
-                                  // CalculateBox(
-                                  //   width: size.width * 0.32,
-                                  //   header: 'الطول',
-                                  //   child: DropdownButton(
-                                  //     items: cubit.tallItems,
-                                  //     value: cubit.tallValue,
-                                  //     onChanged: (String? newValue) {
-                                  //       if (newValue != null) {
-                                  //         cubit.changeTallValue(newValue);
-                                  //       }
-                                  //     },
-                                  //   ),
-                                  // ),
-                                  // CalculateBox(
-                                  //   width: size.width * 0.32,
-                                  //   header: 'الوزن',
-                                  //   child: DropdownButton(
-                                  //     items: cubit.weightItems,
-                                  //     value: cubit.weightValue,
-                                  //     onChanged: (String? newValue) {
-                                  //       if (newValue != null) {
-                                  //         cubit.changeWeightValue(newValue);
-                                  //       }
-                                  //     },
-                                  //   ),
-                                  // ),
+                                  CalculateBox(
+                                    width: size.width * 0.32,
+                                    header: 'الطول',
+                                    child: DropdownButton(
+                                      items: cubit.tallItems,
+                                      value: cubit.tallValue,
+                                      onChanged: (String? newValue) {
+                                        if (newValue != null) {
+                                          cubit.changeTallValue(newValue);
+                                        }
+                                      },
+                                    ),
+                                  ),
+                                  CalculateBox(
+                                    width: size.width * 0.32,
+                                    header: 'الوزن',
+                                    child: DropdownButton(
+                                      items: cubit.weightItems,
+                                      value: cubit.weightValue,
+                                      onChanged: (String? newValue) {
+                                        if (newValue != null) {
+                                          cubit.changeWeightValue(newValue);
+                                        }
+                                      },
+                                    ),
+                                  ),
                                 ],
                               ),
                             ],

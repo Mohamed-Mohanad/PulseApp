@@ -7,8 +7,6 @@ import 'package:pulse_app/cubits/questions/questions_cubit.dart';
 
 import '../../Models/questions/questions.dart';
 import '../../Shared/Components/components.dart';
-import '../../Shared/Cubit/cubit.dart';
-import '../../Shared/Cubit/states.dart';
 import '../../Shared/Style/color.dart';
 import '../../Shared/Style/theme.dart';
 import '../../cubits/questions/questions_states.dart';

@@ -7,6 +7,9 @@ import '../../Shared/Cubit/cubit.dart';
 import '../../Shared/Cubit/states.dart';
 import '../../Shared/Style/color.dart';
 import '../../Shared/Style/theme.dart';
+import '../history_screen/heart_details_screens.dart';
+import '../history_screen/ox_details_screen.dart';
+import '../history_screen/temp_details_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -69,9 +72,14 @@ class HomeScreen extends StatelessWidget {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(
-                                    "< نبضة في الدقيقة  ",
-                                    style: caption(),
+                                  GestureDetector(
+                                    onTap: () {
+                                      navigateTo(context, HeartDetailsHistory());
+                                    },
+                                    child: Text(
+                                      "< نبضة في الدقيقة  ",
+                                      style: caption(),
+                                    ),
                                   ),
                                   Image.asset("assets/icons/~.png"),
                                 ],
@@ -97,9 +105,14 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              Text(
-                                "< درجة الحرارة",
-                                style: caption(),
+                              GestureDetector(
+                                onTap: () {
+                                  navigateTo(context, TemeDetailsHistoryScreen());
+                                },
+                                child: Text(
+                                  "< درجة الحرارة",
+                                  style: caption(),
+                                ),
                               )
                             ],
                           ),
@@ -119,9 +132,14 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              Text(
-                                "< الاكسجين",
-                                style: caption(),
+                              GestureDetector(
+                                onTap: () {
+                                  navigateTo(context, OxDetailsHistoryScreen());
+                                },
+                                child: Text(
+                                  "< الاكسجين",
+                                  style: caption(),
+                                ),
                               )
                             ],
                           ),
