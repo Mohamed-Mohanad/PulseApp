@@ -11,15 +11,15 @@ class SearchScreen extends StatelessWidget {
       body:Column(
         children: [
           SizedBox(height: 80.h,),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
+          const Padding(
+            padding: EdgeInsets.all(20.0),
             child: TextField(
               decoration: InputDecoration(
                 filled: true,
-                fillColor: whitColor,
-                border: const OutlineInputBorder(),
+                fillColor: Colors.white,
+                border: OutlineInputBorder(),
                 labelText: 'بحث عن اقرب مستشفي / صيدلة',
-                icon:const Icon(Icons.search_rounded,textDirection: TextDirection.ltr,size: 60,),
+                icon:Icon(Icons.search_rounded,textDirection: TextDirection.ltr,size: 60,),
               ),
             ),
           ),

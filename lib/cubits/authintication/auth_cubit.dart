@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pulse_app/Models/user/user_model.dart';
 import 'package:pulse_app/Models/user_network/contacts_model.dart';
+import 'package:pulse_app/Shared/Components/components.dart';
 import 'package:pulse_app/Shared/Network/Local/cache_keys.dart';
 import 'package:pulse_app/cubits/authintication/auth_states.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -138,8 +139,20 @@ class AuthCubit extends Cubit<AuthStates> {
         .doc(contact.userName)
         .set(contactModel.toMap())
         .then((value) {
+      Fluttertoast.showToast(
+        msg: 'تم الاضافة',
+        backgroundColor: chooseToastColor(
+          ToastStates.success,
+        ),
+      );
       emit(AuthAddToMyNetworkSuccessState());
     }).catchError((onError) {
+      Fluttertoast.showToast(
+        msg: 'حدث خطأ حاول مرة اخري',
+        backgroundColor: chooseToastColor(
+          ToastStates.error,
+        ),
+      );
       emit(AuthAddToMyNetworkErrorState());
     });
   }

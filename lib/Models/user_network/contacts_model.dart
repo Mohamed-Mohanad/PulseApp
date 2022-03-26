@@ -1,6 +1,6 @@
 class ContactModel {
   String? userName;
-  int? phoneNumber;
+  String? phoneNumber;
   String? photo;
   ContactModel({
     required this.userName,
