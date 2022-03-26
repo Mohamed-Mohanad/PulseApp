@@ -1,4 +1,5 @@
 class UserModel {
+  String? userId;
   String? firstName;
   String? secondName;
   String? email;
@@ -7,12 +8,10 @@ class UserModel {
   String? city;
   String? governorate;
   bool? helperMode;
-  bool? language;
   int? nationalId;
   String? password;
   String? userName;
   DateTime? registerTime;
-  DateTime? birthDate;
   int? gender;
 
   UserModel({
@@ -24,16 +23,16 @@ class UserModel {
     required this.city,
     required this.governorate,
     required this.helperMode,
-    required this.language,
     required this.nationalId,
     required this.password,
     required this.userName,
-    required this.birthDate,
     required this.gender,
+    required this.userId,
     this.registerTime,
   });
 
   UserModel.fromFireStore(Map<String, dynamic> db) {
+    userId = db['userId'];
     firstName = db['firstName'];
     secondName = db['secondName'];
     email = db['email'];
@@ -42,12 +41,10 @@ class UserModel {
     city = db['city'];
     governorate = db['governorate'];
     helperMode = db['helperMode'];
-    language = db['language'];
     nationalId = db['nationalId'];
     password = db['password'];
     userName = db['userName'];
     registerTime = db['registerTime'];
-    birthDate = db['birthDate'];
     gender = db['gender'];
   }
 
@@ -61,11 +58,9 @@ class UserModel {
       'city': city,
       'governorate': governorate,
       'helperMode': helperMode,
-      'language': language,
       'nationalId': nationalId,
       'password': password,
       'userName': userName,
-      'birthDate': birthDate,
       'gender': gender,
       'registerTime': registerTime ?? DateTime.now(),
     };

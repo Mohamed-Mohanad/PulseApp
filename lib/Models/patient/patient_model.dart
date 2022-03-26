@@ -28,11 +28,11 @@ class PatientModel {
 
 class History {
   int? heartRateValue;
-  String? timeOfHeartRateValue;
+  DateTime? timeOfHeartRateValue;
   int? oxygenValue;
-  String? timeOfOxygenValue;
+  DateTime? timeOfOxygenValue;
   int? temperatureValue;
-  String? timeOfTemperatureValue;
+  DateTime? timeOfTemperatureValue;
   History({
     required this.timeOfTemperatureValue,
     required this.temperatureValue,

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pulse_app/Shared/Components/components.dart';
 import 'package:pulse_app/Shared/Style/color.dart';
 import 'package:pulse_app/Shared/Style/theme.dart';
+import 'package:pulse_app/cubits/authintication/auth_cubit.dart';
+import 'package:pulse_app/cubits/authintication/auth_states.dart';
 
 class HelperSettingScreen extends StatefulWidget {
   static const routeName = "/profile";
@@ -17,68 +21,78 @@ class _HelperSettingScreenState extends State<HelperSettingScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            color: whiteColor,
-            padding: EdgeInsets.symmetric(
-              horizontal: size.width * 0.04,
-            ),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Icon(
-                        Icons.search,
-                        size: size.width * 0.1,
+    return BlocConsumer<AuthCubit, AuthStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        var cubit = AuthCubit.get(context);
+        return Scaffold(
+          body: SafeArea(
+            child: SingleChildScrollView(
+              child: Container(
+                color: whiteColor,
+                padding: EdgeInsets.symmetric(
+                  horizontal: size.width * 0.04,
+                ),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon(
+                            Icons.search,
+                            size: size.width * 0.1,
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: size.width * 0.1,
+                          ),
+                        ],
                       ),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        size: size.width * 0.1,
-                      ),
-                    ],
-                  ),
+                    ),
+                    GetHeader(),
+                    Text(
+                      'اسماء خالد',
+                      style: headLine(),
+                    ),
+                    const ProfileName(
+                      name: 'assmaakhaled609@gmail.com',
+                    ),
+                    const VerticalSpace(
+                      height: 14,
+                    ),
+                    const Heading(
+                      heading: "الانقاذ",
+                    ),
+                    _helpMode(),
+                    const VerticalSpace(
+                      height: 6,
+                    ),
+                    const Heading(
+                      heading: "الاعدادت",
+                    ),
+                    const VerticalSpace(
+                      height: 6,
+                    ),
+                    DetailsCard(),
+                    const VerticalSpace(
+                      height: 10,
+                    ),
+                    const Heading(
+                      heading: "عن التطبيق",
+                    ),
+                    const VerticalSpace(
+                      height: 6,
+                    ),
+                    SettingCard(),
+                  ],
                 ),
-                GetHeader(),
-                Container(
-                  child: Text(
-                    'اسماء خالد',
-                    style: headLine(),
-                  ),
-                ),
-                const ProfileName(
-                  name: 'assmaakhaled609@gmail.com',
-                ),
-                const VerticalSpace(
-                  height: 14,
-                ),
-                const Heading(heading: "الانقاذ",),
-                _helpMode(),
-                const VerticalSpace(
-                  height: 6,
-                ),
-                const Heading(heading: "الاعدادت",),
-                const VerticalSpace(
-                  height: 6,
-                ),
-                DetailsCard(),
-                const VerticalSpace(
-                  height: 10,
-                ),
-                const Heading(heading: "عن التطبيق",),
-                const VerticalSpace(
-                  height: 6,
-                ),
-                SettingCard(),
-              ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 

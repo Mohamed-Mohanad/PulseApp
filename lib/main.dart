@@ -18,7 +18,7 @@ import 'cubits/questions/questions_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp();
   await CacheHelper.init();
   DioHelper.init();
   BlocOverrides.runZoned(

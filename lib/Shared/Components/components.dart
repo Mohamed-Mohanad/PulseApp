@@ -5,6 +5,7 @@ import 'package:day_night_time_picker/lib/constants.dart';
 import 'package:day_night_time_picker/lib/daynight_timepicker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pulse_app/cubits/authintication/auth_cubit.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../Models/graph_data/graph_data.dart';
@@ -192,13 +193,15 @@ class DefaultTextField extends StatelessWidget {
   final TextInputType type;
   final bool isPassword;
   final String label;
+  Function? validate;
 
-  const DefaultTextField({
+  DefaultTextField({
     Key? key,
     required this.controller,
     required this.type,
     this.isPassword = false,
     required this.label,
+    this.validate,
   }) : super(key: key);
 
   @override
@@ -209,6 +212,9 @@ class DefaultTextField extends StatelessWidget {
           controller: controller,
           keyboardType: type,
           obscureText: isPassword,
+          validator: (String? val) {
+            return validate!(val);
+          },
           decoration: InputDecoration(
             labelText: label,
           ),
@@ -501,7 +507,13 @@ class TempTab extends StatelessWidget {
 }
 
 class BuildChatItem extends StatelessWidget {
-  const BuildChatItem({Key? key}) : super(key: key);
+  final String userName;
+  final String image;
+  const BuildChatItem({
+    Key? key,
+    required this.userName,
+    required this.image,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -526,9 +538,10 @@ class BuildChatItem extends StatelessWidget {
               ),
             ),
             clipBehavior: Clip.antiAlias,
-            child: const Image(
+            child: Image(
               image: NetworkImage(
-                  'https://www.hollywoodreporter.com/wp-content/uploads/2019/03/avatar-publicity_still-h_2019.jpg?w=1024'),
+                image.toString(),
+              ),
               fit: BoxFit.cover,
             ),
           ),
@@ -536,7 +549,7 @@ class BuildChatItem extends StatelessWidget {
             width: 15.w,
           ),
           Text(
-            'أسماء خالد',
+            userName,
             style: bodyText().copyWith(
               color: Colors.black,
               fontWeight: FontWeight.bold,
@@ -586,17 +599,23 @@ class BuildChatItem extends StatelessWidget {
                               ),
                             ),
                           ),
-                          ListTile(
-                            leading: const Icon(
-                              Icons.not_interested_outlined,
-                              color: Colors.black,
-                            ),
-                            title: Text(
-                              'إزالة من المقربون',
-                              style: bodyText().copyWith(
-                                fontWeight: FontWeight.bold,
+                          GestureDetector(
+                            child: ListTile(
+                              leading: const Icon(
+                                Icons.not_interested_outlined,
+                                color: Colors.black,
+                              ),
+                              title: Text(
+                                'إزالة من المقربون',
+                                style: bodyText().copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
+                            onTap: () {
+                              AuthCubit.get(context)
+                                  .removeFromMyNetwork(userName: userName);
+                            },
                           ),
                         ],
                       ),

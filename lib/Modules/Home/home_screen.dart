@@ -7,6 +7,7 @@ import '../../Shared/Cubit/cubit.dart';
 import '../../Shared/Cubit/states.dart';
 import '../../Shared/Style/color.dart';
 import '../../Shared/Style/theme.dart';
+import '../history_screen/heart_details_screens.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -97,9 +98,14 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              Text(
-                                "< درجة الحرارة",
-                                style: caption(),
+                              GestureDetector(
+                                onTap: (){
+                                  navigateTo(context, HeartDetailsHistory(),);
+                                },
+                                child: Text(
+                                  "< درجة الحرارة",
+                                  style: caption(),
+                                ),
                               )
                             ],
                           ),
