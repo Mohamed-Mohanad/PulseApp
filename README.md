@@ -15,6 +15,35 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+# Description
+
+Pulse app is an application that track your health status and warning you if there's any dangerous health statue.
+There is a login & sign up system you can sign up as a patient or as a helper 
+If you signed as a helper the application well notify you when there is a patient around you that you can help him 
+If you signed as a patient the application will read the sensors reads from firebase (heart rate, oxygen and temperature) the application provide you with a graph that describe your heart rate, oxygen in your blood and temperature per month, per day and per a week.
+You can add your network list of people you would like to notify them if there's any dangerous health statue about you and you can send a report about your health statue as a pdf to any number via WhatsApp.
+You can search for the nearest hospital or pharmacy.
+You can set an alarm with your medicine times, and application will send a notification everyday to remember you with your medicine.
+Finally if the app found any dangerous health statue it will automatically send messages with your current location to you network list of people and will notify the nearest helpers to help you.
+
+
+# Project Architecture Description
+
+We use MVVM architecture.
+The start point of the project is main.dart file.
+There is 5 main folders:
+-Models (MODEL) folder which contains all the classes that describe our models data in the app in dart language.
+
+-Modules (VIEW MODEL) folder which continents all the files that contain flutter code for the Screens UI.
+
+-Layout (VIEW MODEL) folder which contains the files that contain flutter code for introduction screens.
+
+-Cubits (MODEL) file which contains all cubits classes that response to get the data from the firebase and authentication the user with firebase
+
+-Shared File contains :
+ -Style folder containes the colors and the them of the app (VIEW).
+ -Components folder which contains any shared ui component which used frequently in the app(VIEW).
+ -Cubit folder which continents our state management BLOC and the methods which response to change the state of the app(MODEL).
 
 # Hardware
 
