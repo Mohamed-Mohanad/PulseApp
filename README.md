@@ -35,6 +35,18 @@ There is 5 main folders:
  -Components folder which contains any shared ui component which used frequently in the app(VIEW).
  -Cubit folder which continents our state management BLOC and the methods which response to change the state of the app(MODEL).
 
+# UI/UX Design
+
+Simply put, User Interface Design is important because it can make or break your customer base. It creates fewer problems, increases user involvement, perfects functionality and creates a strong link between your customers and your website.
+Therfore, you can also see the design of the UI/UX Design.
+
+for Design: https://www.figma.com/file/IqCFGDFYGUaXzYd2Z02VVW/Pulse?node-id=0%3A1
+
+for Prototype: https://www.figma.com/proto/IqCFGDFYGUaXzYd2Z02VVW/Pulse?node-id=125%3A617&scaling=scale-down&page-id=0%3A1&starting-point-node-id=125%3A600
+
+
+
+
 # Hardware
 
 It's a device that is attached to the patient and contains many sensors that read the patient's vital signs and send the readings to the Firebase to be dealt with and presented to the patient on the application, and it also contains a location at any time, We are using the beta version of the development board (nodeMCU-esp8266)
